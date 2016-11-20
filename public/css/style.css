@@ -1,0 +1,60 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+#content {
+  max-width: 100%;
+}
+#header {
+  border: none;
+  padding-left: 10px;
+  padding-right: 20px;
+}
+.daftar {
+  margin-left: 10px;
+  margin-right: 0;
+}
+.sidebar {
+  top: 64px;
+  font-weight: bold;
+  background-color: teal;
+}
+.side-nav {
+  width: 17%;
+}
+.navbar-sidebar {
+  margin-right: -21px;
+  margin-bottom: 20px;
+  margin-left: -20px;
+  padding-top: 10px;
+}
+.navbar-sidebar > li > a {
+  padding-right: 20px;
+  padding-left: 20px;
+}
+.nav-sidebar > .active > a,
+.nav-sidebar > .active > a:hover,
+.nav-sidebar > .active > a:focus {
+  color: #fff;
+  background-color: #428bca;
+}
+
+.navbar-sidebar > li {
+  margin-left: 20px;
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+.navbar-sidebar > li:hover {
+  background-color: #15C3B5;
+}
+.collapsible-li > li:hover {
+  background-color: red;
+}
+.collapsible-li > li {
+  background-color: teal;
+}
+
+.profile {
+  text-align: right;
+}
