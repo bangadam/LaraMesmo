@@ -24,6 +24,7 @@
 		<script type="text/javascript" src="{{ URL::to('js/materialize.min.js') }}"></script>
 		<script type="text/javascript">
 			$(document).ready(function() {
+				$('select').material_select();
 				$(".button-collapse").sideNav();
 				$(".slider").slider({
 					full_width: true,
@@ -32,6 +33,11 @@
 				});
 				$(".carousel").carousel();
 				$('.dropdown-button').dropdown();
+				//datepicker
+				$('.datepicker').pickdate({
+					selectMonths: true,
+					selectYears: 15
+				});
 			});
 		</script>
 	</body>

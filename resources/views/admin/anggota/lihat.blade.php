@@ -14,14 +14,14 @@
 		    </div>
 		</nav>
 		<div class="col m12">
-			<a style="margin-top: 20px;" href="{{ route('pembina') }}" class="btn waves-effect waves-light"><i class="fa fa-arrow-left"></i> Back</a>
+			<a style="margin-top: 20px;" href="{{ route('anggota') }}" class="btn waves-effect waves-light"><i class="fa fa-arrow-left"></i> Back</a>
 			<div class="container">
 			   <h1 class="blue-text center-align">Profile</h1>
 				<div class="card">
 					<div class="card-content">
 						<div class="row">
-							<div class="col m4">
-								<img src="{{ asset('uploads/' . $data->gambar ) }}" class="materialboxed responsive-img circle" alt="">
+							<div class="col m5">
+								<img src="{{ asset('uploads/' . $data->gambar ) }}" class="materialboxed responsive-img circle	" alt="">
 							</div>
 							<div class="col m7">
 								<h2>Bangadam</h2>

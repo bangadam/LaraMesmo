@@ -1,9 +1,9 @@
 @extends('admin.index')
 
-@section('pembina')
+@section('anggota')
 
 <div class="row">
-	<h5>Tambah Pembina</h5>
+	<h5>Tambah Anggota</h5>
 		<nav>
 		    <div class="nav-wrapper">
 		      <div class="col s12">
@@ -14,11 +14,11 @@
 		    </div>
 		</nav>
 		<div class="col m6 offset-m2">
-			<form action="{{ route('pembina.tambah') }}" method="POST" enctype="multipart/form-data">
-				<h3 class="blue-text blue-lighten-2 center-align">Tambah Pembina</h3>
+			<form action="{{ route('anggota.tambah') }}" method="POST" enctype="multipart/form-data">
+				<h3 class="blue-text blue-lighten-2 center-align">Tambah Anggota</h3>
 				<div class="input-field{{ $errors->has('nama') ? ' has-error' : '' }}"> 
 					<input type="text" name	="nama" id="nama" value="{{ old('nama') }}">
-					<label>Nama</label>
+					<label for="">Nama</label>
 					@if($errors->has('nama'))
 						 <ul class="card-panel red darken-1">
         					<p>{{ $errors->first('nama') }}</p>
@@ -27,10 +27,10 @@
 				</div>
 
 				<div class="input-field">
-					<input type="email" name="email" class="validate">
-					<label>Email</label>
+					<input type="email" name="email" id="email" class="validate">
+					<label for="">Email</label>
 				</div>
-					
+				
 				<div class="input-field">
 					<select name="jenis_kelamin">
 						<option value="" disabled selected>- Jenis Kelamin -</option>
@@ -38,9 +38,28 @@
 						<option value="wanita">wanita</option>
 					</select>
 				</div>
+				
+				<label for="">Tanggal Lahir</label>
+				<div class="input-field">
+					<input type="date" class="datepicker"  name="tgl_lahir">
+				</div>
+
+				<div class="input-field">
+					<select name="jurusan">
+						<option value="" disabled selected>Jurusan</option>
+						<option value="RPL">RPL</option>
+						<option value="TKJ">TKJ</option>
+						<option value="JB">JB</option>
+						<option value="ANM">ANM</option>
+						<option value="APH">APH</option>
+						<option value="MM">MM</option>
+					</select>
+				</div>
+					
+
 				<div class="input-field{{ $errors->has('no_hp') ? ' has-error' : '' }}">
 					<input type="text" name="no_hp" id="no_hp" value="{{ old('no_hp') }}" >
-					<label>No. Hp</label>
+					<label for="">No. Hp</label>
 					@if($errors->has('no_hp'))
 						 <ul class="card-panel red darken-1">
         					<p>{{ $errors->first('no_hp') }}</p>
@@ -49,7 +68,7 @@
 				</div>
 				<div class="input-field{{ $errors->has('alamat') ? ' has-error' : '' }}">
 					<textarea name="alamat" rows="3" class="materialize-textarea">{{ old('alamat') }}</textarea>
-					<label>Alamat</label>
+					<label for="">Alamat</label>
 					@if($errors->has('alamat'))
 						 <ul class="card-panel red darken-1">
         					<p>{{ $errors->first('alamat') }}</p>

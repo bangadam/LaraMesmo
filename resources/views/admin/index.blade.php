@@ -62,6 +62,7 @@
 	<div class="col m10 offset-m2">
 		@yield('dashboard')
 		@yield('pembina')
+		@yield('anggota')
 	</div>
 
 	<div class="row" style="bottom: 0;">

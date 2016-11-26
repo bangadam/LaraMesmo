@@ -11,12 +11,12 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        // $users = User::create([
-        // 	'username'	=>	'admin',
-        // 	'password'	=>	bcrypt('admin'),
-        // 	'level'		=>	'admin'
-        // ]);
-        // $users->save();
+        $users = User::create([
+        	'username'	=>	'admin',
+        	'password'	=>	bcrypt('admin'),
+        	'level'		=>	'admin'
+        ]);
+        $users->save();
 
         $users = User::create([
             'username'  =>  'pembina',

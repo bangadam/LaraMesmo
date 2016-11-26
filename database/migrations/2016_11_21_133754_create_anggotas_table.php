@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePembinaTable extends Migration
+class CreateAnggotasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,15 @@ class CreatePembinaTable extends Migration
      */
     public function up()
     {
-        Schema::create('pembina', function(Blueprint $table) {
+        Schema::create('anggotas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nama');
             $table->string('email');
             $table->string('jenis_kelamin');
-            $table->string('alamat');
+            $table->string('tgl_lahir');
+            $table->string('jurusan');
             $table->string('no_hp');
+            $table->string('alamat');
             $table->string('gambar');
             $table->timestamps();
         });
@@ -31,6 +33,6 @@ class CreatePembinaTable extends Migration
      */
     public function down()
     {
-        Schema::drop('pembina');
+        Schema::drop('anggotas');
     }
 }

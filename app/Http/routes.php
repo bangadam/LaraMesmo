@@ -59,7 +59,7 @@ Route::group(['prefix' => 'pembina'], function() {
 		'as'	=>	'pembina.edit'
 	]);
 
-	Route::post('/{id}', [
+	Route::put('/{id}', [
 		'uses'	=>	'PembinaController@putEdit',
 		'as'	=>	'pembina.update'
 	]);
@@ -81,6 +81,48 @@ Route::group(['prefix' => 'pembina'], function() {
 	Route::get('/search', [
 		'uses'	=>	'PembinaController@getSearch', 
 		'as'	=>	'pembina.search'
+	]);
+});
+
+//  Pembina Route
+Route::group(['prefix' => 'anggota'], function() {
+	Route::get('/', [
+		'uses'	=>	'AnggotaController@getAnggota',
+		'as'	=>	'anggota'
+	]);
+
+	Route::get('/tambah', [
+		'uses'	=>	'AnggotaController@getTambah',
+		'as'	=>	'anggota.tambah'
+	]);
+
+	Route::get('/{id}/edit', [
+		'uses'	=>	'AnggotaController@getEdit', 
+		'as'	=>	'anggota.edit'
+	]);
+
+	Route::put('/{id}', [
+		'uses'	=>	'AnggotaController@putEdit',
+		'as'	=>	'anggota.update'
+	]);
+
+	Route::get('/{id}/hapus', [
+		'uses'	=>	'AnggotaController@getHapus',
+		'as'	=>	'anggota.hapus'
+	]);
+
+	Route::get('/lihat/{id}', [
+		'uses'	=>	'AnggotaController@getLihat',
+		'as'	=>	'anggota.lihat'
+	]);
+
+	Route::post('/tambah', [
+		'uses'	=>	'AnggotaController@postTambah'
+	]);
+
+	Route::get('/search', [
+		'uses'	=>	'AnggotaController@getSearch', 
+		'as'	=>	'anggota.search'
 	]);
 });
 

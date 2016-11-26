@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Pembina;
-use DB;
-use File;
+use Image;
+use Storage;
 use App\Http\Requests;
 
 
@@ -53,28 +53,29 @@ class PembinaController extends Controller
         
         $this->validate($request, [
             'nama'              =>  'required|min:3',
-            'password'          =>  'required|min:3',
+            'email'             =>  'required|unique:pembina',
             'jenis_kelamin'     =>  'required',
             'no_hp'             =>  'required|max:13',
             'alamat'            =>  'required',
-            'gambar'            =>  'required'
+            'gambar'            =>  'image'
         ]);
-
-           // upload gambar
-        $file       =   $request->file('gambar');
-        $fileName   =   date('Y-m-d') . "_" . $file->getClientOriginalName();
-        $request->file('gambar')->move('uploads/pembina', $fileName);
 
         $pembina = new Pembina;
         $pembina->nama          =   $request['nama'];
-        $pembina->password      =   bcrypt($request['password']);
+        $pembina->email         =   $request['email'];
         $pembina->jenis_kelamin =   $request['jenis_kelamin'];
         $pembina->no_hp         =   $request['no_hp'];
         $pembina->alamat        =   $request['alamat'];
-        $pembina->gambar        =   $fileName;
 
+           // upload gambar
+        if ($request->hasFile('gambar')) {
+            $file       =   $request->file('gambar');
+            $fileName   =   date('Y-m-d') . "." . $file->getClientOriginalName();
+            $location   =   public_path('uploads/'. $fileName);
+            Image::make($file)->resize(800, 400)->save($location);
 
-        // $pembina->gambar        =   $request['gambar'];
+            $pembina->gambar  =  $fileName;
+        }
 
         $pembina->save();
 
@@ -82,26 +83,40 @@ class PembinaController extends Controller
     }
 
     public function putEdit(Request $request, $id) { 
-        $pembina = Pembina::find($id);
-        
-        if ($request->hasFile('gambar')) {
-            File::delete('uploads/pembina'.$pembina->gambar);
+        $pembina = Pembina::findOrFail($id);
 
-            $file       =   $request->file('gambar');
-            $fileName   =   date('Y-m-d') . "_" . $file->getClientOriginalName();
-            $request->file('gambar')->move('uploads/pembina', $fileName);
-        }elseif()  {
-        
-        $pembina->update([
-            'nama'          =>   $request['nama'],
-            'password'      =>   bcrypt($request['password']),
-            'jenis_kelamin' =>   $request['jenis_kelamin'],
-            'no_hp'         =>   $request['no_hp'],
-            'alamat'        =>   $request['alamat'],
-            'gambar'        =>   $fileName
+        $this->validate($request, [
+            'nama'              =>  'required|min:3',
+            'password'          =>  'required|min:3',
+            'jenis_kelamin'     =>  'required',
+            'no_hp'             =>  'required|max:13',
+            'alamat'            =>  'required',
+            'gambar'            =>  'image'
         ]);
-    }
+        $pembina = Pembina::findOrFail($id);
+        $pembina->nama          =   $request['nama'];
+        $pembina->password      =   bcrypt($request['password']);
+        $pembina->jenis_kelamin =   $request['jenis_kelamin'];
+        $pembina->no_hp         =   $request['no_hp'];
+        $pembina->alamat        =   $request['alamat'];
 
-        return redirect()->route('pembina')->with('pesan', 'Data Berhasil Di Update');
-   }
+           // upload gambar
+        if ($request->hasFile('gambar')) {
+            $file       =   $request->file('gambar');
+            $fileName   =   date('Y-m-d') . "." . $file->getClientOriginalName();
+            $location   =   public_path('uploads/'. $fileName);
+            Image::make($file)->resize(800, 400)->save($location);
+            //gambar lama    
+            $oldFileName = $pembina->gambar;
+            //gambar baru
+            $pembina->gambar = $fileName;
+            //hapus gambar lama
+            Storage::delete($oldFileName);    
+
+        }
+
+        $pembina->save();
+
+        return redirect()->route('pembina')->with('pesan', 'Data berhasil di Update !');
+    }
 }
