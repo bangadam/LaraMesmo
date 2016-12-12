@@ -2,6 +2,26 @@
   margin: 0;
   padding: 0;
 }
+
+#kotak {
+  padding: 40px;
+  color: white;
+}
+
+#visimisi {
+  margin-bottom: 100px;
+}
+
+#visimisi > div > i {
+  margin-bottom: 40px;
+}
+
+#visimisi > div {
+  border: 3px solid #f0f0f0;  
+  padding: 20px;
+}
+
+
 #content {
   max-width: 100%;
 }
