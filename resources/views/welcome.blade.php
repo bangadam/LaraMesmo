@@ -1,12 +1,16 @@
-@extends('templates.app')
+	@extends('templates.app')
 
-@section('content')
+	@section('content')
 
 
-@include('templates.nav')
+	@include('templates.nav')
 
+<<<<<<< HEAD
 <!-- Slider -->
 <section id="home-slider">
+=======
+	<!-- Slider -->
+>>>>>>> 3d7980558a864a839fd9eb94ba497bcf96d47fee
 	<div class="slider">
 		<ul class="slides">
 			<li>
@@ -43,6 +47,7 @@
 	</div>
 </section>
 
+<<<<<<< HEAD
 <section id="about">
 		<div class="row">
 			<div class="col m12">
@@ -162,103 +167,174 @@
 			</div>
 		</div>
 </section>
+=======
+	<section id="kotak" class="blue accent-2">
+			<div class="row">
+				<div class="col m12">
+					<h1 class="center-align">Visi Misi</h1>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col m3 center-align">
+					<i class="fa fa-thumbs-up fa-5x"></i>
+						<p class="center-align">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint maxime repudiandae beatae</p>
+				</div>
+				<div class="col m3 center-align">
+					<i class="fa fa-mortar-board fa-5x"></i>
+						<p class="center-align">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint maxime repudiandae beatae</p>
+				</div>
+				<div class="col m3 center-align">
+					<i class="fa fa-cogs fa-5x"></i>
+						<p class="center-align">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint maxime repudiandae beatae</p>
+				</div>
+				<div class="col m3 center-align">
+					<i class="fa fa-users fa-5x"></i>
+						<p class="center-align">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint maxime repudiandae beatae</p>
+				</div>
+			</div>
+	</section>
 
+	<section style="background-color: teal;height: 500px;">
+		<!-- carousel -->
+		<div class="container">
 
-<div class="row blue lighten-2" style="height: 500px;">
-		<div class="row">
-			<div class="col m12">
-				<h3 class="center-align">Apa Kata Mereka ....</h3>
+			<div class="row">
+				<div class="col m12">
+					<h1 class="center-align">Portofolio</h1>
+				</div>
+			</div>
+		
+			<div class="row">
+				<div class="col m12">
+					<div class="carousel">
+						<a href="#!" class="carousel-item">
+							<img src="{{ URL::to('images/nature4.jpg') }}" width="300" height="200" alt="">
+						</a>
+						<a href="#!" class="carousel-item">
+							<img src="{{ URL::to('images/nature4.jpg') }}" width="300" height="200" alt="">
+						</a>
+						<a href="#!" class="carousel-item">
+							<img src="{{ URL::to('images/nature4.jpg') }}" width="300" height="200" alt="">
+						</a>
+						<a href="#!" class="carousel-item">
+							<img src="{{ URL::to('images/nature4.jpg') }}" width="300" height="200" alt="">
+						</a>
+						<a href="#!" class="carousel-item">
+							<img src="{{ URL::to('images/nature4.jpg') }}" width="300" height="200" alt="">
+						</a>
+						<a href="#!" class="carousel-item">
+							<img src="{{ URL::to('images/nature4.jpg') }}" width="300" height="200" alt="">
+						</a>
+					</div>
+				</div>
 			</div>
 		</div>
-		<div class="col m4">
-			<div class="card-panel">
-				<div class="row valign-wrapper">
+	</section>
+>>>>>>> 3d7980558a864a839fd9eb94ba497bcf96d47fee
+
+
+	<div class="row blue lighten-2" style="height: 500px;">
+			<div class="row">
+				<div class="col m12">
+					<h3 class="center-align">Apa Kata Mereka ....</h3>
+				</div>
+			</div>
+			<div class="col m4">
+				<div class="card-panel">
+					<div class="row valign-wrapper">
+						<div class="col m6">
+						<img src="{{ URL::to('images/nature4.jpg') }}" class="circle responsive-img" alt="">
+					</div>
 					<div class="col m6">
-					<img src="{{ URL::to('images/nature4.jpg') }}" class="circle responsive-img" alt="">
-				</div>
-				<div class="col m6">
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos</p>
-				</div>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos</p>
+					</div>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="col m4">
-			<div class="card-panel">
-				<div class="row valign-wrapper">
+			<div class="col m4">
+				<div class="card-panel">
+					<div class="row valign-wrapper">
+						<div class="col m6">
+						<img src="{{ URL::to('images/nature4.jpg') }}" class="circle responsive-img" alt="">
+					</div>
 					<div class="col m6">
-					<img src="{{ URL::to('images/nature4.jpg') }}" class="circle responsive-img" alt="">
-				</div>
-				<div class="col m6">
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos</p>
-				</div>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos</p>
+					</div>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="col m4">
-			<div class="card-panel">
-				<div class="row valign-wrapper">
+			<div class="col m4">
+				<div class="card-panel">
+					<div class="row valign-wrapper">
+						<div class="col m6">
+						<img src="{{ URL::to('images/nature4.jpg') }}" class="circle responsive-img" alt="">
+					</div>
 					<div class="col m6">
-					<img src="{{ URL::to('images/nature4.jpg') }}" class="circle responsive-img" alt="">
-				</div>
-				<div class="col m6">
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos</p>
-				</div>
-				</div>
-			</div>
-		</div>
-</div>
-
-
-<section>
-	<div class="container">
-		<div class="row">
-			<div class="col m12">
-				<h1 class="center-align">Contact Us</h1>
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="col m6">
-				<div class="card">
-					<div class="card-content">
-				<form action="" method="post">
-					<div class="input-field">
-						<input type="text" name="nama" id="nama" class="validate">
-						<label for="Nama">Nama</label>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos</p>
 					</div>
-					<div class="input-field">
-						<input type="email" name="email" id="email" class="validate">
-						<label for="Email">Email</label>
-					</div>
-					<div class="input-field">
-						<input type="text" name="subject" id="subject" class="validate">
-						<label for="Subject">Subject</label>
-					</div>
-					<div class="input-field">
-						<textarea name="pesan" id="pesan" rows="3" class="materialize-textarea"></textarea>
-						<label for="Nama">Pesan</label>
-					</div>
-					<div class="row">
-						<button type="submit" class="btn waves-effect waves-light right">Kirim <i class="fa fa-send"></i></button>
-					</div>
-				</form>
 					</div>
 				</div>
 			</div>
-			<div class="col m6">
-				<h5>About Us</h5>
-				<ul>
-					<li>lorem</li>
-					<li>lorem</li>
-					<li>ipsum</li>
-				</ul>
-			</div>
-		</div>
 	</div>
-</section>
 
 
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col m12">
+					<h1 class="center-align">Contact Us</h1>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col m6">
+					<div class="card">
+						<div class="card-content">
+					<form action="" method="post">
+						<div class="input-field">
+							<input type="text" name="nama" id="nama" class="validate">
+							<label for="Nama">Nama</label>
+						</div>
+						<div class="input-field">
+							<input type="email" name="email" id="email" class="validate">
+							<label for="Email">Email</label>
+						</div>
+						<div class="input-field">
+							<input type="text" name="subject" id="subject" class="validate">
+							<label for="Subject">Subject</label>
+						</div>
+						<div class="input-field">
+							<textarea name="pesan" id="pesan" rows="3" class="materialize-textarea"></textarea>
+							<label for="Nama">Pesan</label>
+						</div>
+						<div class="row">
+							<button type="submit" class="btn waves-effect waves-light right">Kirim <i class="fa fa-send"></i></button>
+						</div>
+					</form>
+						</div>
+					</div>
+				</div>
+				<div class="col m6">
+					<h5>About Us</h5>
+					<ul>
+						<li>lorem</li>
+						<li>lorem</li>
+						<li>ipsum</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+<<<<<<< HEAD
 <footer class="page-footer teal">
 		<p class="center-align" style="color: white;padding: 10px;">Copyright &copy; <?php echo date('Y'); ?> Bangadam. Made With <i class="fa fa-heart" style="color:#f73333"></i> SMKN 1 Dlanggu</p>
 </footer>																					
 @endsection																						
+=======
+	<footer class="page-footer teal">
+			<p class="center-align" style="color: white;padding: 10px;">Copyright &copy; <?php echo date('Y'); ?> Bangadam. Made With <i class="fa fa-heart" style="color:#f73333"></i> SMKN 1 Dlanggu</p>
+	</footer>																					
+	@endsection																																																																																																																																																																																																																																																																																										
+>>>>>>> 3d7980558a864a839fd9eb94ba497bcf96d47fee
