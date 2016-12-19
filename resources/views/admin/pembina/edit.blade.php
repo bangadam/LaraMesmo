@@ -3,7 +3,7 @@
 @section('pembina')
 
 <div class="row">
-	<h5>Tambah Pembina</h5>
+	<h5>Edit Pembina</h5>
 		<nav>
 		    <div class="nav-wrapper">
 		      <div class="col s12">
@@ -13,8 +13,16 @@
 		      </div>
 		    </div>
 		</nav>
-		<div class="col m6 offset-m2">
-			<form action="{{ route('pembina.update', $data->id) }}" method="POST" enctype="multipart/form-data">
+</div>		
+	
+	<div class="row">
+		<a style="margin-top: 20px;" href="{{ route('pembina') }}" class="btn waves-effect waves-light"><i class="fa fa-arrow-left"></i> Back</a>
+	</div>
+
+		<div class="col m8 offset-m2">
+			<div class="card">
+				<div class="card-content">
+					<form action="{{ route('pembina.update', $data->id) }}" method="POST" enctype="multipart/form-data">
 				<h3 class="blue-text blue-lighten-2 center-align">Edit Pembina</h3>
 				<div class="input-field{{ $errors->has('nama') ? ' has-error' : '' }}"> 
 					<input type="text" name="nama" id="nama" placeholder="Nama" class="validate" value="{{ $data->nama }}">
@@ -34,13 +42,19 @@
 					@endif
 				</div>
 					
-				<div class="input-field">
+				<div class="input-field{{ $errors->has('jenis_kelamin') ? ' has-error' : '' }}">
 					<select name="jenis_kelamin">
 						<option value="" disabled selected>- Pilih Jenis Kelamin -</option>
 						<option value="pria" @if($data->jenis_kelamin == 'pria') selected >pria
 						</option>
 						<option value="wanita" @elseif($data->jenis_kelamin == 'wanita') selected @endif>wanita
 						</option>
+					</select>
+					@if($errors->has('jenis_kelamin'))
+						 <ul class="card-panel red darken-1">
+        					<p>{{ $errors->first('jenis_kelamin') }}</p>
+        				 </ul>
+					@endif
 				</div>
 				<div class="input-field{{ $errors->has('alamat') ? ' has-error' : '' }}">
 					<textarea name="alamat" rows="3" class="materialize-textarea validate" placeholder="Alamat">{{ $data->alamat }}</textarea>
@@ -58,7 +72,7 @@
         				 </ul>
 					@endif
 				</div>
-				<div class="file-field input-field">
+				<div class="file-field input-field{{ $errors->has('gambar') ? ' has-error' : '' }}">
 					<div class="btn">
 						<span>File</span>
 						<input type="file" name="gambar">
@@ -66,15 +80,23 @@
 					<div class="file-path-wrapper">
 						<input type="text" class="file-path validate" placeholder="Limit Size 200kb">
 					</div>
+					@if($errors->has('gambar'))
+						 <ul class="card-panel red darken-1">
+        					<p>{{ $errors->first('gambar') }}</p>
+        				 </ul>
+					@endif
 				</div>
 				
 				
-				<button type="submit" class="btn waves-effect waves-light right">Edit <i class="fa fa-pencil"></i></button>
+				<div class="row">
+					<button type="submit" class="btn waves-effect waves-light right">Edit <i class="fa fa-pencil"></i></button>
+				</div>
 				<input type="hidden" name="_method" value="put">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			</form>
+				</div>
+			</div>
 		</div>
-</div>
 </div>
 
 @endsection

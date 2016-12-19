@@ -9,8 +9,10 @@ class Pengurus extends Model
     protected $table = 'penguruses';
 
     protected $fillable = [
-    	'anggota_id',
-    	'nama_pengurus'
+    	'jabatan'
     ];
 
+    public function anggota() {
+    	return $this->belongsTo('App\Anggota');
+    }
 }

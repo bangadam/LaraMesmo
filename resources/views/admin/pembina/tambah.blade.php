@@ -13,6 +13,7 @@
 		      </div>
 		    </div>
 		</nav>
+</div>		
 		<div class="col m6 offset-m2">
 			<form action="{{ route('pembina.tambah') }}" method="POST" enctype="multipart/form-data">
 				<h3 class="blue-text blue-lighten-2 center-align">Tambah Pembina</h3>
@@ -26,17 +27,27 @@
 					@endif
 				</div>
 
-				<div class="input-field">
-					<input type="email" name="email" class="validate">
+				<div class="input-field{{ $errors->has('email') ? ' has-error' : '' }}">
+					<input type="email" name="email" class="validate" value="{{ old('email') }}">
 					<label>Email</label>
+					@if($errors->has('email'))
+						 <ul class="card-panel red darken-1">
+        					<p>{{ $errors->first('email') }}</p>
+        				 </ul>
+					@endif
 				</div>
 					
-				<div class="input-field">
+				<div class="input-field{{ $errors->has('jenis_kelamin') ? ' has-error' : '' }}">
 					<select name="jenis_kelamin">
 						<option value="" disabled selected>- Jenis Kelamin -</option>
 						<option value="pria">pria</option>
 						<option value="wanita">wanita</option>
 					</select>
+					@if($errors->has('jenis_kelamin'))
+						 <ul class="card-panel red darken-1">
+        					<p>{{ $errors->first('jenis_kelamin') }}</p>
+        				 </ul>
+					@endif
 				</div>
 				<div class="input-field{{ $errors->has('no_hp') ? ' has-error' : '' }}">
 					<input type="text" name="no_hp" id="no_hp" value="{{ old('no_hp') }}" >

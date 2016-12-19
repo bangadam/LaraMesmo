@@ -2,8 +2,10 @@
 
 @section('content')
 {{-- NavBar --}}
+<link rel="stylesheet" type="text/css" href="{{ URL::to('css/dataTables.min.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ URL::to('css/dataTables.material.css') }}">
 <div class="navbar-fixed">
-	<nav>
+	<nav class="blue accent-3">
 	<div class="nav-wrapper " id="header">
 		<a href="#!" class="brand-logo">Admin Mesmo</a>
 		<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="fa fa-bars"></i></a>
@@ -40,17 +42,19 @@
 
 	<div class="col m2">
 		<ul id="nav-mobile" class="sidebar side-nav fixed">
-			<li><a href="#!"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+			<li><a href="#!"><i class="fa fa-dashboard"></i> Dashboard</a></li>	
+			@if(Auth::user()->username == 'admin' || Auth::user()->username == 'pembina')
 				<li><a href="{{ route('pembina') }}"><i class="fa fa-user"></i> Pembina</a></li>
-			<li><a href="#!"><i class="fa fa-book"></i> Kegiatan</a></li>
+			@endif
+			<li><a href="{{ route('kegiatan') }}"><i class="fa fa-book"></i> Kegiatan</a></li>
 			<ul class="collapsible" data-collapsible="accordion">
 				 <li>
       				<div class="collapsible-header"><i class="fa fa-users"></i> Anggota</div>
       				<div class="collapsible-body">
       					<ul class="daftar">
-      						<li><a href="#!"><i class="fa fa-eye"></i>Daftar Anggota</a></li>
-      						<li><a href="#!"><i class="fa fa-book"></i> Absensi</a></li>
-      						<li><a href="#!"><i class="fa fa-user"></i> Pengurus</a></li>
+      						<li><a href="{{ route('anggota') }}"><i class="fa fa-eye"></i>Daftar Anggota</a></li>
+      						<li><a href="{{ route('absensi') }}"><i class="fa fa-book"></i> Absensi</a></li>
+      						<li><a href="{{ route('pengurus') }}"><i class="fa fa-user"></i> Pengurus</a></li>
       					</ul>
       				</div>
 			    </li>
@@ -63,6 +67,7 @@
 		@yield('dashboard')
 		@yield('pembina')
 		@yield('anggota')
+		@yield('pengurus')
 	</div>
 
 	<div class="row" style="bottom: 0;">

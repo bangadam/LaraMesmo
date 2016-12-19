@@ -14,15 +14,15 @@ class PembinaController extends Controller
 {
     //menampilkan daftar pembina
    	public function getPembina() {
-        $data = Pembina::latest('created_at', 'desc')->paginate(3);
+        $data = Pembina::all();
     	return view('admin.pembina.index', ['data' => $data]);
     }
 
-    public function getSearch(Request $request) {
-        $search = $request->input('search');
-        $data = Pembina::where('nama', 'LIKE', '%' .$search. '%')->get();
-        return view('admin.pembina.search', ['data' => $data]); 
-    }
+    // public function getSearch(Request $request) {
+    //     $search = $request->input('search');
+    //     $data = Pembina::where('nama', 'LIKE', '%' .$search. '%')->get();
+    //     return view('admin.pembina.search', ['data' => $data]); 
+    // }
 
     public function getTambah() {
     	return view('admin.pembina.tambah');
@@ -53,7 +53,7 @@ class PembinaController extends Controller
         
         $this->validate($request, [
             'nama'              =>  'required|min:3',
-            'email'             =>  'required|unique:pembina',
+            'email'             =>  'required|email|unique:pembina',
             'jenis_kelamin'     =>  'required',
             'no_hp'             =>  'required|max:13',
             'alamat'            =>  'required',
@@ -83,19 +83,19 @@ class PembinaController extends Controller
     }
 
     public function putEdit(Request $request, $id) { 
-        $pembina = Pembina::findOrFail($id);
 
         $this->validate($request, [
             'nama'              =>  'required|min:3',
-            'password'          =>  'required|min:3',
+            'email'             =>  'required|email',
             'jenis_kelamin'     =>  'required',
             'no_hp'             =>  'required|max:13',
             'alamat'            =>  'required',
             'gambar'            =>  'image'
         ]);
+
         $pembina = Pembina::findOrFail($id);
         $pembina->nama          =   $request['nama'];
-        $pembina->password      =   bcrypt($request['password']);
+        $pembina->email         =   $request['email'];
         $pembina->jenis_kelamin =   $request['jenis_kelamin'];
         $pembina->no_hp         =   $request['no_hp'];
         $pembina->alamat        =   $request['alamat'];

@@ -13,8 +13,13 @@
 		      </div>
 		    </div>
 		</nav>
-		<div class="col m6 offset-m2">
-			<form action="{{ route('anggota.tambah') }}" method="POST" enctype="multipart/form-data">
+		<div class="row">
+				<a style="margin-top: 20px;" href="{{ route('anggota') }}" class="btn waves-effect waves-light"><i class="fa fa-arrow-left"></i> Back</a>
+		</div>
+		<div class="col m9 offset-m2">
+			<div class="card z-depth-2">
+				<div class="card-content">
+					<form action="{{ route('anggota.tambah') }}" method="POST" enctype="multipart/form-data">
 				<h3 class="blue-text blue-lighten-2 center-align">Tambah Anggota</h3>
 				<div class="input-field{{ $errors->has('nama') ? ' has-error' : '' }}"> 
 					<input type="text" name	="nama" id="nama" value="{{ old('nama') }}">
@@ -26,36 +31,52 @@
 					@endif
 				</div>
 
-				<div class="input-field">
-					<input type="email" name="email" id="email" class="validate">
+				<div class="input-field{{ $errors->has('email') ? ' has-error' : '' }}">
+					<input type="email" name="email" id="email" value="{{ old('email') }}" class="validate">
 					<label for="">Email</label>
+					@if($errors->has('email'))
+						 <ul class="card-panel red darken-1">
+        					<p>{{ $errors->first('email') }}</p>
+        				 </ul>
+					@endif
 				</div>
 				
-				<div class="input-field">
+				<div class="input-field{{ $errors->has('jenis_kelamin') ? ' has-error' : '' }}">
 					<select name="jenis_kelamin">
 						<option value="" disabled selected>- Jenis Kelamin -</option>
 						<option value="pria">pria</option>
 						<option value="wanita">wanita</option>
 					</select>
+					@if($errors->has('jenis_kelamin'))
+						 <ul class="card-panel red darken-1">
+        					<p>{{ $errors->first('jenis_kelamin') }}</p>
+        				 </ul>
+					@endif
 				</div>
 				
 				<label for="">Tanggal Lahir</label>
-				<div class="input-field">
+				<div class="input-field{{ $errors->has('tgl_lahir') ? ' has-error' : '' }}" value="{{ old('tgl_lahir') }}">
 					<input type="date" class="datepicker"  name="tgl_lahir">
+					@if($errors->has('tgl_lahir'))
+						 <ul class="card-panel red darken-1">
+        					<p>{{ $errors->first('tgl_lahir') }}</p>
+        				 </ul>
+					@endif
 				</div>
 
-				<div class="input-field">
-					<select name="jurusan">
-						<option value="" disabled selected>Jurusan</option>
-						<option value="RPL">RPL</option>
-						<option value="TKJ">TKJ</option>
-						<option value="JB">JB</option>
-						<option value="ANM">ANM</option>
-						<option value="APH">APH</option>
-						<option value="MM">MM</option>
+				<div class="input-field{{ $errors->has('kelas') ? ' has-error' : '' }}">
+					<select name="kelas">
+						<option value="" disabled selected>Kelas</option>
+						@foreach($kelas as $kelases)
+							<option value="{{ $kelases->id }}">{{ $kelases->nama_kelas }}</option>	
+						@endforeach
 					</select>
+					@if($errors->has('kelas'))
+						 <ul class="card-panel red darken-1">
+        					<p>{{ $errors->first('kelas') }}</p>
+        				 </ul>
+					@endif
 				</div>
-					
 
 				<div class="input-field{{ $errors->has('no_hp') ? ' has-error' : '' }}">
 					<input type="text" name="no_hp" id="no_hp" value="{{ old('no_hp') }}" >
@@ -85,7 +106,7 @@
 					</div>
 					@if($errors->has('gambar'))
 						<ul class="card-panel red darken-1">
-							<p>{{ $errors }}</p>
+							<p>{{ $errors->first('gambar') }}</p>
 						</ul>
 					@endif
 				</div>
@@ -97,7 +118,9 @@
 
 			</form>
 		</div>
-</div>
+				</div>
+			</div>
+		</div>
 </div>
 
 @endsection

@@ -9,10 +9,7 @@ class Pembina extends Model
     protected $table = "pembina";
 
     protected $fillable = [
-    	'nama', 'jenis_kelamin', 'alamat', 'no_hp'
+    	'nama', 'email', 'jenis_kelamin', 'alamat', 'no_hp', 'gambar'
     ];
 
-    protected $hidden = [
-    	'password'
-    ];
 }

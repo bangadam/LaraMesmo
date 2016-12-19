@@ -37,9 +37,9 @@
 							<div class="col m3">
 								<span class="fa fa-book fa-4x"></span>
 							</div>
-						<div class="col m8">
-							<a href=""><h4>Kegiatan</h4></a>
-						</div>
+							<div class="col m8">
+								<a href=""><h4>Kegiatan</h4></a>
+							</div>
 						</div>
 					</div>
 				</div>

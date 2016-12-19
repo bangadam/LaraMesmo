@@ -15,7 +15,7 @@ class CreatePembinaTable extends Migration
         Schema::create('pembina', function(Blueprint $table) {
             $table->increments('id');
             $table->string('nama');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('jenis_kelamin');
             $table->string('alamat');
             $table->string('no_hp');

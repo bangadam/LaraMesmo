@@ -1,7 +1,60 @@
 *{
+  font-family: 'Roboto Condensed', sans-serif;
   margin: 0;
   padding: 0;
 }
+
+#home-slider {
+  position: relative;
+  padding: 0;
+}
+
+#button-slide {
+  position: absolute;
+  height: calc(100vh);
+  margin-top: 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 997;
+  top: 0;
+  pointer-events: none;
+  width: 100%;
+}
+
+#buttons-slide a {
+  pointer-events: auto;
+}
+
+.sl-prev {
+  margin-right: 90%;
+  margin-bottom: 40%;
+  float: left;
+}
+
+#about {
+  width: 100%;
+  background-color: #009EE3;
+  padding: 0 60px;
+  color: white;
+  height: 550px;
+}
+
+#prestasi {
+  width: 100%;
+  background-color: #f3f3f3;
+  padding: 0 60px;
+  height: 550px;
+}
+/*hompage*/
+
+#home-slider {
+  position: relative;
+  padding: 0;
+}
+
+/*dashboard*/
 #content {
   max-width: 100%;
 }
@@ -19,9 +72,11 @@
   font-weight: bold;
   background-color: teal;
 }
+
 .side-nav {
   width: 17%;
 }
+
 .navbar-sidebar {
   margin-right: -21px;
   margin-bottom: 20px;

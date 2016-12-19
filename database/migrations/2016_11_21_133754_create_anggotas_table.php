@@ -15,14 +15,19 @@ class CreateAnggotasTable extends Migration
         Schema::create('anggotas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nama');
-            $table->string('email');
+            $table->string('password');
+            $table->string('email')->unique();
             $table->string('jenis_kelamin');
             $table->string('tgl_lahir');
-            $table->string('jurusan');
+            $table->integer('kelas_id')->unsigned();
             $table->string('no_hp');
             $table->string('alamat');
             $table->string('gambar');
             $table->timestamps();
+        });
+
+        Schema::table('anggotas', function (Blueprint $table) {
+            $table->foreign('kelas_id')->references('id')->on('kelas');
         });
     }
 

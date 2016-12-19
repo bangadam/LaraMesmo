@@ -54,6 +54,11 @@
 						</form>
 					</div>
 				</div>
+
+				{{-- register link --}}
+				<div class="row">
+					<a style="margin-left: 100px" href="{{ route('auth.register') }}" class="blue-text lighten-3">Belum Punya Akun ? Gabung bersama kami.</a>
+				</div>
 			</div>
 		</div>
 	</div>

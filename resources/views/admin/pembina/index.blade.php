@@ -17,10 +17,10 @@
 			<a href="{{ route('pembina.tambah') }}" style="margin-top: 20px;" class="waves-effect wave-light btn right"><i class="fa fa-plus"></i> Tambah</a>
 		</div>	
 		<div class="row">
-			<div class="col m8 offset-m2">
+			<div class="col m12">
 				@include('templates.alert')
 				{{-- Search --}}
-				<div class="row">
+				{{-- <div class="row">
 					<div class="col m10 z-depth-1" style="border: 1px solid #f3f3f3">
 						<form action="{{ route('pembina.search') }}" method="get">
 							<div class="input-field">
@@ -33,10 +33,10 @@
 							</div>
 						</div>
 						</form>
-				</div>
+				</div> --}}
 
 				{{-- Table --}}
-				<table class="responsive-table striped z-depth-1">
+				<table id="TableId" class="mdl-data-table" cellspacing="0" width="100%">
 				<thead>
 					<tr>
 						<th>Id</th>
@@ -72,11 +72,11 @@
 			</table>
 			</div>
 		</div>
-		<div class="row">
+		{{-- <div class="row">
 			<div class="col m12 offset-m2">
 				{{ $data->render() }}
 			</div>
-		</div>
+		</div> --}}
 	</div> {{-- End Menu --}}
 
 		

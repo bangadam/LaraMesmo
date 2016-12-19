@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Anggota;
+use App\Kelas;
 use Image;
 use Storage;
 use App\Http\Requests;
@@ -14,27 +15,28 @@ class AnggotaController extends Controller
 {
     //menampilkan daftar anggota
    	public function getAnggota() {
-        $data = Anggota::with('pengurus');
-        $data = Anggota::latest('created_at', 'desc')->paginate(3);
+        $data = Anggota::all();
     	return view('admin.anggota.index', ['data' => $data]);
     }
 
-    public function getSearch(Request $request) {
-        $search = $request->input('search');
-        $data = Anggota::where('nama', 'LIKE', '%' .$search. '%')->get();
-        return view('admin.anggota.search', ['data' => $data]); 
-    }
+    // public function getSearch(Request $request) {
+    //     $search = $request->input('search');
+    //     $data = Anggota::where('nama', 'LIKE', '%' .$search. '%')->get();
+    //     return view('admin.anggota.search', ['data' => $data]); 
+    // }
 
     public function getTambah() {
-    	return view('admin.anggota.tambah');
+        $kelas = Kelas::all();
+    	return view('admin.anggota.tambah', ['kelas' => $kelas]);
     }
 
     public function getEdit($id) {
-        $data = Anggota::findOrFail($id);
+        $data       = Anggota::findOrFail($id);
+        $kelas      = Kelas::all();
         if (!$data) {
             abort(404);
         }
-    	return view('admin.anggota.edit', ['data' => $data]);
+    	return view('admin.anggota.edit', ['data' => $data, 'kelas' => $kelas]);
     }
 
     public function getLihat($id) {
@@ -43,7 +45,10 @@ class AnggotaController extends Controller
     }
 
     public function getHapus($id) {
-    	$data = Anggota::find($id);
+    	$data = Anggota::findOrFail($id);
+        if (!$data) {
+            abort(404);
+        }
         $data->delete();
 
         return redirect()->route('anggota')->with('pesan', 'Data Berhasil Di Hapus');
@@ -51,13 +56,14 @@ class AnggotaController extends Controller
 
     //tambah data anggota
     public function postTambah(Request $request) {
+        // dd($request);
         $this->validate($request, [
             'nama'              =>  'required|min:3',
-            'email'             =>  'required|unique:anggotas',
+            'email'             =>  'required|email|unique:anggotas',
             'jenis_kelamin'     =>  'required',
             'tgl_lahir'         =>  'required',
-            'jurusan'           =>  'required',
-            'no_hp'             =>  'required|max:13',
+            'kelas'             =>  'required',
+            'no_hp'             =>  'required|min:11',
             'alamat'            =>  'required',
             'gambar'            =>  'image'
         ]);
@@ -67,10 +73,9 @@ class AnggotaController extends Controller
         $anggota->email         =   $request['email'];
         $anggota->jenis_kelamin =   $request['jenis_kelamin'];
         $anggota->tgl_lahir     =   $request['tgl_lahir'];
-        $anggota->jurusan       =   $request['jurusan'];
+        $anggota->kelas_id      =   $request['kelas'];
         $anggota->no_hp         =   $request['no_hp'];
         $anggota->alamat        =   $request['alamat'];
-
            // upload gambar
         if ($request->hasFile('gambar')) {
             $file       =   $request->file('gambar');
@@ -88,22 +93,23 @@ class AnggotaController extends Controller
 
     public function putEdit(Request $request, $id) { 
 
-        $this->validate($request, [
-            'nama'              =>  'required|min:3',
-            'email'             =>  'required',
-            'jenis_kelamin'     =>  'required',
-            'tgl_lahir'         =>  'required',
-            'jurusan'           =>  'required',
-            'no_hp'             =>  'required|max:13',
-            'alamat'            =>  'required',
-            'gambar'            =>  'image'
-        ]);
         $anggota = Anggota::findOrFail($id);
+        // $this->validate($request, [
+        //     'nama'              =>  'required|min:3',
+        //     'email'             =>  'required',
+        //     'jenis_kelamin'     =>  'required',
+        //     'tgl_lahir'         =>  'required',
+        //     'kelas_id'          =>  'required',
+        //     'no_hp'             =>  'required|max:13|min:12',
+        //     'alamat'            =>  'required',
+        //     'gambar'            =>  'image'
+        // ]);
+
         $anggota->nama          =   $request['nama'];
         $anggota->email         =   $request['email'];
         $anggota->jenis_kelamin =   $request['jenis_kelamin'];
         $anggota->tgl_lahir     =   $request['tgl_lahir'];
-        $anggota->jurusan       =   $request['jurusan'];
+        $anggota->kelas_id      =   $request['kelas'];
         $anggota->no_hp         =   $request['no_hp'];
         $anggota->alamat        =   $request['alamat'];
 

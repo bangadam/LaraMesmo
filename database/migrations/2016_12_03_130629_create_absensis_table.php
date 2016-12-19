@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePengurusesTable extends Migration
+class CreateAbsensisTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,14 +12,14 @@ class CreatePengurusesTable extends Migration
      */
     public function up()
     {
-        Schema::create('penguruses', function (Blueprint $table) {
+        Schema::create('absensis', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('anggota_id')->unsigned();
-            $table->string('jabatan');
+            $table->dateTime('tgl_absen');
             $table->timestamps();
         });
 
-        Schema::table('penguruses', function (Blueprint $table) {
+        Schema::table('absensis', function (Blueprint $table) {
             $table->foreign('anggota_id')->references('id')->on('anggotas')->onDelete('cascade')->onUpdate('cascade');
         });
     }
@@ -31,6 +31,6 @@ class CreatePengurusesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('penguruses');
+        Schema::drop('absensis');
     }
 }

@@ -24,7 +24,7 @@
 								<img src="{{ asset('uploads/' . $data->gambar ) }}" class="materialboxed responsive-img circle	" alt="">
 							</div>
 							<div class="col m7">
-								<h2>Bangadam</h2>
+								<h2>{{ $data->nama }}</h2>
 							</div>
 						</div>
 						<hr>

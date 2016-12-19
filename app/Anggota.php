@@ -13,14 +13,13 @@ class Anggota extends Model
         'email', 
     	'jenis_kelamin',
         'tgl_lahir',
-    	'jurusan',
-    	'tgl_lahir',
+    	'kelas_id',
     	'no_hp',
         'alamat',
         'gambar'
     ];
 
-    public function pengurus() {
-    	return $this->hasOne('App\Pengurus');
+    public function kelas() {
+        return $this->belongsTo('App\Kelas');
     }
 }
