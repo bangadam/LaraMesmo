@@ -10,7 +10,4 @@ class Kelas extends Model
 
     protected $fillable = ['nama_kelas'];
 
-    // public function anggota() {
-    //     return $this->belongsTo('App\Anggota');
-    // }
 }

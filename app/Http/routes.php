@@ -42,17 +42,17 @@ Route::get('/logout', [
 
 
 // Admin Home
-Route::group(['middleware' => 'auth'], function() {
-	Route::get('/dashboard', [
-		'uses'	=> 	'AdminController@index',
-		'as'	=> 	'admin.index'
-	]);
-});
+Route::get('/dashboard', [
+	'uses'	=> 	'AdminController@index',
+	'as'	=> 	'admin.index',
+	'middleware' => ['auth']
+]);
 	
 
 //  Pembina Route
 Route::group(['middleware' => 'auth'], function() {
 	Route::group(['prefix' => 'pembina'], function() {
+		
 		Route::get('/', [
 			'uses'	=>	'PembinaController@getPembina',
 			'as'	=>	'pembina'
@@ -60,22 +60,26 @@ Route::group(['middleware' => 'auth'], function() {
 
 		Route::get('/tambah', [
 			'uses'	=>	'PembinaController@getTambah',
-			'as'	=>	'pembina.tambah'
+			'as'	=>	'pembina.tambah',
+			'middleware'	=>	['admin']
 		]);
 
 		Route::get('/{id}/edit', [
 			'uses'	=>	'PembinaController@getEdit', 
-			'as'	=>	'pembina.edit'
+			'as'	=>	'pembina.edit',
+			'middleware'	=>	['admin']
 		]);
 
 		Route::put('/{id}', [
 			'uses'	=>	'PembinaController@putEdit',
-			'as'	=>	'pembina.update'
+			'as'	=>	'pembina.update',
+			'middleware'	=>	['admin']
 		]);
 
 		Route::get('/{id}/hapus', [
 			'uses'	=>	'PembinaController@getHapus',
-			'as'	=>	'pembina.hapus'
+			'as'	=>	'pembina.hapus',
+			'middleware'	=>	['admin']
 		]);
 
 		Route::get('/lihat/{id}', [
@@ -84,12 +88,8 @@ Route::group(['middleware' => 'auth'], function() {
 		]);
 
 		Route::post('/tambah', [
-			'uses'	=>	'PembinaController@postTambah'
-		]);
-
-		Route::get('/search', [
-			'uses'	=>	'PembinaController@getSearch', 
-			'as'	=>	'pembina.search'
+			'uses'	=>	'PembinaController@postTambah',
+			'middleware'	=>	['admin']
 		]);
 	});
 });
@@ -104,22 +104,26 @@ Route::group(['middleware' => 'auth'], function() {
 
 		Route::get('/tambah', [
 			'uses'	=>	'AnggotaController@getTambah',
-			'as'	=>	'anggota.tambah'
+			'as'	=>	'anggota.tambah',
+			'middleware'	=>	['pembina']
 		]);
 
 		Route::get('/{id}/edit', [
 			'uses'	=>	'AnggotaController@getEdit', 
-			'as'	=>	'anggota.edit'
+			'as'	=>	'anggota.edit',
+			'middleware'	=>	['pembina']
 		]);
 
 		Route::put('/{id}', [
 			'uses'	=>	'AnggotaController@putEdit',
-			'as'	=>	'anggota.update'
+			'as'	=>	'anggota.update',
+			'middleware'	=>	['pembina']
 		]);
 
 		Route::get('/{id}/hapus', [
 			'uses'	=>	'AnggotaController@getHapus',
-			'as'	=>	'anggota.hapus'
+			'as'	=>	'anggota.hapus',
+			'middleware'	=>	['pembina']
 		]);
 
 		Route::get('/lihat/{id}', [
@@ -128,35 +132,61 @@ Route::group(['middleware' => 'auth'], function() {
 		]);
 
 		Route::post('/tambah', [
-			'uses'	=>	'AnggotaController@postTambah'
-		]);
-
-		Route::get('/search', [
-			'uses'	=>	'AnggotaController@getSearch', 
-			'as'	=>	'anggota.search'
+			'uses'	=>	'AnggotaController@postTambah',
+			'middleware'	=>	['pembina']
 		]);
 	});
 });
 
 //PENGURUS
 Route::group(['middleware' => 'auth'], function() {
-	Route::get('/pengurus', [
+	Route::group(['prefix' => 'pengurus'], function() {
+		Route::get('/', [
 		'uses'	=>	'PengurusController@index',
 		'as'	=>	'pengurus'
-	]);
+		]);
 
-	Route::get('/pengurus/tambah', [
-		'uses'	=>	'PengurusController@getTambah',
-		'as'	=>	'pengurus.tambah'
-	]);
+		Route::get('/{id}/edit', [
+			'uses'	=>	'PengurusController@getEdit',
+			'as'	=>	'pengurus.edit'
+		]);
+
+		Route::put('/{id}', [
+			'uses'	=>	'PengurusController@putEdit',
+			'as'	=>	'pengurus.update',
+			'middleware'	=>	['pembina']
+		]);
+
+		Route::get('/{id}/hapus', [
+			'uses'	=>	'PengurusController@getHapus',
+			'as'	=>	'pengurus.hapus',
+			'middleware'	=>	['pembina']
+		]);
+
+		Route::get('/lihat/{id}', [
+			'uses'	=>	'PengurusController@getLihat',
+			'as'	=>	'pengurus.lihat'
+		]);
+	});
 });
 
 //Kegiatan
 Route::group(['middleware' => 'auth'], function() {
-	Route::get('/kegiatan', [
-		'uses'	=>	'KegiatanController@index', 
-		'as'	=>	'kegiatan'
-	]);
+	Route::group(['prefix' => 'kegiatan'], function() {
+		Route::get('/', [
+			'uses'	=>	'PembinaController@getKegiatan', 
+			'as'	=>	'kegiatan'
+		]);
+
+		Route::get('/tambah', [
+			'uses'	=>	'PembinaController@getTambahKegiatan', 
+			'as'	=>	'kegiatan.tambah'
+		]);
+
+		Route::post('/', [
+			'uses'	=>	'PembinaController@postTambahKegiatan'
+		]);
+	});
 });
 
 //Absensi

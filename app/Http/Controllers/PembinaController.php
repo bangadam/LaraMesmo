@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Pembina;
+use App\Kegiatan;
+use App\Bidang;
 use Image;
 use Storage;
 use App\Http\Requests;
@@ -17,12 +19,6 @@ class PembinaController extends Controller
         $data = Pembina::all();
     	return view('admin.pembina.index', ['data' => $data]);
     }
-
-    // public function getSearch(Request $request) {
-    //     $search = $request->input('search');
-    //     $data = Pembina::where('nama', 'LIKE', '%' .$search. '%')->get();
-    //     return view('admin.pembina.search', ['data' => $data]); 
-    // }
 
     public function getTambah() {
     	return view('admin.pembina.tambah');
@@ -78,7 +74,7 @@ class PembinaController extends Controller
         }
 
         $pembina->save();
-
+        
         return redirect()->route('pembina')->with('pesan', 'Data Berhasil Di Tambahkan');  
     }
 
@@ -118,5 +114,35 @@ class PembinaController extends Controller
         $pembina->save();
 
         return redirect()->route('pembina')->with('pesan', 'Data berhasil di Update !');
+    }
+
+
+    // Kegiatan Controller
+    public function getKegiatan() {
+        $data = Kegiatan::all();
+        return view('admin.kegiatan.index', ['data' => $data]);
+    }
+
+    public function getTambahKegiatan() {
+        $pembina = Pembina::all();
+        $bidang = BIdang::all();
+        return view('admin.kegiatan.tambah', ['pembina' => $pembina, 'bidang' => $bidang]);
+    }
+
+    public function postTambahKegiatan(Request $request) {
+        $this->validate($request, [
+            'nama_kegiatan' =>  'required',
+            'bidang_id'     =>  'required',
+            'tgl_pel'       =>  'required',
+            'pembina_id'    =>  'required'
+        ]);
+
+        $kegiatan = new Kegiatan;
+        $kegiatan->nama_kegiatan = $request['nama_kegiatan'];
+        $kegiatan->bidang_id = $request['bidang_id'];
+        $kegiatan->tgl_pel = $request['tgl_pel'];
+        $kegiata->pembina_id = $request['pembina_id'];
+
+        dd($kegiatan);
     }
 }

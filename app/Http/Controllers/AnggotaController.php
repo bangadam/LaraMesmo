@@ -19,12 +19,6 @@ class AnggotaController extends Controller
     	return view('admin.anggota.index', ['data' => $data]);
     }
 
-    // public function getSearch(Request $request) {
-    //     $search = $request->input('search');
-    //     $data = Anggota::where('nama', 'LIKE', '%' .$search. '%')->get();
-    //     return view('admin.anggota.search', ['data' => $data]); 
-    // }
-
     public function getTambah() {
         $kelas = Kelas::all();
     	return view('admin.anggota.tambah', ['kelas' => $kelas]);

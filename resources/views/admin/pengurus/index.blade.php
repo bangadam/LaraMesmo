@@ -12,50 +12,50 @@
 		      </div>
 		    </div>
 		</nav>
- 	 {{-- Menu --}}
-		<div class="row">
-			<a href="{{ route('pembina.tambah') }}" style="margin-top: 20px;" class="waves-effect wave-light btn right"><i class="fa fa-plus"></i> Tambah</a>
-		</div>	
+ 	 {{-- Menu --}}	
 		<div class="row">
 
 				{{-- Table --}}
-				<table id="TableId" class="mdl-data-table z-depth-2" cellspacing="0" width="100%">
+				<table id="TableId" class="mdl-data-table" cellspacing="0" width="100%">
 				<thead>
 					<tr>
 						<th>Id</th>
 						<th>Nama</th>
+						<th>Kelas</th>
 						<th>Jabatan</th>
 						<th>Opsi</th>
-						<th>Hapus</th>
+						@if(Auth::user()->level == 'pembina')
+						 <th>Hapus</th>
+						@endif
 					</tr>
 				</thead>
-				{{-- {{ dd($data->anggota) }} --}}
+			
 				<tbody>
 					@foreach($data as $datas)
 						<tr>
 							<td>{{ $datas->id }}</td>
 							<td>{{ $datas->anggota->nama }}</td>
+							<td>{{ $datas->anggota->kelas->nama_kelas }}</td>
 							<td>{{ $datas->jabatan }}</td>
 							<td>
-								<a href="{{ route('pembina.lihat', $datas->id) }}" class="waves-light waves-effect btn-floating"><i class="fa fa-eye"></i></a>
-								<a href="{{ route('pembina.edit', $datas->id) }}" class="waves-effect waves-light btn-floating"><i class="fa fa-pencil"></i></a>
+								<a href="{{ route('pengurus.lihat', $datas->id) }}" class="waves-light waves-effect btn-floating"><i class="fa fa-eye"></i></a>
+								@if(Auth::user()->level == 'pembina')
+									<a href="{{ route('pengurus.edit', $datas->id) }}" class="waves-effect waves-light btn-floating"><i class="fa fa-pencil"></i></a>
+								@endif
 							</td>
-							<td>
-								<form action="{{ route('pembina.hapus', $datas->id) }}" method="delete">
-									<input type="hidden" name="_token" value="{{ csrf_token() }}">
+							@if(Auth::user()->level == 'pembina')
+								<td>
+									<form action="{{ route('pengurus.hapus', $datas->id) }}" method="delete">
+										<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-									<button type="submit" name="hapus" class="waves-effect waves-light btn-floating"><i class="fa fa-trash"></i></button>
-								</form>
-							</td>
+										<button type="submit" name="hapus" class="waves-effect waves-light btn-floating"><i class="fa fa-trash"></i></button>
+									</form>
+								</td>
+							@endif
 						</tr>
 					@endforeach
 				</tbody>
 			</table>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col m12 offset-m2">
-				{{-- {{ $data->render() }} --}}
 			</div>
 		</div>
 	</div> {{-- End Menu --}}

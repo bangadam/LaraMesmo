@@ -5,13 +5,24 @@
 	<div class="container" style="margin-top: 40px;">
 		<div class="row">
 			<div class="col m6 offset-m3">
-				<h4 class="center-align">Login <span class="orange-text">Area</span></h4>
-				@include('templates.alert')
+				<h4 class="center-align">Login <span class="blue-text lighten-2">Area</span></h4>
+				
+				@if(Session::has('pesan'))
+				        <div class="card-panel red darken-1">
+				          <h5 class="white-text center-align">{{ Session::get('pesan') }}</h5>
+				          <ul class="white-text center-align">
+				          	<li>Silahkan Masuk Dengan Akun Di Bawah Ini</li>
+				          	<li>Username: anggota</li>
+				          	<li>Password: anggota</li>
+				          </ul>
+				        </div>`
+				@endif
+
 				<div class="card">
 					<div class="card-content">
 						<form action="{{ route('auth.login') }}" method="post">
 							<div class="input-field{{ $errors->has('username') ? ' has-error' : '' }}">
-								<i class="fa fa-user prefix" style="color: teal"></i>
+								<i class="fa fa-user prefix" style="color: #5EC1FA"></i>
 								<input type="text" name="username" id="username" class="validate">
 								<label for="">Username</label>
 							@if($errors->has('username'))
@@ -22,7 +33,7 @@
 							</div>
 							
 							<div class="input-field{{ $errors->has('password') ? ' has-error' : '' }}">
-								<i class="fa fa-lock prefix" style="color: teal"></i>
+								<i class="fa fa-lock prefix" style="color: #5EC1FA"></i>
 								<input type="password" name="password" class="validate">
 								<label for="">Password</label>
 								@if($errors->has('password'))
@@ -33,21 +44,8 @@
 							</div>
 							
 							<div class="row">
-								<div class="input-field col m11">		
-								<i class="fa fa-user-secret prefix" style="color: teal"></i>	
-								<select name="level" style="margin-left:40px;" id="level" class="browser-default">
-									<option disabled selected>- Level -</option>
-									<option value="admin">Admin</option>
-									<option value="pembina">Pembina</option>
-									<option value="anggota">Anggota</option>
-								</select>
-							</div>
-							</div>
-	
-
-							<div class="row">
 								<div class="col m12">
-									<button style="width: 100%;" class="btn waves-effect waves-light" type="submit" name="login">Login</button>
+									<button style="width: 100%;" class="btn waves-effect waves-light blue lighten-1" type="submit" name="login">Login</button>
 									<input type="hidden" name="_token" value="{{ csrf_token() }}">
 								</div>
 							</div>

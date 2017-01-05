@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Anggota;
+use App\Kelas;
 use App\Http\Requests;
 
 class AuthController extends Controller
@@ -18,46 +19,34 @@ class AuthController extends Controller
     		'username'	=>	'required',
     		'password'	=>	'required'
     	]);
-    	// $usersdata = array(
-    	// 	'username'	=>	$request['username'],
-    	// 	'password'	=>	$request['password'], 
-    	// 	'level'		=> 	$request['level']
-    	// );
 
-    	if (Auth::attempt(array(
-    		'username'	=>	$request['username'],
-    		'password'	=>	$request['password'],
-    		'level'		=>	$request['level']
+    if (Auth::attempt(['username' => $request['username'], 'password' => $request['password']])
+        ) {
+          return redirect()->route('admin.index')->with('pesan', 'Selamat Datang Di Halaman Dashboard');
+        }    	
 
-    		))) {
-    		return redirect()->route('admin.index')->with('pesan', 'Selamat Datang Di Halaman Dahsboard');
-    	}else{
-    		return redirect()->back()->with('pesan', 'Maaf Username Atau Kata Sandi Anda Salah !');
-    	}
-    	
+        return redirect()->back()->with('pesan', 'Maaf Username atau Password Salah !');
     }
 
     public function getRegister() {
-        return view('admin.register');
+        $kelas = Kelas::all();
+        return view('admin.register', ['kelas' => $kelas]);
     }
 
     public function postRegister(Request $request) {
         $this->validate($request, [
             'nama'              =>  'required|min:3',
             'email'             =>  'required|email|unique:anggotas',
-            'password'          =>  'required|min:3',
             'jenis_kelamin'     =>  'required',
             'tgl_lahir'         =>  'required',
             'kelas_id'          =>  'required',
             'no_hp'             =>  'required|min:11',
-            'alamat'            =>  'required',
-            'gambar'            =>  'image'
+            'alamat'            =>  'required'
         ]);
 
         $anggota = new Anggota;
         $anggota->nama          =   $request['nama'];
         $anggota->email         =   $request['email'];
-        $anggota->password         =   bcrypt($request['password']);
         $anggota->jenis_kelamin =   $request['jenis_kelamin'];
         $anggota->tgl_lahir     =   $request['tgl_lahir'];
         $anggota->kelas_id      =   $request['kelas_id'];
@@ -72,10 +61,10 @@ class AuthController extends Controller
 
             $anggota->gambar  =  $fileName;
         }
-        
+
         $anggota->save();
 
-        return redirect()->route('anggota')->with('pesan', 'Data Berhasil Di Tambahkan'); 
+        return redirect()->route('auth.login')->with('pesan', 'Selamat Anda Sudah Terdaftar !'); 
 
     }
 

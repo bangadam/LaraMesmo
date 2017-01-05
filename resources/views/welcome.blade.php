@@ -1,16 +1,14 @@
-	@extends('templates.app')
+@extends('templates.app')
 
-	@section('content')
+@section('content')
 
 
-	@include('templates.nav')
+@include('templates.nav')
 
-<<<<<<< HEAD
 <!-- Slider -->
 <section id="home-slider">
-=======
+
 	<!-- Slider -->
->>>>>>> 3d7980558a864a839fd9eb94ba497bcf96d47fee
 	<div class="slider">
 		<ul class="slides">
 			<li>
@@ -36,18 +34,8 @@
 			</li>
 		</ul>
 	</div>
-
-	<div id="button-slide">
-		<a href="javascript:;" class="sl-prev">
-			<i class="fa fa-angle-left fa-3x btn hoverable waves-light"></i>
-		</a>
-		<a href="javascript:;" class="sl-next">
-			<i class="fa fa-angle-right fa-3x btn hoverable waves-light mg-rg"></i>
-		</a>
-	</div>
 </section>
 
-<<<<<<< HEAD
 <section id="about">
 		<div class="row">
 			<div class="col m12">
@@ -167,32 +155,6 @@
 			</div>
 		</div>
 </section>
-=======
-	<section id="kotak" class="blue accent-2">
-			<div class="row">
-				<div class="col m12">
-					<h1 class="center-align">Visi Misi</h1>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col m3 center-align">
-					<i class="fa fa-thumbs-up fa-5x"></i>
-						<p class="center-align">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint maxime repudiandae beatae</p>
-				</div>
-				<div class="col m3 center-align">
-					<i class="fa fa-mortar-board fa-5x"></i>
-						<p class="center-align">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint maxime repudiandae beatae</p>
-				</div>
-				<div class="col m3 center-align">
-					<i class="fa fa-cogs fa-5x"></i>
-						<p class="center-align">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint maxime repudiandae beatae</p>
-				</div>
-				<div class="col m3 center-align">
-					<i class="fa fa-users fa-5x"></i>
-						<p class="center-align">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint maxime repudiandae beatae</p>
-				</div>
-			</div>
-	</section>
 
 	<section style="background-color: teal;height: 500px;">
 		<!-- carousel -->
@@ -230,9 +192,6 @@
 			</div>
 		</div>
 	</section>
->>>>>>> 3d7980558a864a839fd9eb94ba497bcf96d47fee
-
-
 	<div class="row blue lighten-2" style="height: 500px;">
 			<div class="row">
 				<div class="col m12">
@@ -326,15 +285,7 @@
 		</div>
 	</section>
 
-
-<<<<<<< HEAD
 <footer class="page-footer teal">
 		<p class="center-align" style="color: white;padding: 10px;">Copyright &copy; <?php echo date('Y'); ?> Bangadam. Made With <i class="fa fa-heart" style="color:#f73333"></i> SMKN 1 Dlanggu</p>
 </footer>																					
 @endsection																						
-=======
-	<footer class="page-footer teal">
-			<p class="center-align" style="color: white;padding: 10px;">Copyright &copy; <?php echo date('Y'); ?> Bangadam. Made With <i class="fa fa-heart" style="color:#f73333"></i> SMKN 1 Dlanggu</p>
-	</footer>																					
-	@endsection																																																																																																																																																																																																																																																																																										
->>>>>>> 3d7980558a864a839fd9eb94ba497bcf96d47fee

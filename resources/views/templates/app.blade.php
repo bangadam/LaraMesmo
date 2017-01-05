@@ -7,6 +7,7 @@
 		<link rel="stylesheet" href="{{URL::to('css/style.css')}}">
 		{{-- Import font awesome --}}
 		<link type="text/css" rel="stylesheet" href="{{ URL::to('font-awesome/css/font-awesome.min.css') }}"  media="screen,projection"/>
+		@yield('dataTableCss')
 		<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
 
 		<!--Let browser know website is optimized for mobile-->
@@ -22,16 +23,10 @@
 		<!--Import jQuery before materialize.js-->
 		<script type="text/javascript" src="{{ URL::to('js/jquery.js') }}"></script>
 		<script type="text/javascript" src="{{ URL::to('js/materialize.min.js') }}"></script>
-		<script type="text/javascript" src="{{ URL::to('js/dataTables.min.js') }}"></script>
-		<script type="text/javascript" src="{{ URL::to('js/dataTables.material.js') }}"></script>
+		<script type="text/javascript" src="{{ URL::to('js/ajax.js') }}"></script>
+		@yield('dataTableJs')
 		<script type="text/javascript">
 			$(document).ready(function() {
-				$('#TableId').DataTable({
-					search: {
-						caseInsensitive : true
-					},
-					pagingType: "full_numbers" 
-				});
 				$('select').material_select();
 				$(".button-collapse").sideNav();
 				$(".slider").slider({
@@ -45,6 +40,14 @@
 				});
 				$(".carousel").carousel();
 				$('.dropdown-button').dropdown();
+				$('.modal').modal({
+				  dismissible: true, // Modal can be dismissed by clicking outside of the modal
+			      opacity: .5, // Opacity of modal background
+			      in_duration: 300, // Transition in duration
+			      out_duration: 200, // Transition out duration
+			      starting_top: '20%', // Starting top style attribute
+			      ending_top: '10%', // Ending top style attribute
+				});
 			});
 		</script>
 	</body>

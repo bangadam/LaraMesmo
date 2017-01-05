@@ -8,6 +8,7 @@ use App\Http\Requests;
 
 class AdminController extends Controller
 {
+	
     public function index() {
     	return view('admin.partials.dashboard');
     }

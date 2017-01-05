@@ -2,21 +2,11 @@
 
 @section('pembina')
 
-<div class="row">
 	<h5>Tambah Pembina</h5>
-		<nav>
-		    <div class="nav-wrapper">
-		      <div class="col s12">
-		        <a href="#!" class="breadcrumb">First</a>
-		        <a href="#!" class="breadcrumb">Second</a>
-		        <a href="#!" class="breadcrumb">Third</a>
-		      </div>
-		    </div>
-		</nav>
-</div>
+	<hr>
 
 <div class="row">
-	<a style="margin-top: 20px;" href="{{ route('anggota') }}" class="btn waves-effect waves-light"><i class="fa fa-arrow-left"></i> Back</a>
+	<a style="margin-top: 20px;" href="{{ route('anggota') }}" class="btn waves-effect waves-light red"><i class="fa fa-arrow-left"></i> Kembali</a>
 </div>
 
 <div class="row">
@@ -92,7 +82,7 @@
 						@endif
 					</div>
 					<div class="file-field input-field">
-						<div class="btn">
+						<div class="btn grey">
 							<span>File</span>
 							<input type="file" name="gambar">
 						</div>
@@ -103,7 +93,7 @@
 					
 					
 					<div class="row">
-						<button type="submit" class="btn waves-effect waves-light right">Edit <i class="fa fa-pencil"></i></button>
+						<button type="submit" class="btn waves-effect waves-light right yellow darken-1">Edit <i class="fa fa-pencil"></i></button>
 					</div>
 					<input type="hidden" name="_method" value="put">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">

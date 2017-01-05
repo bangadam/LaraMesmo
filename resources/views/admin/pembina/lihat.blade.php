@@ -3,20 +3,12 @@
 @section('pembina')
 
 <div class="row">
-	<h5>Tambah Pembina</h5>
-		<nav>
-		    <div class="nav-wrapper">
-		      <div class="col s12">
-		        <a href="#!" class="breadcrumb">First</a>
-		        <a href="#!" class="breadcrumb">Second</a>
-		        <a href="#!" class="breadcrumb">Third</a>
-		      </div>
-		    </div>
-		</nav>
+	<h5>Lihat Pembina</h5>
+	<hr>
 		<div class="col m12">
-			<a style="margin-top: 20px;" href="{{ route('pembina') }}" class="btn waves-effect waves-light"><i class="fa fa-arrow-left"></i> Back</a>
+			<a href="{{ route('pembina') }}" class="btn waves-effect waves-light red"><i class="fa fa-arrow-left"></i> Kembali</a>
 			<div class="container">
-			   <h1 class="blue-text center-align">Profile</h1>
+			   <h1 class="blue-text center-align">Biodata</h1>
 				<div class="card">
 					<div class="card-content">
 						<div class="row">

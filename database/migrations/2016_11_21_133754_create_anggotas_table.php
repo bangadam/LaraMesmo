@@ -15,7 +15,6 @@ class CreateAnggotasTable extends Migration
         Schema::create('anggotas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nama');
-            $table->string('password');
             $table->string('email')->unique();
             $table->string('jenis_kelamin');
             $table->string('tgl_lahir');
@@ -23,6 +22,7 @@ class CreateAnggotasTable extends Migration
             $table->string('no_hp');
             $table->string('alamat');
             $table->string('gambar');
+            $table->string('level');
             $table->timestamps();
         });
 

@@ -4,17 +4,10 @@
 
 <div class="row">
 	<h5>Tambah Anggota</h5>
-		<nav>
-		    <div class="nav-wrapper">
-		      <div class="col s12">
-		        <a href="#!" class="breadcrumb">First</a>
-		        <a href="#!" class="breadcrumb">Second</a>
-		        <a href="#!" class="breadcrumb">Third</a>
-		      </div>
-		    </div>
-		</nav>
+	<hr>
+
 		<div class="row">
-				<a style="margin-top: 20px;" href="{{ route('anggota') }}" class="btn waves-effect waves-light"><i class="fa fa-arrow-left"></i> Back</a>
+				<a href="{{ route('anggota') }}" class="btn waves-effect waves-light red"><i class="fa fa-arrow-left"></i> Back</a>
 		</div>
 		<div class="col m9 offset-m2">
 			<div class="card z-depth-2">

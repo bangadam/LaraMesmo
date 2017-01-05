@@ -4,7 +4,6 @@
   padding: 0;
 }
 
-<<<<<<< HEAD
 #home-slider {
   position: relative;
   padding: 0;
@@ -28,10 +27,20 @@
   pointer-events: auto;
 }
 
-.sl-prev {
-  margin-right: 90%;
-  margin-bottom: 40%;
+.tombol {
+  overflow: hidden;
+  list-style-type: none;
+}
+
+.tombol > li {
   float: left;
+  margin-left: 20px;
+  border: none;
+}
+
+.tombol > li > a {
+  display: block;
+  text-decoration: none;
 }
 
 #about {
@@ -75,8 +84,6 @@
   padding: 20px;
 }
 
-
->>>>>>> 3d7980558a864a839fd9eb94ba497bcf96d47fee
 #content {
   max-width: 100%;
 }
@@ -92,7 +99,6 @@
 .sidebar {
   top: 64px;
   font-weight: bold;
-  background-color: teal;
 }
 
 .side-nav {

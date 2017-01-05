@@ -65,15 +65,27 @@ return [
     */
 
     'providers' => [
-        'users' => [
+
+        'admins' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'pembinas' => [
+            'driver' => 'eloquent',
+            'model' => App\User::class,
+        ],
+
+        'anggotas' => [
+            'driver' => 'eloquent',
+            'model' => App\Anggota::class,
+        ],
+
+
+        'users' => [
+            'driver' => 'database',
+            'table' => 'users',
+        ],
     ],
 
     /*

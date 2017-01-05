@@ -4,55 +4,53 @@
 
 
 		<h5>Dashboard</h5>
-		@include('templates.alert')
-		<nav>
-		    <div class="nav-wrapper">
-		      <div class="col s12">
-		        <a href="#!" class="breadcrumb">First</a>
-		        <a href="#!" class="breadcrumb">Second</a>
-		        <a href="#!" class="breadcrumb">Third</a>
-		      </div>
-		    </div>
-		  </nav>
+		<hr>
+		
+		@if(Session::has('pesan'))
+		        <div class="card-panel red darken-1">
+		          <span class="white-text center-align">{{ Session::get('pesan') }}, {{ Auth::user()->username }} </span>
+		        </div>
+		@endif
+
 		  {{-- Menu --}}
 		<div class="row">
-			<div class="col m4"">
-				<div class="card hoverable blue-grey darken-2 ">
-					<div class="card-content white-text">
+			<div class="col m4">
+				<div class="card hoverable blue accent-1	 ">
+					<div class="card-content">
 						<div class="row">
-							<div class="col m3 icon">
-								<span class="fa fa-user fa-4x"></span>
+							<div class="col m3 white-text">
+								<span class="fa fa-user fa-5x"></span>
 							</div>
 							<div class="col m8">
-								<a href=""><h4>Pembina</h4></a>
+								<a href="" class="white-text"><h4>Pembina</h4></a>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="col m4">
-				<div class="card hoverable blue-grey darken-2 ">
-					<div class="card-content white-text">
+				<div class="card hoverable blue accent-1	 ">
+					<div class="card-content">
 						<div class="row">
-							<div class="col m3">
-								<span class="fa fa-book fa-4x"></span>
+							<div class="col m3 white-text">
+								<span class="fa fa-book fa-5x"></span>
 							</div>
-							<div class="col m8">
-								<a href=""><h4>Kegiatan</h4></a>
+							<div class="col m8 ">
+								<a href="" class="white-text"><h4>Kegiatan</h4></a>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="col m4">
-				<div class="card hoverable blue-grey darken-2 ">
-					<div class="card-content white-text">
+				<div class="card hoverable blue accent-1	 ">
+					<div class="card-content">
 						<div class="row">
-							<div class="col m3">
-								<span class="fa fa-users fa-4x"></span>
+							<div class="col m3 white-text">
+								<span class="fa fa-users fa-5x"></span>
 							</div>
 						<div class="col m8">
-							<a href=""><h4>Anggota</h4></a>
+							<a href="" class="white-text"><h4>Anggota</h4></a>
 						</div>
 						</div>
 					</div>
@@ -77,5 +75,6 @@
 				    </div>
 			  </div>
 			</div>
+		</div>
 		
 @endsection

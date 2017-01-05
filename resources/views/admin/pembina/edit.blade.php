@@ -2,24 +2,15 @@
 
 @section('pembina')
 
-<div class="row">
 	<h5>Edit Pembina</h5>
-		<nav>
-		    <div class="nav-wrapper">
-		      <div class="col s12">
-		        <a href="#!" class="breadcrumb">First</a>
-		        <a href="#!" class="breadcrumb">Second</a>
-		        <a href="#!" class="breadcrumb">Third</a>
-		      </div>
-		    </div>
-		</nav>
-</div>		
+	<hr>	
 	
 	<div class="row">
-		<a style="margin-top: 20px;" href="{{ route('pembina') }}" class="btn waves-effect waves-light"><i class="fa fa-arrow-left"></i> Back</a>
+		<a  href="{{ route('pembina') }}" class="btn waves-effect waves-light red"><i class="fa fa-arrow-left"></i> Kembali</a>
 	</div>
 
-		<div class="col m8 offset-m2">
+		<div class="cantainer">
+			<div class="col m7">
 			<div class="card">
 				<div class="card-content">
 					<form action="{{ route('pembina.update', $data->id) }}" method="POST" enctype="multipart/form-data">
@@ -97,6 +88,20 @@
 				</div>
 			</div>
 		</div>
+		<div class="col md5">
+			<div class="card">
+				<div class="card-content">
+					<div class="row">
+						<img src="{{ asset('uploads/' . $data->gambar) }}" class="circle materialboxed" width="200" height="150">
+					</div>
+					<div class="row">
+						<h3 class="blue-text lighten-2 center-align">{{ $data->nama }}</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+
 </div>
 
 @endsection

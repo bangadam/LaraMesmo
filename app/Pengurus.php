@@ -9,6 +9,7 @@ class Pengurus extends Model
     protected $table = 'penguruses';
 
     protected $fillable = [
+    	'anggota_id',
     	'jabatan'
     ];
 

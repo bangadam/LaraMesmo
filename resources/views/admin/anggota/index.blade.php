@@ -3,18 +3,18 @@
 @section('anggota')
 
 	<h5>Daftar Anggota</h5>
-		<nav>
-		    <div class="nav-wrapper">
-		      <div class="col s12">
-		        <a href="#!" class="breadcrumb">First</a>
-		        <a href="#!" class="breadcrumb">Second</a>
-		        <a href="#!" class="breadcrumb">Third</a>k
-		      </div>
-		    </div>
-		</nav>
+	<hr>
  	 {{-- Menu --}}
 		<div class="row">
-			<a href="{{ route('anggota.tambah') }}" style="margin-top: 20px;" class="waves-effect wave-light btn right"><i class="fa fa-plus"></i> Tambah</a>
+			<ul class="tombol">
+				@if(Auth::user()->level == 'pembina')
+					<li>
+						<a href="{{ route('anggota.tambah') }}" class="waves-effect waveslight btn blue accent-2"><i class="fa fa-plus"></i> Tambah</a>
+					</li>
+					<li><a href="" class="waves-light waves-effect btn amber accent-4"><i class="fa fa-download"></i> Import</a></li>
+				@endif
+				<li><a href="" class="waves-light waves-effect btn grey lighten-1"><i class="fa fa-print"></i> Print</a></li>
+			</ul>
 		</div>	
 		<div class="row">
 			<div class="col m12">
@@ -23,16 +23,18 @@
 				<div class="row">
 
 				{{-- Table --}}
-				<table id="TableId" class="mdl-data-table z-depth-2" cellspacing="0" width="100%">
+				<table id="TableId" class="mdl-data-table" cellspacing="0" width="100%">
 				<thead>
 					<tr>
 						<th>Id</th>
 						<th>Nama</th>
 						<th>Jenis Kelamin</th>
+						<th>Kelas</th>
 						<th>Alamat</th>
-						{{-- <th>Jabatan</th> --}}
 						<th>Opsi</th>
-						<th>Hapus</th>
+						@if(Auth::user()->level == 'pembina')
+						 <th>Hapus</th>
+						@endif
 					</tr>
 				</thead>
 			
@@ -42,31 +44,29 @@
 							<td>{{ $datas->id }}</td>
 							<td>{{ $datas->nama }}</td>
 							<td>{{ $datas->jenis_kelamin }}</td>
+							<td>{{ $datas->kelas->nama_kelas }}</td>
 							<td>{{ $datas->alamat }}</td>
-							{{-- <td>{{ $datas->pengurus->jabatan }}</td> --}}
-							{{-- <td>{{ $datas->pengurus->jabatan}}</td> --}}
 							<td>
-								<a href="{{ route('anggota.lihat', $datas->id) }}" class="waves-light waves-effect btn-floating"><i class="fa fa-eye"></i></a>
-								<a href="{{ route('anggota.edit', $datas->id) }}" class="waves-effect waves-light btn-floating"><i class="fa fa-pencil"></i></a>
+								<a href="{{ route('anggota.lihat', $datas->id) }}" class="waves-light waves-effect btn-floating green"><i class="fa fa-eye"></i></a>
+								@if(Auth::user()->level == 'pembina')
+									<a href="{{ route('anggota.edit', $datas->id) }}" class="waves-effect waves-light btn-floating amber"><i class="fa fa-pencil"></i></a>
+								@endif
 							</td>
-							<td>
-								<form action="{{ route('anggota.hapus', $datas->id) }}" method="delete">
-									<input type="hidden" name="_token" value="{{ csrf_token() }}">
+							@if(Auth::user()->level == 'pembina')
+								<td>
+									<form action="{{ route('anggota.hapus', $datas->id) }}" method="delete">
+										<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-									<button type="submit" name="hapus" class="waves-effect waves-light btn-floating"><i class="fa fa-trash"></i></button>
-								</form>
-							</td>
+										<button type="submit" name="hapus" class="waves-effect waves-light btn-floating red"><i class="fa fa-trash"></i></button>
+									</form>
+								</td>
+							@endif
 						</tr>
 					@endforeach
 				</tbody>
 			</table>
 			</div>
 		</div>
-		{{-- <div class="row">
-			<div class="col m12 offset-m2">
-				{{ $data->render() }}
-			</div>
-		</div> --}}
 	</div> {{-- End Menu --}}
 
 	</div>

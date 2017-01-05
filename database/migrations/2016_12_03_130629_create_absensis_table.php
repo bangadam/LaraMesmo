@@ -20,7 +20,7 @@ class CreateAbsensisTable extends Migration
         });
 
         Schema::table('absensis', function (Blueprint $table) {
-            $table->foreign('anggota_id')->references('id')->on('anggotas')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('anggota_id')->references('id')->on('anggotas');
         });
     }
 
