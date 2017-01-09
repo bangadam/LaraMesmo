@@ -91,6 +91,13 @@ Route::group(['middleware' => 'auth'], function() {
 			'uses'	=>	'PembinaController@postTambah',
 			'middleware'	=>	['admin']
 		]);
+		
+		Route::get('/downloadExcel/{type}', 'PembinaController@downloadExcel');
+
+		Route::post('/importExcel', [
+			'uses'	=>	'PembinaController@importExcel',
+			'as'	=>	'pembina.import'
+		]);
 	});
 });
 
@@ -174,17 +181,46 @@ Route::group(['middleware' => 'auth'], function() {
 Route::group(['middleware' => 'auth'], function() {
 	Route::group(['prefix' => 'kegiatan'], function() {
 		Route::get('/', [
-			'uses'	=>	'PembinaController@getKegiatan', 
+			'uses'	=>	'KegiatanController@getKegiatan', 
 			'as'	=>	'kegiatan'
 		]);
 
 		Route::get('/tambah', [
-			'uses'	=>	'PembinaController@getTambahKegiatan', 
-			'as'	=>	'kegiatan.tambah'
+			'uses'	=>	'KegiatanController@getTambahKegiatan', 
+			'as'	=>	'kegiatan.tambah',
+			'middleware'	=>	['pembina']
 		]);
 
-		Route::post('/', [
-			'uses'	=>	'PembinaController@postTambahKegiatan'
+		Route::post('/tambah', [
+			'uses'	=>	'KegiatanController@postTambahKegiatan'
+		]);
+
+		Route::get('/{id}/edit', [
+			'uses' 	=>	'KegiatanController@getEditKegiatan',
+			'as'	=>	'kegiatan.edit',
+			'middleware'	=>	['pembina']
+		]);
+
+		Route::put('/{id}', [
+			'uses' 	=>	'KegiatanController@putEditKegiatan',
+			'as'	=>	'kegiatan.update',
+			'middleware'	=>	['pembina']
+		]);
+
+		Route::get('/{id}/hapus', [
+			'uses'	=>	'KegiatanController@getHapusKegiatan',
+			'as'	=>	'kegiatan.hapus',
+			'middleware'	=>	['pembina']
+		]);
+	});
+});
+
+//Keuangan
+Route::group(['middleware' => 'auth'], function() {
+	Route::group(['prefix' => 'keuangan'], function() {
+		Route::get('/', [
+			'uses' 	=> 'KeuanganController@index',
+			'as'	=>	'keuangan'
 		]);
 	});
 });

@@ -8,6 +8,7 @@ use App\Kegiatan;
 use App\Bidang;
 use Image;
 use Storage;
+use Excel;
 use App\Http\Requests;
 
 
@@ -116,33 +117,50 @@ class PembinaController extends Controller
         return redirect()->route('pembina')->with('pesan', 'Data berhasil di Update !');
     }
 
-
-    // Kegiatan Controller
-    public function getKegiatan() {
-        $data = Kegiatan::all();
-        return view('admin.kegiatan.index', ['data' => $data]);
+    public function downloadExcel($type) {
+        $data = Pembina::get()->toArray();
+        return Excel::create('dataPembina', function($excel) use ($data) {
+            $excel->sheet('dataPembinaExcel', function($sheet) use ($data) {
+                $sheet->fromArray($data);
+            });
+        })->download($type);
     }
 
-    public function getTambahKegiatan() {
-        $pembina = Pembina::all();
-        $bidang = BIdang::all();
-        return view('admin.kegiatan.tambah', ['pembina' => $pembina, 'bidang' => $bidang]);
+    public function getImportExcel() {
+        return view('admin.pembina.importExcel');
     }
 
-    public function postTambahKegiatan(Request $request) {
-        $this->validate($request, [
-            'nama_kegiatan' =>  'required',
-            'bidang_id'     =>  'required',
-            'tgl_pel'       =>  'required',
-            'pembina_id'    =>  'required'
-        ]);
+    public function importExcel(Request $request) {
+        if ($request->hasFile('import_file')) {
+            $path = $request->file('import-file');
+            $data = Excel::load($path, function($reader) {})->get();
 
-        $kegiatan = new Kegiatan;
-        $kegiatan->nama_kegiatan = $request['nama_kegiatan'];
-        $kegiatan->bidang_id = $request['bidang_id'];
-        $kegiatan->tgl_pel = $request['tgl_pel'];
-        $kegiata->pembina_id = $request['pembina_id'];
+            if (!empty($data) && $data->count()) {
+                
+                foreach ($data->toArray() as $key => $value) {
+                    if (!empty($value)) {
+                        foreach ($value as $v) {
+                            $insert[] = [
+                                'nama' => $v['nama'],
+                                'email' => $v['email'],
+                                'jenis_kelamin' => $v['jenis_kelamin'],
+                                'alamat' => $v['alamat'],
+                                'no_hp' => $v['no_hp'],
+                                'gambar' => $v['gambar'],
+                                'created_at' => $v['created_at'],
+                                'updated_at' => $v['updated_at'],
+                            ];
+                        }
+                    }
+                }
 
-        dd($kegiatan);
+                if (!empty($insert)) {
+                    Pembina::insert($insert);
+                    return back()->with('pesan', 'Data Berhasil Di Import !');
+                }
+            }
+        }
+
+        return back()->with('pesan', 'Data Gagal Di Import !');
     }
 }

@@ -3,16 +3,17 @@
 @section('pengurus')
 	
 	<h5>Daftar Pengurus</h5>
-		<nav>
-		    <div class="nav-wrapper">
-		      <div class="col s12">
-		        <a href="#!" class="breadcrumb">First</a>
-		        <a href="#!" class="breadcrumb">Second</a>
-		        <a href="#!" class="breadcrumb">Third</a>
-		      </div>
-		    </div>
-		</nav>
+	<hr>
  	 {{-- Menu --}}	
+ 	 <div class="row">
+			<ul class="tombol">
+				@if(Auth::user()->level == 'pembina')
+					<li><a href="" class="waves-light waves-effect btn amber accent-4"><i class="fa fa-upload"></i> Impor</a></li>
+				@endif
+				<li><a href="" class="waves-light waves-effect btn grey lighten-1"><i class="fa fa-print"></i> Print</a></li>
+			</ul>
+		</div>	
+
 		<div class="row">
 
 				{{-- Table --}}
@@ -24,9 +25,6 @@
 						<th>Kelas</th>
 						<th>Jabatan</th>
 						<th>Opsi</th>
-						@if(Auth::user()->level == 'pembina')
-						 <th>Hapus</th>
-						@endif
 					</tr>
 				</thead>
 			
@@ -38,20 +36,11 @@
 							<td>{{ $datas->anggota->kelas->nama_kelas }}</td>
 							<td>{{ $datas->jabatan }}</td>
 							<td>
-								<a href="{{ route('pengurus.lihat', $datas->id) }}" class="waves-light waves-effect btn-floating"><i class="fa fa-eye"></i></a>
+								<a href="{{ route('anggota.lihat', $datas->anggota->id) }}" class="waves-light waves-effect btn-floating green"><i class="fa fa-eye"></i></a>
 								@if(Auth::user()->level == 'pembina')
-									<a href="{{ route('pengurus.edit', $datas->id) }}" class="waves-effect waves-light btn-floating"><i class="fa fa-pencil"></i></a>
+									<a href="{{ route('pengurus.edit', $datas->id) }}" class="waves-effect waves-light btn-floating amber"><i class="fa fa-pencil"></i></a>
 								@endif
 							</td>
-							@if(Auth::user()->level == 'pembina')
-								<td>
-									<form action="{{ route('pengurus.hapus', $datas->id) }}" method="delete">
-										<input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-										<button type="submit" name="hapus" class="waves-effect waves-light btn-floating"><i class="fa fa-trash"></i></button>
-									</form>
-								</td>
-							@endif
 						</tr>
 					@endforeach
 				</tbody>

@@ -3,18 +3,10 @@
 @section('pengurus')
 
 	<h5>Edit Pengurus</h5>
-		<nav>
-		    <div class="nav-wrapper">
-		      <div class="col s12">
-		        <a href="#!" class="breadcrumb">First</a>
-		        <a href="#!" class="breadcrumb">Second</a>
-		        <a href="#!" class="breadcrumb">Third</a>
-		      </div>
-		    </div>
-		</nav>
+	<hr>
 
 	<div class="row">
-		<a style="margin-top: 20px;" href="{{ route('pengurus') }}" class="btn waves-effect waves-light"><i class="fa fa-arrow-left"></i> Back</a>
+		<a href="{{ route('pengurus') }}" class="btn waves-effect waves-light red"><i class="fa fa-arrow-left"></i> Back</a>
 	</div>
 
 		<div class="row">
@@ -34,7 +26,7 @@
 					</div>
 
 					<div class="row">
-						<button type="submit" class="btn waves-effect waves-light right">Ganti  <i class="fa fa-pencil"></i></button>
+						<button type="submit" class="btn waves-effect waves-light right amber">Ganti  <i class="fa fa-pencil"></i></button>
 					</div>
 					<input type="hidden" name="_method" value="put">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -42,14 +34,14 @@
 					</div>
 				</div>
 			</div>
-			<div class="col md4">
+			<div class="col md5">
 				<div class="card">
 					<div class="card-content">
 						<div class="row">
 							<img width="200" height="150" src="{{ URL::to('uploads/2016-12-30.koala.jpg') }}" alt="" class="circle materialboxed responsive-img">
 						</div>
 						<div class="row">
-							<h2 class="blue-text lighten-2 center-align">{{ $data->jabatan }}</h2>
+							<h3 class="blue-text lighten-2 center-align">{{ $data->jabatan }}</h3>
 						</div>
 					</div>
 				</div>

@@ -11,12 +11,35 @@
 				@if(Auth::user()->level == 'admin')
 					<li>
 						<a href="{{ route('pembina.tambah') }}" class="waves-effect waveslight btn blue accent-2"><i class="fa fa-plus"></i> Tambah</a>
+						<li><a href="{{ url('pembina/downloadExcel/xls') }}" class="waves-light waves-effect btn green"><i class="fa fa-upload"></i> Export</a></li>
 					</li>
-					<li><a href="" class="waves-light waves-effect btn amber accent-4"><i class="fa fa-download"></i> Import</a></li>
+					<li><a  href="#modal1" class="waves-light waves-effect btn amber accent-4"><i class="fa fa-download"></i> Import</a></li>
 				@endif
 				<li><a href="" class="waves-light waves-effect btn grey lighten-1"><i class="fa fa-print"></i> Print</a></li>
 			</ul>
-		</div>	
+		</div>
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Import File</h4>
+      		<form action="{{ route('pembina.import') }}" method="post" enctype="multipart/form-data">
+		    <div class="file-field input-field">
+		      <div class="btn">
+		        <span>File</span>
+		        <input type="file" name="import_file">
+		      </div>
+		      <div class="file-path-wrapper">
+		        <input class="file-path validate" type="text">
+		      </div>
+		    </div>
+    </div>
+    <div class="modal-footer">
+     	<button type="submit" class="btn waves-light waves-effect">Import</button>
+     	<input type="hidden" name="_token" value="{{ csrf_token() }}">
+    </div>
+    </form>
+  </div>	
 
 		<div class="row">
 			<div class="col m12">
@@ -47,7 +70,7 @@
 							<td>
 								<a href="{{ route('pembina.lihat', $datas->id) }}" class="waves-light waves-effect btn-floating green"><i class="fa fa-eye"></i></a>
 								@if(Auth::user()->username == 'admin')
-									<a href="{{ route('pembina.edit', $datas->id) }}" class="waves-effect waves-light btn-floating amber"><i class="fa fa-pencil"></i></a>
+									<a href="{{ route('pembina.edit', $datas->id) }}" class="waves-effect waves-light btn-floating amber accent-4"><i class="fa fa-pencil"></i></a>
 								@endif
 							</td>
 							@if(Auth::user()->username == 'admin')
