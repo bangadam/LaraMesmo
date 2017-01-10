@@ -35,11 +35,11 @@
 					
 				<div class="input-field{{ $errors->has('jenis_kelamin') ? ' has-error' : '' }}">
 					<select name="jenis_kelamin">
-						<option value="" disabled selected>- Pilih Jenis Kelamin -</option>
-						<option value="pria" @if($data->jenis_kelamin == 'pria') selected >pria
-						</option>
-						<option value="wanita" @elseif($data->jenis_kelamin == 'wanita') selected @endif>wanita
-						</option>
+							<option value="" disabled selected>- Pilih Jenis Kelamin -</option>
+							<option value="pria" @if($data->jenis_kelamin == 'pria') selected @endif>pria
+							</option>
+							<option value="wanita" @if($data->jenis_kelamin == 'wanita') selected @endif>wanita
+							</option>
 					</select>
 					@if($errors->has('jenis_kelamin'))
 						 <ul class="card-panel red darken-1">
@@ -64,7 +64,7 @@
 					@endif
 				</div>
 				<div class="file-field input-field{{ $errors->has('gambar') ? ' has-error' : '' }}">
-					<div class="btn">
+					<div class="btn grey lighten-1">
 						<span>File</span>
 						<input type="file" name="gambar">
 					</div>
@@ -80,7 +80,7 @@
 				
 				
 				<div class="row">
-					<button type="submit" class="btn waves-effect waves-light right">Edit <i class="fa fa-pencil"></i></button>
+					<button type="submit" class="btn waves-effect waves-light right amber accent-4">Edit <i class="fa fa-pencil"></i></button>
 				</div>
 				<input type="hidden" name="_method" value="put">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">

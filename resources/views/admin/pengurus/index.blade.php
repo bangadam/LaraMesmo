@@ -8,11 +8,13 @@
  	 <div class="row">
 			<ul class="tombol">
 				@if(Auth::user()->level == 'pembina')
-					<li><a href="" class="waves-light waves-effect btn amber accent-4"><i class="fa fa-upload"></i> Impor</a></li>
+					<li><a href="" class="waves-light waves-effect btn amber accent-4"><i class="fa fa-upload"></i> Import</a></li>
 				@endif
 				<li><a href="" class="waves-light waves-effect btn grey lighten-1"><i class="fa fa-print"></i> Print</a></li>
 			</ul>
-		</div>	
+		</div>
+
+		@include('templates.alert')	
 
 		<div class="row">
 

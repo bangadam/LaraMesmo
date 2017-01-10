@@ -17,7 +17,7 @@
 						<form action="{{ route('pengurus.update', $data->id) }}" method="post">
 					<div class="input-field">
 						<select name="nama_anggota">
-							<option value="{{ $data->anggota->id }}" disabled>{{ $data->anggota->nama }}</option>
+							<option value="{{ $data->anggota->id }}" selected>{{ $data->anggota->nama }}</option>
 							@foreach($anggota as $anggotas)
 								<option value="{{ $anggotas->id }}">{{ $anggotas->nama }}</option>
 							@endforeach
@@ -38,10 +38,11 @@
 				<div class="card">
 					<div class="card-content">
 						<div class="row">
-							<img width="200" height="150" src="{{ URL::to('uploads/2016-12-30.koala.jpg') }}" alt="" class="circle materialboxed responsive-img">
+							<img width="200" height="150" src="{{ URL::to('uploads/'. $data->anggota->gambar) }}" alt="" class="circle materialboxed responsive-img">
 						</div>
 						<div class="row">
 							<h3 class="blue-text lighten-2 center-align">{{ $data->jabatan }}</h3>
+							<p class="center-align"><a href="{{ route('anggota.lihat', $data->anggota->id) }}" class="blue-text lighten-2">({{ $data->anggota->nama }})</a></p>
 						</div>
 					</div>
 				</div>

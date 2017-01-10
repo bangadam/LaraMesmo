@@ -98,6 +98,11 @@ Route::group(['middleware' => 'auth'], function() {
 			'uses'	=>	'PembinaController@importExcel',
 			'as'	=>	'pembina.import'
 		]);
+
+		Route::get('/PrintPdf', [
+			'uses'	=>	'PembinaController@printPdf',
+			'as'	=>	'pembina.print'
+		]);
 	});
 });
 

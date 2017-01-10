@@ -11,11 +11,11 @@
 				@if(Auth::user()->level == 'admin')
 					<li>
 						<a href="{{ route('pembina.tambah') }}" class="waves-effect waveslight btn blue accent-2"><i class="fa fa-plus"></i> Tambah</a>
-						<li><a href="{{ url('pembina/downloadExcel/xls') }}" class="waves-light waves-effect btn green"><i class="fa fa-upload"></i> Export</a></li>
+						<li><a href="{{ url('pembina/downloadExcel/xlsx') }}" class="waves-light waves-effect btn green"><i class="fa fa-upload"></i> Export</a></li>
 					</li>
 					<li><a  href="#modal1" class="waves-light waves-effect btn amber accent-4"><i class="fa fa-download"></i> Import</a></li>
 				@endif
-				<li><a href="" class="waves-light waves-effect btn grey lighten-1"><i class="fa fa-print"></i> Print</a></li>
+				<li><a href="{{ route('pembina.print') }}" class="waves-light waves-effect btn grey lighten-1"><i class="fa fa-print"></i> Print</a></li>
 			</ul>
 		</div>
 

@@ -38,9 +38,9 @@
 					<div class="input-field">
 						<select name="jenis_kelamin">
 							<option value="" disabled selected>- Pilih Jenis Kelamin -</option>
-							<option value="pria" @if($data->jenis_kelamin == 'pria') selected >pria
+							<option value="pria" @if($data->jenis_kelamin == 'pria') selected @endif>pria
 							</option>
-							<option value="wanita" @elseif($data->jenis_kelamin == 'wanita') selected @endif>wanita
+							<option value="wanita" @if($data->jenis_kelamin == 'wanita') selected @endif>wanita
 							</option>
 						</select>
 					</div>

@@ -119,7 +119,7 @@ class PembinaController extends Controller
 
     public function downloadExcel($type) {
         $data = Pembina::get()->toArray();
-        return Excel::create('dataPembina', function($excel) use ($data) {
+        return Excel::create('dataPembinaExcel', function($excel) use ($data) {
             $excel->sheet('dataPembinaExcel', function($sheet) use ($data) {
                 $sheet->fromArray($data);
             });
@@ -132,35 +132,25 @@ class PembinaController extends Controller
 
     public function importExcel(Request $request) {
         if ($request->hasFile('import_file')) {
-            $path = $request->file('import-file');
-            $data = Excel::load($path, function($reader) {})->get();
+            $path = $request->file('import_file')->getRealPath();
+            $data = Excel::load($path, function($render) {
+                Pembina::insert($render->toArray());
+            });
 
-            if (!empty($data) && $data->count()) {
-                
-                foreach ($data->toArray() as $key => $value) {
-                    if (!empty($value)) {
-                        foreach ($value as $v) {
-                            $insert[] = [
-                                'nama' => $v['nama'],
-                                'email' => $v['email'],
-                                'jenis_kelamin' => $v['jenis_kelamin'],
-                                'alamat' => $v['alamat'],
-                                'no_hp' => $v['no_hp'],
-                                'gambar' => $v['gambar'],
-                                'created_at' => $v['created_at'],
-                                'updated_at' => $v['updated_at'],
-                            ];
-                        }
-                    }
-                }
-
-                if (!empty($insert)) {
-                    Pembina::insert($insert);
-                    return back()->with('pesan', 'Data Berhasil Di Import !');
-                }
+            if (!$data) {
+                return back()->with('pesan', 'Data Gagal Di Import !');
             }
         }
 
-        return back()->with('pesan', 'Data Gagal Di Import !');
+        return back()->with('pesan', 'Data Berhasil Di Import !');
+    }
+
+    public function printPdf(Request $request) {
+        $data = Pembina::get()->toArray();
+        return Excel::create('dataPembinaPdf', function($excel) use ($data) {
+            $excel->sheet('dataPembinaPdf', function($sheet) use ($data) {
+                $sheet->toArray($data);
+            }); 
+        })->download('pdf');
     }
 }

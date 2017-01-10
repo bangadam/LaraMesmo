@@ -26,14 +26,16 @@ class PengurusController extends Controller
 
    public function putEdit(Request $request, $id) {
         $data = Pengurus::findOrFail($id);
+        $anggota = Anggota::all();
         if(!$data) {
             abort(404);
         }
 
-        $data->id = $request['nama_anggota'];
+        $data->anggota_id = $request['nama_anggota'];
+      
         $data->save();
 
-        return view('admin.pengurus.edit', ['data' => $data, 'anggota' => $anggota]);
+        return redirect()->route('pengurus')->with('pesan', 'Data berhasil Di Update !');
    }
 
    public function getLihat($id) {
