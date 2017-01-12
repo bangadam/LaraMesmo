@@ -45,12 +45,11 @@ Route::get('/logout', [
 Route::get('/dashboard', [
 	'uses'	=> 	'AdminController@index',
 	'as'	=> 	'admin.index',
-	'middleware' => ['auth']
 ]);
 	
 
 //  Pembina Route
-Route::group(['middleware' => 'auth'], function() {
+
 	Route::group(['prefix' => 'pembina'], function() {
 		
 		Route::get('/', [
@@ -104,10 +103,10 @@ Route::group(['middleware' => 'auth'], function() {
 			'as'	=>	'pembina.print'
 		]);
 	});
-});
+
 
 //  Pembina Route
-Route::group(['middleware' => 'auth'], function() {
+
 	Route::group(['prefix' => 'anggota'], function() {
 		Route::get('/', [
 			'uses'	=>	'AnggotaController@getAnggota',
@@ -148,10 +147,10 @@ Route::group(['middleware' => 'auth'], function() {
 			'middleware'	=>	['pembina']
 		]);
 	});
-});
+
 
 //PENGURUS
-Route::group(['middleware' => 'auth'], function() {
+
 	Route::group(['prefix' => 'pengurus'], function() {
 		Route::get('/', [
 		'uses'	=>	'PengurusController@index',
@@ -180,10 +179,10 @@ Route::group(['middleware' => 'auth'], function() {
 			'as'	=>	'pengurus.lihat'
 		]);
 	});
-});
+
 
 //Kegiatan
-Route::group(['middleware' => 'auth'], function() {
+
 	Route::group(['prefix' => 'kegiatan'], function() {
 		Route::get('/', [
 			'uses'	=>	'KegiatanController@getKegiatan', 
@@ -218,22 +217,22 @@ Route::group(['middleware' => 'auth'], function() {
 			'middleware'	=>	['pembina']
 		]);
 	});
-});
+
 
 //Keuangan
-Route::group(['middleware' => 'auth'], function() {
+
 	Route::group(['prefix' => 'keuangan'], function() {
 		Route::get('/', [
 			'uses' 	=> 'KeuanganController@index',
 			'as'	=>	'keuangan'
 		]);
 	});
-});
+
 
 //Absensi
-Route::group(['middleware' => 'auth'], function() {
+
 	Route::get('/absensi', [
 		'uses'	=>	'AbsensiController@index', 
 		'as'	=>	'absensi'
 	]);
-});
+

@@ -58,9 +58,9 @@
 					<div class="input-field">
 						<select name="kelas">
 							<option value="" disabled selected>Kelas</option>
-							<option value="{{ $data->kelas->id }}" selected>{{ $data->kelas->nama_kelas }}</option>
-							@foreach($kelas as $kelases)
-								<option value="{{ $kelases->id }}">{{ $kelases->nama_kelas }}</option>	
+				
+							@foreach($data as $datas)
+								<option value="" >{{ $data->kelas->nama_kelas }}</option>	
 							@endforeach
 						</select>
 					</div>

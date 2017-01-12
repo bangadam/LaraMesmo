@@ -20,8 +20,14 @@ class AuthController extends Controller
     		'password'	=>	'required'
     	]);
 
-    if (Auth::attempt(['username' => $request['username'], 'password' => $request['password']])
-        ) {
+        $dataLogin = [
+            'nama'  => $request['username'],
+            'password'  => $request['password'],
+            ];  
+
+    if (Auth::guard('anggota')->attempt($dataLogin) ||
+        Auth::attempt(['username' => $request['username'], 'password' => $request['password']]))
+         {
           return redirect()->route('admin.index')->with('pesan', 'Selamat Datang Di Halaman Dashboard');
         }    	
 
@@ -64,7 +70,7 @@ class AuthController extends Controller
 
         $anggota->save();
 
-        return redirect()->route('auth.login')->with('pesan', 'Selamat Anda Sudah Terdaftar !'); 
+        return redirect()->route('auth.login')->with('anggota', 'Selamat Anda Sudah Terdaftar !'); 
 
     }
 

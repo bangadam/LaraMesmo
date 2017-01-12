@@ -41,6 +41,16 @@ return [
             'provider' => 'users',
         ],
 
+        'anggota' => [
+            'driver' => 'session',
+            'provider' => 'anggotas',
+        ],
+
+        'pembina' => [
+            'driver' => 'session',
+            'provider' => 'pembinas',
+        ],
+
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
