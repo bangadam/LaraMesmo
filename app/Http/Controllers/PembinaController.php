@@ -9,9 +9,8 @@ use App\Bidang;
 use Image;
 use Storage;
 use Excel;
+use PDF;
 use App\Http\Requests;
-
-
 
 class PembinaController extends Controller
 {
@@ -126,10 +125,6 @@ class PembinaController extends Controller
         })->download($type);
     }
 
-    public function getImportExcel() {
-        return view('admin.pembina.importExcel');
-    }
-
     public function importExcel(Request $request) {
         if ($request->hasFile('import_file')) {
             $path = $request->file('import_file')->getRealPath();
@@ -146,11 +141,11 @@ class PembinaController extends Controller
     }
 
     public function printPdf(Request $request) {
-        $data = Pembina::get()->toArray();
-        return Excel::create('dataPembinaPdf', function($excel) use ($data) {
-            $excel->sheet('dataPembinaPdf', function($sheet) use ($data) {
-                $sheet->toArray($data);
-            }); 
-        })->download('pdf');
+       // ambil semua data
+    $data = Pembina::all();
+    // mengarahkan view pada file pdf.blade.php di views/data/
+    $pdf = PDF::loadView('admin.pembina.pdf',compact('data'));
+
+        return $pdf->stream('dataPembina');
     }
 }

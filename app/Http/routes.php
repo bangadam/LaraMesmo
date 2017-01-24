@@ -19,7 +19,8 @@ Route::get('/', [
 //  Auth Area
 Route::get('/login', [
 	'uses'	=>	'AuthController@getLogin',
-	'as'	=>	'auth.login'
+	'as'	=>	'auth.login',
+	'middleware'	=> 	['guest']
 ]);
 
 Route::get('/register', [
@@ -45,12 +46,11 @@ Route::get('/logout', [
 Route::get('/dashboard', [
 	'uses'	=> 	'AdminController@index',
 	'as'	=> 	'admin.index',
-	'middleware' => ['auth']
 ]);
 	
 
 //  Pembina Route
-Route::group(['middleware' => 'auth'], function() {
+
 	Route::group(['prefix' => 'pembina'], function() {
 		
 		Route::get('/', [
@@ -104,10 +104,10 @@ Route::group(['middleware' => 'auth'], function() {
 			'as'	=>	'pembina.print'
 		]);
 	});
-});
+
 
 //  Pembina Route
-Route::group(['middleware' => 'auth'], function() {
+
 	Route::group(['prefix' => 'anggota'], function() {
 		Route::get('/', [
 			'uses'	=>	'AnggotaController@getAnggota',
@@ -147,11 +147,23 @@ Route::group(['middleware' => 'auth'], function() {
 			'uses'	=>	'AnggotaController@postTambah',
 			'middleware'	=>	['pembina']
 		]);
+
+		Route::get('/downloadExcel/{type}', 'AnggotaController@downloadExcel');
+
+		Route::post('/importExcel', [
+			'uses'	=>	'AnggotaController@importExcel',
+			'as'	=>	'anggota.import'
+		]);
+
+		Route::get('/PrintPdf', [
+			'uses'	=>	'AnggotaController@printPdf',
+			'as'	=>	'anggota.print'
+		]);
 	});
-});
+
 
 //PENGURUS
-Route::group(['middleware' => 'auth'], function() {
+
 	Route::group(['prefix' => 'pengurus'], function() {
 		Route::get('/', [
 		'uses'	=>	'PengurusController@index',
@@ -179,11 +191,18 @@ Route::group(['middleware' => 'auth'], function() {
 			'uses'	=>	'PengurusController@getLihat',
 			'as'	=>	'pengurus.lihat'
 		]);
+
+		Route::get('/downloadExcel/{type}', 'PengurusController@downloadExcel');
+
+		Route::get('/PrintPdf', [
+			'uses'	=>	'PengurusController@printPdf',
+			'as'	=>	'pengurus.print'
+		]);
 	});
-});
+
 
 //Kegiatan
-Route::group(['middleware' => 'auth'], function() {
+
 	Route::group(['prefix' => 'kegiatan'], function() {
 		Route::get('/', [
 			'uses'	=>	'KegiatanController@getKegiatan', 
@@ -217,23 +236,174 @@ Route::group(['middleware' => 'auth'], function() {
 			'as'	=>	'kegiatan.hapus',
 			'middleware'	=>	['pembina']
 		]);
+
+		Route::get('/downloadExcel/{type}', 'KegiatanController@downloadExcel');
+
+		Route::post('/importExcel', [
+			'uses'	=>	'KegiatanController@importExcel',
+			'as'	=>	'kegiatan.import'
+		]);
+		
+		Route::get('/PrintPdf', [
+			'uses'	=>	'KegiatanController@printPdf',
+			'as'	=>	'kegiatan.print'
+		]);
 	});
-});
+
 
 //Keuangan
-Route::group(['middleware' => 'auth'], function() {
+
 	Route::group(['prefix' => 'keuangan'], function() {
 		Route::get('/', [
 			'uses' 	=> 'KeuanganController@index',
 			'as'	=>	'keuangan'
 		]);
+
+		Route::group(['prefix' => 'pemasukan'], function() {
+			Route::get('/', [
+				'uses' 	=> 'KeuanganController@pemasukan',
+				'as'	=>	'pemasukan'
+			]);
+
+			Route::get('/tambah', [
+				'uses'	=>	'KeuanganController@getTambahPemasukan', 
+				'as'	=>	'pemasukan.tambah',
+				'middleware'	=>	['pembina']
+			]);
+
+			Route::post('/tambah', [
+				'uses'	=>	'KeuanganController@postTambahPemasukan'
+			]);
+
+			Route::get('/{id}/edit', [
+				'uses' 	=>	'KeuanganController@getEditPemasukan',
+				'as'	=>	'pemasukan.edit',
+				'middleware'	=>	['pembina']
+			]);
+
+			Route::put('/{id}', [
+				'uses' 	=>	'KeuanganController@putEditPemasukan',
+				'as'	=>	'pemasukan.update',
+				'middleware'	=>	['pembina']
+			]);
+
+			Route::get('/{id}/hapus', [
+				'uses'	=>	'KeuanganController@getHapusPemasukan',
+				'as'	=>	'pemasukan.hapus',
+				'middleware'	=>	['pembina']
+			]);
+
+			Route::get('/downloadExcel/{type}', 'KeuanganController@downloadExcel');
+
+			Route::post('/importExcel', [
+				'uses'	=>	'KeuanganController@importExcel',
+				'as'	=>	'pemasukan.import'
+			]);
+			
+			Route::get('/PrintPdf', [
+				'uses'	=>	'KeuanganController@printPdf',
+				'as'	=>	'pemasukan.print'
+			]);
+		});
+
+
+		//pengeluaran
+		Route::group(['prefix' => 'pengeluaran'], function() {
+			Route::get('/', [
+				'uses' 	=> 'KeuanganController@Pengeluaran',
+				'as'	=>	'pengeluaran'
+			]);
+
+			Route::get('/tambah', [
+				'uses'	=>	'KeuanganController@getTambahPengeluaran', 
+				'as'	=>	'pengeluaran.tambah',
+				'middleware'	=>	['pembina']
+			]);
+
+			Route::post('/tambah', [
+				'uses'	=>	'KeuanganController@postTambahPengeluaran'
+			]);
+
+			Route::get('/{id}/edit', [
+				'uses' 	=>	'KeuanganController@getEditPengeluaran',
+				'as'	=>	'pengeluaran.edit',
+				'middleware'	=>	['pembina']
+			]);
+
+			Route::put('/{id}', [
+				'uses' 	=>	'KeuanganController@putEditPengeluaran',
+				'as'	=>	'pengeluaran.update',
+				'middleware'	=>	['pembina']
+			]);
+
+			Route::get('/{id}/hapus', [
+				'uses'	=>	'KeuanganController@getHapusPengeluaran',
+				'as'	=>	'pengeluaran.hapus',
+				'middleware'	=>	['pembina']
+			]);
+
+			Route::get('/downloadExcel/{type}', 'KeuanganController@PengeluaranDownloadExcel');
+
+			Route::post('/importExcel', [
+				'uses'	=>	'KeuanganController@PengeluaranImportExcel',
+				'as'	=>	'pengeluaran.import'
+			]);
+			
+			Route::get('/PrintPdf', [
+				'uses'	=>	'KeuanganController@PengeluaranPrintPdf',
+				'as'	=>	'pengeluaran.print'
+			]);
+		});
+		
 	});
-});
+
 
 //Absensi
-Route::group(['middleware' => 'auth'], function() {
-	Route::get('/absensi', [
-		'uses'	=>	'AbsensiController@index', 
-		'as'	=>	'absensi'
-	]);
-});
+
+	Route::group(['prefix' => 'absensi'], function() {
+	    Route::get('/', [
+			'uses'	=>	'AbsensiController@index', 
+			'as'	=>	'absensi'
+		]);
+
+		Route::get('/tambah', [
+				'uses'	=>	'AbsensiController@getTambahAbsensi', 
+				'as'	=>	'absensi.tambah',
+				'middleware'	=>	['pembina']
+			]);
+
+			Route::post('/tambah', [
+				'uses'	=>	'AbsensiController@postTambahAbsensi'
+			]);
+
+			Route::get('/{id}/edit', [
+				'uses' 	=>	'AbsensiController@getEditAbsensi',
+				'as'	=>	'absensi.edit',
+				'middleware'	=>	['pembina']
+			]);
+
+			Route::put('/{id}', [
+				'uses' 	=>	'AbsensiController@putEditAbsensi',
+				'as'	=>	'absensi.update',
+				'middleware'	=>	['pembina']
+			]);
+
+			Route::get('/{id}/hapus', [
+				'uses'	=>	'AbsensiController@getHapusAbsensi',
+				'as'	=>	'absensi.hapus',
+				'middleware'	=>	['pembina']
+			]);
+
+			Route::get('/downloadExcel/{type}', 'AbsensiController@iDownloadExcel');
+
+			Route::post('/importExcel', [
+				'uses'	=>	'AbsensiController@ImportExcel',
+				'as'	=>	'absensi.import'
+			]);
+			
+			Route::get('/PrintPdf', [
+				'uses'	=>	'AbsensiController@PrintPdf',
+				'as'	=>	'absensi.print'
+			]);
+	});
+

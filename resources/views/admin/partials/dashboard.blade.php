@@ -8,49 +8,49 @@
 		
 		@if(Session::has('pesan'))
 		        <div class="card-panel red darken-1">
-		          <span class="white-text center-align">{{ Session::get('pesan') }}, {{ Auth::user()->username }} </span>
+		          <span class="white-text center-align">{{ Session::get('pesan') }}</span>
 		        </div>
 		@endif
 
 		  {{-- Menu --}}
 		<div class="row">
 			<div class="col m4">
-				<div class="card hoverable blue accent-1	 ">
+				<div class="card hoverable red">
 					<div class="card-content">
 						<div class="row">
 							<div class="col m3 white-text">
 								<span class="fa fa-user fa-5x"></span>
 							</div>
-							<div class="col m8">
-								<a href="" class="white-text"><h4>Pembina</h4></a>
+							<div class="col m8">	
+								<a href="{{ route('pembina') }}" class="white-text"><h4>{{ count($pembina) }} Pembina</h4></a>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="col m4">
-				<div class="card hoverable blue accent-1	 ">
+				<div class="card hoverable amber accent-4">
 					<div class="card-content">
 						<div class="row">
 							<div class="col m3 white-text">
 								<span class="fa fa-book fa-5x"></span>
 							</div>
 							<div class="col m8 ">
-								<a href="" class="white-text"><h4>Kegiatan</h4></a>
+								<a href="{{ route('kegiatan') }}" class="white-text"><h4>{{ count($kegiatan) }} Kegiatan</h4></a>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="col m4">
-				<div class="card hoverable blue accent-1	 ">
+				<div class="card hoverable green">
 					<div class="card-content">
 						<div class="row">
 							<div class="col m3 white-text">
 								<span class="fa fa-users fa-5x"></span>
 							</div>
-						<div class="col m8">
-							<a href="" class="white-text"><h4>Anggota</h4></a>
+						<div class="col m7" style="margin-left: 20px;">
+							<a href="{{ route('anggota') }}" class="white-text"><h4>{{ count($anggota) }} Anggota</h4></a>
 						</div>
 						</div>
 					</div>

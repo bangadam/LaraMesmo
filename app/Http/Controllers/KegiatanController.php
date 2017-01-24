@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Kegiatan;
 use App\Pembina;
 use App\Bidang;
+use Excel;
+use PDF;
 use App\Http\Requests;
 
 class KegiatanController extends Controller
@@ -35,6 +37,7 @@ class KegiatanController extends Controller
         $data->bidang_id = $request['bidang_id'];
         $data->tgl_pel = $request['tgl_pel'];
         $data->pembina_id = $request['pembina_id'];
+        $data->status = 'belum terlaksana';
 
        	$data->save();
 
@@ -79,4 +82,38 @@ class KegiatanController extends Controller
 
         return redirect()->route('kegiatan')->with('pesan', 'Data Kegiatan Berhasil Di Hapus !');
     }
+
+    public function downloadExcel($type) {
+        $data = Kegiatan::get()->toArray();
+        return Excel::create('dataKegiatanExcel', function($excel) use ($data) {
+            $excel->sheet('dataKegiatanExcel', function($sheet) use ($data) {
+                $sheet->fromArray($data);
+            });
+        })->download($type);
+    }
+
+    public function importExcel(Request $request) {
+        if ($request->hasFile('import_file')) {
+            $path = $request->file('import_file')->getRealPath();
+            $data = Excel::load($path, function($render) {
+                Kegiatan::insert($render->toArray());
+            });
+
+            if (!$data) {
+                return back()->with('pesan', 'Data Gagal Di Import !');
+            }
+        }
+
+        return back()->with('pesan', 'Data Berhasil Di Import !');
+    }
+
+    public function printPdf(Request $request) {
+        // ambil semua data
+        $data = Kegiatan::all();
+        // mengarahkan view pada file pdf.blade.php di views
+        $pdf = PDF::loadView('admin.kegiatan.pdf',compact('data'));
+
+        return $pdf->stream('dataPembina');
+    }
+
 }

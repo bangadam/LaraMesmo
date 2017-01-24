@@ -56,8 +56,8 @@ class AnggotaController extends Controller
             'email'             =>  'required|email|unique:anggotas',
             'jenis_kelamin'     =>  'required',
             'tgl_lahir'         =>  'required',
-            'kelas'             =>  'required',
-            'no_hp'             =>  'required|min:11',
+            'kelas_id'          =>  'required',
+            'no_hp'             =>  'required|min:11|max:13',
             'alamat'            =>  'required',
             'gambar'            =>  'image'
         ]);
@@ -67,7 +67,7 @@ class AnggotaController extends Controller
         $anggota->email         =   $request['email'];
         $anggota->jenis_kelamin =   $request['jenis_kelamin'];
         $anggota->tgl_lahir     =   $request['tgl_lahir'];
-        $anggota->kelas_id      =   $request['kelas'];
+        $anggota->kelas_id      =   $request['kelas_id'];
         $anggota->no_hp         =   $request['no_hp'];
         $anggota->alamat        =   $request['alamat'];
            // upload gambar
@@ -87,23 +87,23 @@ class AnggotaController extends Controller
 
     public function putEdit(Request $request, $id) { 
 
-        $anggota = Anggota::findOrFail($id);
-        // $this->validate($request, [
-        //     'nama'              =>  'required|min:3',
-        //     'email'             =>  'required',
-        //     'jenis_kelamin'     =>  'required',
-        //     'tgl_lahir'         =>  'required',
-        //     'kelas_id'          =>  'required',
-        //     'no_hp'             =>  'required|max:13|min:12',
-        //     'alamat'            =>  'required',
-        //     'gambar'            =>  'image'
-        // ]);
+        $this->validate($request, [
+            'nama'              =>  'required|min:3',
+            'email'             =>  'required',
+            'jenis_kelamin'     =>  'required',
+            'tgl_lahir'         =>  'required',
+            'kelas_id'          =>  'required',
+            'no_hp'             =>  'required|max:13|min:12',
+            'alamat'            =>  'required',
+            'gambar'            =>  'image'
+        ]);
 
+        $anggota = Anggota::findOrFail($id);
         $anggota->nama          =   $request['nama'];
         $anggota->email         =   $request['email'];
         $anggota->jenis_kelamin =   $request['jenis_kelamin'];
         $anggota->tgl_lahir     =   $request['tgl_lahir'];
-        $anggota->kelas_id      =   $request['kelas'];
+        $anggota->kelas_id      =   $request['kelas_id'];
         $anggota->no_hp         =   $request['no_hp'];
         $anggota->alamat        =   $request['alamat'];
 

@@ -17,5 +17,6 @@ class DatabaseSeeder extends Seeder
         $this->call(PengurusesTableSeeder::class);
         $this->call(BidangsTableSeeder::class);
         $this->call(PembinaTableSeeder::class);
+        $this->call(KegiatansTableSeeder::class);
     }
 }

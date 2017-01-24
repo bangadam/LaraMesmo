@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Pengurus;
 use App\Anggota;
+use Excel;
+use PDF;
 use App\Http\Requests;
 
 class PengurusController extends Controller
@@ -47,4 +49,22 @@ class PengurusController extends Controller
 
         return view('admin.pengurus.lihat', ['data' => $data]);
    }
+
+    public function downloadExcel($type) {
+        $data = Pengurus::get()->toArray();
+        return Excel::create('dataPengurusExcel', function($excel) use ($data) {
+            $excel->sheet('dataPengurusExcel', function($sheet) use ($data) {
+                $sheet->fromArray($data);
+            });
+        })->download($type);
+    }
+    
+    public function printPdf(Request $request) {
+       // ambil semua data
+    $data = Pengurus::all();
+    // mengarahkan view pada file pdf.blade.php di views/data/
+    $pdf = PDF::loadView('admin.pengurus.pdf',compact('data'));
+
+        return $pdf->stream('dataPengurus');
+    }
 }

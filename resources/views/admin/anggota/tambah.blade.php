@@ -48,7 +48,7 @@
 				</div>
 				
 				<label for="">Tanggal Lahir</label>
-				<div class="input-field{{ $errors->has('tgl_lahir') ? ' has-error' : '' }}" value="{{ old('tgl_lahir') }}">
+				<div class="input-field{{ $errors->has('tgl_lahir') ? ' has-error' : '' }}">
 					<input type="date" class="datepicker"  name="tgl_lahir">
 					@if($errors->has('tgl_lahir'))
 						 <ul class="card-panel red darken-1">
@@ -56,17 +56,18 @@
         				 </ul>
 					@endif
 				</div>
-
-				<div class="input-field{{ $errors->has('kelas') ? ' has-error' : '' }}">
-					<select name="kelas">
-						<option value="" disabled selected>Kelas</option>
+				
+				<label for="">Pilih Kelas</label>
+				<div class="input-field{{ $errors->has('kelas_id') ? ' has-error' : '' }}">
+					<select name="kelas_id">
+						<option value="" disabled selected>- Pilih Kelas -</option>
 						@foreach($kelas as $kelases)
 							<option value="{{ $kelases->id }}">{{ $kelases->nama_kelas }}</option>	
 						@endforeach
 					</select>
-					@if($errors->has('kelas'))
+					@if($errors->has('kelas_id'))
 						 <ul class="card-panel red darken-1">
-        					<p>{{ $errors->first('kelas') }}</p>
+        					<p>{{ $errors->first('kelas_id') }}</p>
         				 </ul>
 					@endif
 				</div>
@@ -90,7 +91,7 @@
 					@endif
 				</div>
 				<div class="file-field input-field{{ $errors->has('gambar') ? ' has-error' : '' }}">
-					<div class="btn">
+					<div class="btn grey darken-1">
 						<span>File</span>
 						<input type="file" name="gambar">
 					</div>
@@ -105,7 +106,7 @@
 				</div>
 
 				<button type="reset" class="red reset btn waves-effect waves-light">Reset <i class="fa fa-circle-o-notch"></i></button>
-				<button type="submit" class="btn waves-effect waves-light right">Tambah <i class="fa fa-send"></i></button>
+				<button type="submit" class="btn waves-effect waves-light right blue accent-2">Tambah <i class="fa fa-send"></i></button>
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				
 

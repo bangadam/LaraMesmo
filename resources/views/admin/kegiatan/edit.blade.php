@@ -17,31 +17,40 @@
 				<h3 class="blue-text blue-lighten-2 center-align">Edit Kegiatan</h3>
 				<div class="input-field{{ $errors->has('nama_kegiatan') ? ' has-error' : '' }}"> 
 					<input type="text" name="nama_kegiatan" class="validate" value="{{ $data->nama_kegiatan }}">
-					<label for="">Nama Kegiatan</label>
 					@if($errors->has('nama_kegiatan'))
 						 <ul class="card-panel red darken-1">
         					<p>{{ $errors->first('nama_kegiatan') }}</p>
         				 </ul>
 					@endif
+					<label for="">Nama Kegiatan</label>
 				</div>
-					
-				<div class="input-field{{ $errors->has('bidang') ? ' has-error' : '' }}">
-					<select name="bidang_id">
-						<option value="{{ $data->bidang->id }}" selected>{{ $data->bidang->nama_bidang }}</option>
-						@foreach($bidang as $bidangs)
-							<option value="{{ $bidangs->id }}">{{ $bidangs->nama_bidang }}</option>
+				
+				<label for="">Nama Pembina</label>
+				<div class="input-field{{ $errors->has('pembina_id') ? ' has-error' : '' }}"> 
+					<select name="pembina_id">
+						@foreach($pembina as $pembinas)
+							<option value="{{ $pembinas->id }}" @if($data->pembina_id == $pembinas->id) selected @endif>{{ $pembinas->nama }}</option>
 						@endforeach
 					</select>
-					@if($errors->has('bidang'))
+				</div>
+				
+				<label for="">Nama Bidang</label>	
+				<div class="input-field{{ $errors->has('bidang_id') ? ' has-error' : '' }}">
+					<select name="bidang_id">
+						@foreach($bidang as $bidangs)
+							<option value="{{ $bidangs->id }}" @if($data->bidang_id == $bidangs->id) selected @endif>{{ $bidangs->nama_bidang }}</option>
+						@endforeach
+					</select>
+					@if($errors->has('bidang_id'))
 						 <ul class="card-panel red darken-1">
-        					<p>{{ $errors->first('bidang') }}</p>
+        					<p>{{ $errors->first('bidang_id') }}</p>
         				 </ul>
 					@endif
 				</div>
-				
+
 				<label for="">Tanggal Pelaksanaan</label>
 				<div class="input-field{{ $errors->has('tgl_pel') ? ' has-error' : '' }}">
-					<input type="date" name="tgl_pel" class="datepicker" value="{{ $data->tgl_pel }}">
+					<input type="date" class="datepicker" name="tgl_pel" value="{{ $data->tgl_pel }}">
 					@if($errors->has('tgl_pel'))
 						 <ul class="card-panel red darken-1">
         					<p>{{ $errors->first('tgl_pel') }}</p>
@@ -49,23 +58,18 @@
 					@endif
 				</div>
 
-				<div class="input-field{{ $errors->has('pembina') ? ' has-error' : '' }}">
-					<select name="pembina_id">
-						<option value="{{ $data->pembina->id }}" selected>{{ $data->pembina->nama }}</option>
-						@foreach($pembina as $pembinas)
-							<option value="{{ $pembinas->id }}">{{ $pembinas->nama }}</option>
-						@endforeach
+				<label for="">Status</label>
+				<div class="input-field">
+					<select name="status">
+						<option value="terlaksana" @if($data->status == 'terlaksana') selected @endif>Terlaksana</option>
+						<option value="belum terlaksana" @if($data->status == 'belum terlaksana') selected @endif>Belum Terlaksana</option>
 					</select>
-					@if($errors->has('pembina'))
-						 <ul class="card-panel red darken-1">
-        					<p>{{ $errors->first('pembina') }}</p>
-        				 </ul>
-					@endif
 				</div>
 				
 				
+				
 				<div class="row">
-					<button type="submit" class="btn waves-effect waves-light right amber">Edit <i class="fa fa-pencil"></i></button>
+					<button type="submit" class="btn waves-effect waves-light right amber accent-4">Edit <i class="fa fa-pencil"></i></button>
 				</div>
 				<input type="hidden" name="_method" value="put">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -76,14 +80,12 @@
 		<div class="col md5">
 			<div class="card">
 				<div class="card-content">
+					<h3 class="blue-text blue-lighten-2">Di Pimpin Oleh :</h3>
 					<div class="row">
-						<span class="card-title blue-text lighten-2">Di Pimpin Oleh :</span>
 						<img src="{{ asset('uploads/' . $data->pembina->gambar) }}" class="circle materialboxed" width="200" height="150">
 					</div>
 					<div class="row">
-						<div class="col m6 offset-m4">
-							<a href="{{ route('pembina.lihat', $data->pembina->id) }}" class="blue-text lighten-2 center-align" style="font-size: 30px;">{{ $data->pembina->nama }}</a>
-						</div>
+						<h3 class="center-align"><a href="{{ route('pembina.lihat', $data->pembina->id) }}" class="blue-text lighten-2">{{ $data->pembina->nama }}</a></h3>
 					</div>
 				</div>
 			</div>

@@ -7,12 +7,17 @@ use Auth;
 use App\Anggota;
 use App\Kelas;
 use App\Http\Requests;
+use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 class AuthController extends Controller
 {
+    // protected $guard = 'anggota';
+
     public function getLogin() {
     	return view('admin.login');
     }
+
 
     public function postLogin(Request $request) {
     	$this->validate($request, [
@@ -20,8 +25,17 @@ class AuthController extends Controller
     		'password'	=>	'required'
     	]);
 
-    if (Auth::attempt(['username' => $request['username'], 'password' => $request['password']])
-        ) {
+        $dataLogin = [
+            'nama'  => $request['username'],
+            'password'  => $request['password'],
+            ];
+
+        $dataMaster = ['username' => $request['username'], 'password' => $request['password']];  
+        
+        // Auth::guard('anggota')->attempt($dataLogin) ||
+        // Auth::guard('pembina')->attempt($dataMaster)
+    if (Auth::attempt($dataMaster))
+         {
           return redirect()->route('admin.index')->with('pesan', 'Selamat Datang Di Halaman Dashboard');
         }    	
 
@@ -64,7 +78,7 @@ class AuthController extends Controller
 
         $anggota->save();
 
-        return redirect()->route('auth.login')->with('pesan', 'Selamat Anda Sudah Terdaftar !'); 
+        return redirect()->route('auth.login')->with('anggota', 'Selamat Anda Sudah Terdaftar !'); 
 
     }
 

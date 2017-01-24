@@ -4,63 +4,97 @@
 	
 	<h5>Keuangan Mesmo</h5>
 	<hr>
- 	 {{-- Menu --}}
-		<div class="row">
-			<ul class="tombol">
-				@if(Auth::user()->level == 'pembina')
-					<li>
-						<a href="{{ route('kuangan.tambah') }}" class="waves-effect waveslight btn blue accent-2"><i class="fa fa-plus"></i> Tambah</a>
-					</li>
-					<li><a href="" class="waves-light waves-effect btn amber accent-4"><i class="fa fa-download"></i> Import</a></li>
-				@endif
-				<li><a href="" class="waves-light waves-effect btn grey lighten-1"><i class="fa fa-print"></i> Print</a></li>
-			</ul>
+
+	<div class="row">
+		<div class="col m4 offset-m2">
+				<div class="card hoverable amber accent-4">
+					<div class="card-content">
+						<div class="row">
+							<div class="col m3 white-text">
+								<span class="fa fa-book fa-5x"></span>
+							</div>
+							<div class="col m8">
+								<a href="{{ route('pemasukan') }}" class="white-text"><h4>Pemasukan</h4></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		<div class="col m4">
+				<div class="card hoverable green">
+					<div class="card-content">
+						<div class="row">
+							<div class="col m3 white-text">
+								<span class="fa fa-book fa-5x"></span>
+							</div>
+							<div class="col m8">
+								<a href="{{ route('pengeluaran') }}" class="white-text"><h4>Pengeluaran</h4></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>	
+	</div>
+
+	<div class="row">
+		<div class="col m5" style="margin-left: 100px;">
+				<div class="collection">
+					<a href="#!" class="collection-item center-align" style="font-size: 17px;">
+					 <i class="fa fa-download fa-3x fa-pull-left" style="margin-bottom: 5px;"></i>
+					 <br>Pemasukan Terakhir : Rp. @if(!count($pemasukan) > 0) 
+						0
+					@else
+						{{ $pemasukan->jumlah_uang . ',00' }}
+					@endif
+					</a>
+				</div>
+				<div class="collection">
+					<a href="#!" class="collection-item center-align" style="font-size: 17px;">
+					 <i class="fa fa-refresh fa-spin fa-3x fa-pull-left" style="margin-bottom: 5px;margin-right: "></i>
+					 <br>Total Pemasukan Keseluruhan : Rp. @if(!count($total1) > 0) 
+						0
+					@else
+						{{ $total1 . ',00' }}
+					@endif
+					</a>
+				</div>
 		</div>
-
-		@include('templates.alert')	
-
-		<div class="row">
-			<div class="col m12">
-				<table id="TableId" class="mdl-data-table" width="100%">
-					<thead>
-						<tr>
-							<th>Id</th>
-							<th>Nama Kegiatan</th>
-							<th>Bidang</th>
-							<th>Tanggal Pelaksanaan</th>
-							<th>Pembina</th>
-							<th>Opsi</th>
-							<th>Hapus</th>
-						</tr>
-					</thead>
-					<tbody>
-					 @foreach($data as $datas)
-						<tr>
-							<td>{{ $datas->id }}</td>
-							<td>{{ $datas->nama_kegiatan }}</td>
-							<td>{{ $datas->bidang->nama_bidang }}</td>
-							<td>{{ $datas->tgl_pel }}</td>
-							<td>{{ $datas->pembina->nama }}</td>
-							<td>
-								<a href="{{ route('anggota.lihat', $datas->id) }}" class="waves-light waves-effect btn-floating green"><i class="fa fa-eye"></i></a>
-								@if(Auth::user()->level == 'pembina')
-									<a href="{{ route('kegiatan.edit', $datas->id) }}" class="waves-effect waves-light btn-floating amber"><i class="fa fa-pencil"></i></a>
-								@endif
-							</td>
-							@if(Auth::user()->level == 'pembina')
-								<td>
-									<form action="{{ route('kegiatan.hapus', $datas->id) }}" method="delete">
-										<input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-										<button type="submit" name="hapus" class="waves-effect waves-light btn-floating red"><i class="fa fa-trash"></i></button>
-									</form>
-								</td>
-							@endif
-						</tr>
-					 @endforeach
-					</tbody>
-				</table>
+		<div class="col m5">
+			<div class="collection">
+				<a href="#!" class="collection-item center-align" style="font-size: 17px;">
+				 <i class="fa fa-upload fa-3x fa-pull-left" style="margin-bottom: 5px;"></i>
+				 <br>Pengeluaran Terakhir : Rp. @if(!count($pengeluaran) > 0) 
+					0
+				@else
+					{{ $pengeluaran->jumlah_uang . ',00' }}
+				@endif
+				</a>
+			</div>
+			<div class="collection">
+				<a href="#!" class="collection-item center-align" style="font-size: 17px;">
+				 <i class="fa fa-refresh fa-spin fa-pull-left fa-3x" style="margin-bottom: 5px;"></i>
+				 <br>Total Pengeluaran Keseluruhan : Rp. @if(!count($total2) > 0) 
+					0
+				@else
+					{{ $total2 . ',00' }}
+				@endif
+				</a>
 			</div>
 		</div>
+	</div>
 
+	<div class="row">
+		<div class="col m6 offset-m3">
+			<div class="collection">
+				<a href="#!" class="collection-item center-align" style="font-size: 17px;">
+				 <i class="fa fa-money fa-pull-left fa-3x" style="margin-bottom: 5px;"></i>
+				 <br>Total Keuangan Mesmo Keseluruhan : Rp. @if(!count($total2) > 0) 
+					0
+				@else
+					{{ $hasil . ',00' }}
+				@endif
+				</a>
+			</div>
+		</div>
+	</div>
 @endsection

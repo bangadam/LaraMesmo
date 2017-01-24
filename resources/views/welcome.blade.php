@@ -67,7 +67,7 @@
 					<div class="card white center-align">
 						<div class="card-content">
 							<i class="fa fa-users fa-5x" style="float:left"></i>
-							<h3>5000</h3>
+							<h3>{{ count($anggota) }} Anggota</h3>
 						</div>
 					</div>
 				</div>
@@ -75,7 +75,7 @@
 					<div class="card white center-align">
 						<div class="card-content">
 							<i class="fa fa-calendar fa-5x" style="float:left"></i>
-							<h3>5000</h3>
+							<h3>{{ count($kegiatan) }} Kegiatan</h3>
 						</div>
 					</div>
 				</div>

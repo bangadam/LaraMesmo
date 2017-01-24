@@ -17,6 +17,7 @@ class CreateKegiatansTable extends Migration
             $table->string('nama_kegiatan');
             $table->integer('pembina_id')->unsigned();
             $table->integer('bidang_id')->unsigned();
+            $table->string('status');
             $table->string('tgl_pel');
             $table->timestamps();
         });

@@ -22,11 +22,10 @@ class CreateAnggotasTable extends Migration
             $table->string('no_hp');
             $table->string('alamat');
             $table->string('gambar');
-            $table->string('level');
             $table->timestamps();
         });
 
-        Schema::table('anggotas', function (Blueprint $table) {
+        Schema::table('anggotas', function(Blueprint $table) {
             $table->foreign('kelas_id')->references('id')->on('kelas');
         });
     }

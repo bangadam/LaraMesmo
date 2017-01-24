@@ -17,9 +17,8 @@
 						<form action="{{ route('pengurus.update', $data->id) }}" method="post">
 					<div class="input-field">
 						<select name="nama_anggota">
-							<option value="{{ $data->anggota->id }}" selected>{{ $data->anggota->nama }}</option>
 							@foreach($anggota as $anggotas)
-								<option value="{{ $anggotas->id }}">{{ $anggotas->nama }}</option>
+								<option value="{{ $anggotas->id }}" @if($data->anggota_id == $anggotas->id) selected @endif>{{ $anggotas->nama }}</option>
 							@endforeach
 						</select>
 						<label>Nama Anggota</label>

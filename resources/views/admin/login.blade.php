@@ -10,12 +10,7 @@
 				@if(Session::has('pesan'))
 				        <div class="card-panel red darken-1">
 				          <h5 class="white-text center-align">{{ Session::get('pesan') }}</h5>
-				          <ul class="white-text center-align">
-				          	<li>Silahkan Masuk Dengan Akun Di Bawah Ini</li>
-				          	<li>Username: anggota</li>
-				          	<li>Password: anggota</li>
-				          </ul>
-				        </div>`
+				        </div>
 				@endif
 
 				<div class="card">
@@ -45,7 +40,7 @@
 							
 							<div class="row">
 								<div class="col m12">
-									<button style="width: 100%;" class="btn waves-effect waves-light blue lighten-1" type="submit" name="login">Login</button>
+									<button style="width: 100%;" class="btn waves-effect waves-light blue lighten-1" type="submit">Login</button>
 									<input type="hidden" name="_token" value="{{ csrf_token() }}">
 								</div>
 							</div>

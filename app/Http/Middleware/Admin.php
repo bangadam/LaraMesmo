@@ -15,10 +15,13 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->username == 'admin') {
+        if (Auth::check() && Auth::user()->level == 'admin') {
+        
             return $next($request);
+        
         }
+        
+        return redirect()->back()->with('pesan', 'Maaf Anda Tidak bisa Mengakses halaman Tersebut !');
 
-        return redirect()->back()->with('pesan', 'Maaf Anda Tidak bisa Mengakses halaman ini !');
     }
 }

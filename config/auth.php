@@ -41,6 +41,21 @@ return [
             'provider' => 'users',
         ],
 
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
+
+        'anggota' => [
+            'driver' => 'session',
+            'provider' => 'anggotas',
+        ],
+
+        'pembina' => [
+            'driver' => 'session',
+            'provider' => 'pembinas',
+        ],
+
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -66,11 +81,6 @@ return [
 
     'providers' => [
 
-        'admins' => [
-            'driver' => 'eloquent',
-            'model' => App\User::class,
-        ],
-
         'pembinas' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
@@ -81,7 +91,12 @@ return [
             'model' => App\Anggota::class,
         ],
 
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\User::class,
+        ],
 
+       
         'users' => [
             'driver' => 'database',
             'table' => 'users',

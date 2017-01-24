@@ -15,7 +15,9 @@ class CreateAbsensisTable extends Migration
         Schema::create('absensis', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('anggota_id')->unsigned();
-            $table->dateTime('tgl_absen');
+            $table->date('tgl_absen');
+            $table->timeTz('jam_absen');
+            $table->string('keterangan');
             $table->timestamps();
         });
 

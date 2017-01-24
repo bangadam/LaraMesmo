@@ -70,7 +70,7 @@
 					@endif
 				</div>
 				<div class="file-field input-field{{ $errors->has('gambar') ? ' has-error' : '' }}">
-					<div class="btn">
+					<div class="btn grey lighten-1">
 						<span>File</span>
 						<input type="file" name="gambar">
 					</div>
@@ -87,7 +87,7 @@
 				
 				<div class="row">
 					<button type="reset" class="red reset btn waves-effect waves-light">Reset <i class="fa fa-circle-o-notch"></i></button>
-					<button type="submit" class="btn waves-effect waves-light right">Tambah <i class="fa fa-plus"></i></button>
+					<button type="submit" class="btn waves-effect waves-light right blue accent-2">Tambah <i class="fa fa-plus"></i></button>
 				</div>
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			</form>

@@ -17,6 +17,7 @@ class CreatePembinaTable extends Migration
             $table->string('nama');
             $table->string('email')->unique();
             $table->string('jenis_kelamin');
+            $table->string('tgl_lahir');
             $table->string('alamat');
             $table->string('no_hp');
             $table->string('gambar');

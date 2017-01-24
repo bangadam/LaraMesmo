@@ -14,6 +14,7 @@ class PembinaTableSeeder extends Seeder
         $pembina = new Pembina;
         $pembina->nama 		= 	'Eko';
         $pembina->email 	=	'Eko@mail.com';
+        $pembina->tgl_lahir =   '3 oktober, 1998';
         $pembina->jenis_kelamin = 'pria';
         $pembina->alamat = 'mojokerto';
         $pembina->no_hp = '0854854843';
@@ -23,6 +24,7 @@ class PembinaTableSeeder extends Seeder
         $pembina = new Pembina;
         $pembina->nama 		= 	'Syhakur';
         $pembina->email 	=	'Syhakur@mail.com';
+        $pembina->tgl_lahir =   '3 oktober, 1998';
         $pembina->jenis_kelamin = 'pria';
         $pembina->alamat = 'mojokerto';
         $pembina->no_hp = '0854854843';
@@ -32,6 +34,7 @@ class PembinaTableSeeder extends Seeder
         $pembina = new Pembina;
         $pembina->nama 		= 	'Nikma';
         $pembina->email 	=	'Nikma@mail.com';
+        $pembina->tgl_lahir =   '3 oktober, 1998';
         $pembina->jenis_kelamin = 'pria';
         $pembina->alamat = 'mojokerto';
         $pembina->no_hp = '0854854843';
@@ -41,6 +44,7 @@ class PembinaTableSeeder extends Seeder
         $pembina = new Pembina;
         $pembina->nama 		= 	'Khoirul';
         $pembina->email 	=	'Khoirul@mail.com';
+        $pembina->tgl_lahir =   '3 oktober, 1998';
         $pembina->jenis_kelamin = 'pria';
         $pembina->alamat = 'mojokerto';
         $pembina->no_hp = '0854854843';
