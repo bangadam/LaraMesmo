@@ -15,7 +15,11 @@ class AnggotasTableSeeder extends Seeder
 	        'nama' 			=> 	'bangadam',
 	        'email' 		=>	'bangadam@mail.com',
 <<<<<<< HEAD
+<<<<<<< HEAD
             'kelas_id'      =>  '1',
+=======
+            'password'         =>  bcrypt('anggota'),
+>>>>>>> 7226c2488a207dc8e43de1216572ab4740cc91ca
 =======
             'password'         =>  bcrypt('anggota'),
 >>>>>>> 7226c2488a207dc8e43de1216572ab4740cc91ca
@@ -32,8 +36,12 @@ class AnggotasTableSeeder extends Seeder
             'nama'          =>  'ilham',
             'email'         =>  'ilham@mail.com',
 <<<<<<< HEAD
+<<<<<<< HEAD
             'kelas_id'      =>  '1',
                 
+=======
+            'password'         =>  bcrypt('anggota'), 
+>>>>>>> 7226c2488a207dc8e43de1216572ab4740cc91ca
 =======
             'password'         =>  bcrypt('anggota'), 
 >>>>>>> 7226c2488a207dc8e43de1216572ab4740cc91ca
@@ -56,6 +64,9 @@ class AnggotasTableSeeder extends Seeder
 =======
             'email'         =>  'etika@mail.com', 
             'password'         =>  bcrypt('anggota'),
+<<<<<<< HEAD
+>>>>>>> 7226c2488a207dc8e43de1216572ab4740cc91ca
+=======
 >>>>>>> 7226c2488a207dc8e43de1216572ab4740cc91ca
             'jenis_kelamin' =>  'wanita',
             'tgl_lahir'     =>  '1998-02-10',
@@ -70,8 +81,12 @@ class AnggotasTableSeeder extends Seeder
             'nama'          =>  'nadya',
             'email'         =>  'nadya@mail.com',
 <<<<<<< HEAD
+<<<<<<< HEAD
             'kelas_id'      =>  '1',
      
+=======
+            'password'         =>  bcrypt('anggota'), 
+>>>>>>> 7226c2488a207dc8e43de1216572ab4740cc91ca
 =======
             'password'         =>  bcrypt('anggota'), 
 >>>>>>> 7226c2488a207dc8e43de1216572ab4740cc91ca
@@ -88,7 +103,11 @@ class AnggotasTableSeeder extends Seeder
             'nama'          =>  'erfan',
             'email'         =>  'erfan@mail.com',
 <<<<<<< HEAD
+<<<<<<< HEAD
             'kelas_id'     =>   '1',    
+=======
+            'password'         =>  bcrypt('anggota'), 
+>>>>>>> 7226c2488a207dc8e43de1216572ab4740cc91ca
 =======
             'password'         =>  bcrypt('anggota'), 
 >>>>>>> 7226c2488a207dc8e43de1216572ab4740cc91ca
@@ -105,8 +124,12 @@ class AnggotasTableSeeder extends Seeder
             'nama'          =>  'fiki',
             'email'         =>  'fiki@mail.com',
 <<<<<<< HEAD
+<<<<<<< HEAD
             'kelas_id'      =>  '1',
      
+=======
+            'password'         =>  bcrypt('anggota'), 
+>>>>>>> 7226c2488a207dc8e43de1216572ab4740cc91ca
 =======
             'password'         =>  bcrypt('anggota'), 
 >>>>>>> 7226c2488a207dc8e43de1216572ab4740cc91ca

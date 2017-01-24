@@ -46,6 +46,9 @@ return array(
     'Barryvdh\\DomPDF\\Facade' => $vendorDir . '/barryvdh/laravel-dompdf/src/Facade.php',
     'Barryvdh\\DomPDF\\PDF' => $vendorDir . '/barryvdh/laravel-dompdf/src/PDF.php',
     'Barryvdh\\DomPDF\\ServiceProvider' => $vendorDir . '/barryvdh/laravel-dompdf/src/ServiceProvider.php',
+<<<<<<< HEAD
+>>>>>>> 7226c2488a207dc8e43de1216572ab4740cc91ca
+=======
 >>>>>>> 7226c2488a207dc8e43de1216572ab4740cc91ca
     'BidangsTableSeeder' => $baseDir . '/database/seeds/BidangsTableSeeder.php',
     'Cpdf' => $vendorDir . '/dompdf/dompdf/lib/Cpdf.php',

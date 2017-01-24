@@ -67,6 +67,9 @@
 				
 							@foreach($data as $datas)
 								<option value="" >{{ $data->kelas->nama_kelas }}</option>	
+<<<<<<< HEAD
+>>>>>>> 7226c2488a207dc8e43de1216572ab4740cc91ca
+=======
 >>>>>>> 7226c2488a207dc8e43de1216572ab4740cc91ca
 							@endforeach
 						</select>

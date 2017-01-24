@@ -15,9 +15,13 @@
 		<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="fa fa-bars"></i></a>
 		<ul class="right hide-on-med-and-down">
 <<<<<<< HEAD
+<<<<<<< HEAD
 		 <a class='dropdown-button' href='#' data-activates='dropdown1'><i class="fa fa-user"></i> 
 			<span style="font-weight: bold;">{{ Auth::user()->username }}</span>	
 		 </a>
+=======
+		 <a class='dropdown-button' href='#' data-activates='dropdown1'><i class="fa fa-user"></i> {{ Auth::guard('anggota')->user()->nama }}</a>
+>>>>>>> 7226c2488a207dc8e43de1216572ab4740cc91ca
 =======
 		 <a class='dropdown-button' href='#' data-activates='dropdown1'><i class="fa fa-user"></i> {{ Auth::guard('anggota')->user()->nama }}</a>
 >>>>>>> 7226c2488a207dc8e43de1216572ab4740cc91ca

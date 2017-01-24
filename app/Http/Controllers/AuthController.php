@@ -29,6 +29,7 @@ class AuthController extends Controller
             'nama'  => $request['username'],
             'password'  => $request['password'],
 <<<<<<< HEAD
+<<<<<<< HEAD
             ];
 
         $dataMaster = ['username' => $request['username'], 'password' => $request['password']];  
@@ -37,10 +38,15 @@ class AuthController extends Controller
         // Auth::guard('pembina')->attempt($dataMaster)
     if (Auth::attempt($dataMaster))
 =======
+=======
+>>>>>>> 7226c2488a207dc8e43de1216572ab4740cc91ca
             ];  
 
     if (Auth::guard('anggota')->attempt($dataLogin) ||
         Auth::attempt(['username' => $request['username'], 'password' => $request['password']]))
+<<<<<<< HEAD
+>>>>>>> 7226c2488a207dc8e43de1216572ab4740cc91ca
+=======
 >>>>>>> 7226c2488a207dc8e43de1216572ab4740cc91ca
          {
           return redirect()->route('admin.index')->with('pesan', 'Selamat Datang Di Halaman Dashboard');

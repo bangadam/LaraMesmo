@@ -361,6 +361,7 @@ Route::get('/dashboard', [
 //Absensi
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	Route::group(['prefix' => 'absensi'], function() {
 	    Route::get('/', [
 			'uses'	=>	'AbsensiController@index', 
@@ -408,9 +409,14 @@ Route::get('/dashboard', [
 			]);
 	});
 =======
+=======
+>>>>>>> 7226c2488a207dc8e43de1216572ab4740cc91ca
 	Route::get('/absensi', [
 		'uses'	=>	'AbsensiController@index', 
 		'as'	=>	'absensi'
 	]);
+<<<<<<< HEAD
+>>>>>>> 7226c2488a207dc8e43de1216572ab4740cc91ca
+=======
 >>>>>>> 7226c2488a207dc8e43de1216572ab4740cc91ca
 

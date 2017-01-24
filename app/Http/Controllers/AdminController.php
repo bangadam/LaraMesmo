@@ -11,9 +11,15 @@ use App\Http\Requests;
 class AdminController extends Controller
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
     public function __construct() {
         return $this->middleware('auth');
     }
+=======
+	public function __construct() {
+		return $this->middleware('pembina');
+	}
+>>>>>>> 7226c2488a207dc8e43de1216572ab4740cc91ca
 =======
 	public function __construct() {
 		return $this->middleware('pembina');
