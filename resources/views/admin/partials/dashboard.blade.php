@@ -8,7 +8,11 @@
 		
 		@if(Session::has('pesan'))
 		        <div class="card-panel red darken-1">
+<<<<<<< HEAD
 		          <span class="white-text center-align">{{ Session::get('pesan') }}</span>
+=======
+		          <span class="white-text center-align">{{ Session::get('pesan') }}, {{ Auth::guard('anggota')->user()->nama }} </span>
+>>>>>>> 7226c2488a207dc8e43de1216572ab4740cc91ca
 		        </div>
 		@endif
 

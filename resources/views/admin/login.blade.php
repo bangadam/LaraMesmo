@@ -7,10 +7,20 @@
 			<div class="col m6 offset-m3">
 				<h4 class="center-align">Login <span class="blue-text lighten-2">Area</span></h4>
 				
-				@if(Session::has('pesan'))
+				@if(Session::has('anggota'))
 				        <div class="card-panel red darken-1">
+<<<<<<< HEAD
 				          <h5 class="white-text center-align">{{ Session::get('pesan') }}</h5>
 				        </div>
+=======
+				          <h5 class="white-text center-align">{{ Session::get('anggota') }}</h5>
+				          <ul class="white-text center-align">
+				          	<li>Silahkan Masuk Dengan Akun Di Bawah Ini</li>
+				          	<li>Username: anggota</li>
+				          	<li>Password: anggota</li>
+				          </ul>
+				        </div>`
+>>>>>>> 7226c2488a207dc8e43de1216572ab4740cc91ca
 				@endif
 
 				<div class="card">

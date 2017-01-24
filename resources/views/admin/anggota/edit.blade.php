@@ -57,9 +57,17 @@
 					
 					<label for="">Pilih Kelas</label>
 					<div class="input-field">
+<<<<<<< HEAD
 						<select name="kelas_id">
 							@foreach($kelas as $datas)
 								<option value="{{ $datas->id }}" @if($datas->id == $data->kelas_id) selected @endif>{{ $datas->nama_kelas }}</option>	
+=======
+						<select name="kelas">
+							<option value="" disabled selected>Kelas</option>
+				
+							@foreach($data as $datas)
+								<option value="" >{{ $data->kelas->nama_kelas }}</option>	
+>>>>>>> 7226c2488a207dc8e43de1216572ab4740cc91ca
 							@endforeach
 						</select>
 					</div>

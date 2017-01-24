@@ -14,9 +14,13 @@
 		<a href="#!" class="brand-logo">Admin Mesmo</a>
 		<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="fa fa-bars"></i></a>
 		<ul class="right hide-on-med-and-down">
+<<<<<<< HEAD
 		 <a class='dropdown-button' href='#' data-activates='dropdown1'><i class="fa fa-user"></i> 
 			<span style="font-weight: bold;">{{ Auth::user()->username }}</span>	
 		 </a>
+=======
+		 <a class='dropdown-button' href='#' data-activates='dropdown1'><i class="fa fa-user"></i> {{ Auth::guard('anggota')->user()->nama }}</a>
+>>>>>>> 7226c2488a207dc8e43de1216572ab4740cc91ca
 		  <!-- Dropdown Structure -->
 		  <ul id='dropdown1' class='dropdown-content' style="margin-top: 50px;">
 		    <li><a href="{{ route('auth.logout') }}"><i class="fa fa-sign-out" style="color: #35D6F9"></i> Logout</a></li>
@@ -47,7 +51,7 @@
 		<ul id="nav-mobile" class="grey lighten-2 sidebar side-nav fixed">
 			<li><a href="{{ route('admin.index') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
 			<li><a href="{{ route('pembina') }}"><i class="fa fa-user"></i> Pembina</a></li>
-			@if(Auth::user()->level == 'pembina' || Auth::user()->level == 'anggota')
+			@if(Auth::guard('anggota'))
 				<li><a href="{{ route('kegiatan') }}"><i class="fa fa-book"></i> Kegiatan</a></li>
 				<ul class="collapsible" data-collapsible="accordion">
 					 <li>

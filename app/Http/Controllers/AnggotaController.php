@@ -25,6 +25,7 @@ class AnggotaController extends Controller
     }
 
     public function getEdit($id) {
+        
         $data       = Anggota::findOrFail($id);
         $kelas      = Kelas::all();
         if (!$data) {

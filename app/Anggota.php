@@ -5,13 +5,14 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Anggota extends Model
+class Anggota extends User
 {
     protected $table = 'anggotas';
 
     protected $fillable = [
     	'nama',
         'email',
+        'password',
     	'jenis_kelamin',
         'tgl_lahir',
     	'kelas_id',

@@ -14,7 +14,11 @@ class AnggotasTableSeeder extends Seeder
         $anggota = Anggota::create([
 	        'nama' 			=> 	'bangadam',
 	        'email' 		=>	'bangadam@mail.com',
+<<<<<<< HEAD
             'kelas_id'      =>  '1',
+=======
+            'password'         =>  bcrypt('anggota'),
+>>>>>>> 7226c2488a207dc8e43de1216572ab4740cc91ca
 	    	'jenis_kelamin'	=>	'pria',
 	        'tgl_lahir'		=>	'1998-02-10',        
 	    	'no_hp'			=>	'0857039348',
@@ -27,8 +31,12 @@ class AnggotasTableSeeder extends Seeder
         $anggota = Anggota::create([
             'nama'          =>  'ilham',
             'email'         =>  'ilham@mail.com',
+<<<<<<< HEAD
             'kelas_id'      =>  '1',
                 
+=======
+            'password'         =>  bcrypt('anggota'), 
+>>>>>>> 7226c2488a207dc8e43de1216572ab4740cc91ca
             'jenis_kelamin' =>  'pria',
             'tgl_lahir'     =>  '1998-02-10',
          
@@ -40,10 +48,15 @@ class AnggotasTableSeeder extends Seeder
 
         $anggota = Anggota::create([
             'nama'          =>  'etika',
+<<<<<<< HEAD
             'email'         =>  'etika@mail.com',
             'kelas_id'      =>  '1',
     
 
+=======
+            'email'         =>  'etika@mail.com', 
+            'password'         =>  bcrypt('anggota'),
+>>>>>>> 7226c2488a207dc8e43de1216572ab4740cc91ca
             'jenis_kelamin' =>  'wanita',
             'tgl_lahir'     =>  '1998-02-10',
          
@@ -56,8 +69,12 @@ class AnggotasTableSeeder extends Seeder
         $anggota = Anggota::create([
             'nama'          =>  'nadya',
             'email'         =>  'nadya@mail.com',
+<<<<<<< HEAD
             'kelas_id'      =>  '1',
      
+=======
+            'password'         =>  bcrypt('anggota'), 
+>>>>>>> 7226c2488a207dc8e43de1216572ab4740cc91ca
             'jenis_kelamin' =>  'wanita',
             'tgl_lahir'     =>  '1998-02-10',
           
@@ -70,7 +87,11 @@ class AnggotasTableSeeder extends Seeder
         $anggota = Anggota::create([
             'nama'          =>  'erfan',
             'email'         =>  'erfan@mail.com',
+<<<<<<< HEAD
             'kelas_id'     =>   '1',    
+=======
+            'password'         =>  bcrypt('anggota'), 
+>>>>>>> 7226c2488a207dc8e43de1216572ab4740cc91ca
             'jenis_kelamin' =>  'pria',
             'tgl_lahir'     =>  '1998-02-10',
          
@@ -83,8 +104,12 @@ class AnggotasTableSeeder extends Seeder
         $anggota = Anggota::create([
             'nama'          =>  'fiki',
             'email'         =>  'fiki@mail.com',
+<<<<<<< HEAD
             'kelas_id'      =>  '1',
      
+=======
+            'password'         =>  bcrypt('anggota'), 
+>>>>>>> 7226c2488a207dc8e43de1216572ab4740cc91ca
             'jenis_kelamin' =>  'wanita',
             'tgl_lahir'     =>  '1998-02-10',
          
