@@ -14,7 +14,7 @@
 					<li><a  href="#modal1" class="waves-light waves-effect btn amber accent-4"><i class="fa fa-download"></i> Import</a></li>
 				@endif
 					<li><a href="{{ url('absensi/downloadExcel/xlsx') }}" class="waves-light waves-effect btn green"><i class="fa fa-upload"></i> Export</a></li>
-				<li><a href="{{ route('absensi.print') }}" class="waves-light waves-effect btn grey lighten-1"><i class="fa fa-print"></i> Print</a></li>
+				<li><a href="{{ route('absensi.print') }}" class="waves-light waves-effect btn grey darken-1"><i class="fa fa-print"></i> Print</a></li>
 			</ul>
 		</div>
 
@@ -45,12 +45,12 @@
 				@include('templates.alert')
 
 				{{-- Table --}}
-				<table id="TableId" class="mdl-data-table" cellspacing="0" width="100%">
+				<table id="example" class="mdl-data-table" cellspacing="0" width="100%">
 				<thead>
 					<tr>
 						<th>Id</th>
 						<th>Tanggal Absen</th>
-						<th>Nama Karyawan</th>
+						<th>Nama Anggota</th>
 						<th>Keterangan</th>
 						<th>Jam Absen</th>
 						<th>Opsi</th>
@@ -59,6 +59,19 @@
 						@endif
 					</tr>
 				</thead>
+				<tfoot>
+		            <tr>
+		                <th>Id</th>
+						<th>Tanggal Absen</th>
+						<th>Nama Karyawan</th>
+						<th>Keterangan</th>
+						<th>Jam Absen</th>
+						<th>Opsi</th>
+						@if(Auth::user()->level == 'pembina')
+						 <th>Hapus</th>
+						@endif
+		            </tr>
+		        </tfoot>
 			
 				<tbody>
 					@foreach($data as $datas)
@@ -66,7 +79,15 @@
 							<td>{{ $datas->id }}</td>
 							<td>{{ $datas->tgl_absen }}</td>
 							<td>{{ $datas->anggota->nama }}</td>
-							<td>{{ $datas->keterangan }}</td>
+							<td>
+								@if($datas->keterangan == 'Hadir')
+								<span class="new badge blue">{{ $datas->keterangan }}</span>
+								@elseif($datas->keterangan == 'Absen')
+								<span class="new badge red">{{ $datas->keterangan }}</span>
+								@elseif($datas->keterangan == 'Sakit')
+								<span class="new badge green">{{ $datas->keterangan }}</span>
+								@endif
+							</td>
 							<td>{{ $datas->jam_absen }}</td>
 							<td>
 								@if(Auth::user()->level == 'pembina')

@@ -1,7 +1,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <title>Laporan Data Pembina</title>
+        <title>Laporan Data Kegiatan</title>
         <body>
             <style type="text/css">
                 .tg  {border-collapse:collapse;border-spacing:0;border-color:#ccc;width: 100%; }
@@ -13,7 +13,7 @@
             </style>
   
             <div style="font-family:Arial; font-size:12px;">
-                <center><h2>Data Pembina</h2></center>  
+                <center><h2>Data Kegiatan Mesmo</h2></center>  
             </div>
             <br>
             <table class="tg">

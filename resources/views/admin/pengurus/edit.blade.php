@@ -35,10 +35,10 @@
 			</div>
 			<div class="col md5">
 				<div class="card">
+					<div class="card-image">
+						<img width="200" height="150" src="{{ URL::to('uploads/'. $data->anggota->gambar) }}" alt="" class=" materialboxed activator>
+					</div>
 					<div class="card-content">
-						<div class="row">
-							<img width="200" height="150" src="{{ URL::to('uploads/'. $data->anggota->gambar) }}" alt="" class="circle materialboxed responsive-img">
-						</div>
 						<div class="row">
 							<h3 class="blue-text lighten-2 center-align">{{ $data->jabatan }}</h3>
 							<p class="center-align"><a href="{{ route('anggota.lihat', $data->anggota->id) }}" class="blue-text lighten-2">({{ $data->anggota->nama }})</a></p>

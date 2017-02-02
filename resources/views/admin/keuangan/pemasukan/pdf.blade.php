@@ -13,24 +13,32 @@
             </style>
   
             <div style="font-family:Arial; font-size:12px;">
-                <center><h2>Data Pembina</h2></center>  
+                <center><h2>Data Pemasukan Mesmo</h2></center>  
             </div>
             <br>
             <table class="tg">
               <tr>
                 <th class="tg-3wr7">Id Pemasukan</th>
-                <th class="tg-3wr7">Jumlah Uang<br></th>
+                <th class="tg-3wr7">Tanggal Pemasukan<br></th>
                 <th class="tg-3wr7">Pemasukan Dari<br></th>
-                <th class="tg-3wr7">Tanggal Pemaskan<br></th>
+                <th class="tg-3wr7">Jumlah Uang<br></th>
               </tr>
               @foreach ($data as $datas)
               <tr>
                 <td class="tg-rv4w" width="20%">{{$datas->id}}</td>
-                <td class="tg-rv4w" width="40%">Rp. {{ $datas->jumlah_uang }}</td>
-                <td class="tg-rv4w" width="30%">{{$datas->pemasukan_dari }}</td>
                 <td class="tg-rv4w" width="30%">{{$datas->tgl_pemasukan }}</td>
+                <td class="tg-rv4w" width="30%">{{$datas->pemasukan_dari }}</td>
+                <td class="tg-rv4w" width="40%">Rp. {{ $datas->jumlah_uang }}</td>
               </tr>
               @endforeach
+              <tfoot>
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>Total</td>
+                    <td class="tg-rv4w" width="30%">Rp. {{ $total }}</td>
+                  </tr>
+              </tfoot>
             </table>
         </body>
     </head>

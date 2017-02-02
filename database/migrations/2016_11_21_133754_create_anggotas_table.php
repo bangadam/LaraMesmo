@@ -16,7 +16,6 @@ class CreateAnggotasTable extends Migration
             $table->increments('id');
             $table->string('nama');
             $table->string('email')->unique();
-            $table->string('password');
             $table->string('jenis_kelamin');
             $table->string('tgl_lahir');
             $table->integer('kelas_id')->unsigned();

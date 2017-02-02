@@ -12,7 +12,6 @@ class Anggota extends User
     protected $fillable = [
     	'nama',
         'email',
-        'password',
     	'jenis_kelamin',
         'tgl_lahir',
     	'kelas_id',

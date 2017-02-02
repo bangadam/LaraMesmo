@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Anggota;
 use App\Kelas;
+use App\Pengurus;
+use Excel;
+use PDF;
 use Image;
 use Storage;
 use App\Http\Requests;
@@ -25,9 +28,9 @@ class AnggotaController extends Controller
     }
 
     public function getEdit($id) {
-        
         $data       = Anggota::findOrFail($id);
         $kelas      = Kelas::all();
+
         if (!$data) {
             abort(404);
         }
@@ -126,5 +129,38 @@ class AnggotaController extends Controller
         $anggota->save();
 
         return redirect()->route('anggota')->with('pesan', 'Data berhasil di Update !');
+    }
+
+    public function downloadExcel($type) {
+        $data = Anggota::select(['id', 'nama', 'kelas_id', 'jenis_kelamin', 'tgl_lahir', 'no_hp', 'alamat'])->get()->toArray();
+        return Excel::create('dataAnggotaExcel', function($excel) use ($data) {
+            $excel->sheet('dataAnggotaExcel', function($sheet) use ($data) {
+                $sheet->fromArray($data);
+            });
+        })->download($type);
+    }
+
+    public function importExcel(Request $request) {
+        if ($request->hasFile('import_file')) {
+            $path = $request->file('import_file')->getRealPath();
+            $data = Excel::load($path, function($render) {
+                Anggota::insert($render->toArray());
+            });
+
+            if (!$data) {
+                return back()->with('pesan', 'Data Gagal Di Import !');
+            }
+        }
+
+        return back()->with('pesan', 'Data Berhasil Di Import !');
+    }
+
+    public function printPdf(Request $request) {
+       // ambil semua data
+    $data = Anggota::select(['id', 'nama', 'kelas_id', 'jenis_kelamin', 'tgl_lahir', 'no_hp', 'alamat'])->get();
+    // mengarahkan view pada file pdf.blade.php di views/data/
+    $pdf = PDF::loadView('admin.anggota.pdf',compact('data'));
+
+        return $pdf->stream('dataAnggota');
     }
 }

@@ -17,7 +17,8 @@
 				<div class="card z-depth-3">
 					<div class="card-image">
 						<img src="{{ asset('uploads/'. $data->gambar) }}" class="materialboxed">
-						<span class="card-title blue-text blue-lighten-2">{{ $data->nama }}</span>
+						<span class="card-title" style="font-size: 40px;">{{ $data->nama }} 
+					</span>
 					</div>
 					<div class="card-content">
 						<ul class="collection">

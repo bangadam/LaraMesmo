@@ -62,6 +62,13 @@
 							@endif
 						</tr>
 					</thead>
+					<tfoot>
+							<th>Total</th>
+							<th>Rp. {{ $total }}</th>
+							<th>&nbsp;</th>
+							<th>&nbsp;</th>
+							<th>&nbsp;</th>
+					</tfoot>
 					<tbody>
 					 @foreach($data as $datas)
 						<tr>

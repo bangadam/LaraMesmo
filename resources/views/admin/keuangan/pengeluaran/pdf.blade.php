@@ -1,7 +1,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <title>Laporan Data Pemasukan Keuangan</title>
+        <title>Laporan Data Pengeluaran Keuangan</title>
         <body>
             <style type="text/css">
                 .tg  {border-collapse:collapse;border-spacing:0;border-color:#ccc;width: 100%; }
@@ -13,24 +13,32 @@
             </style>
   
             <div style="font-family:Arial; font-size:12px;">
-                <center><h2>Data Pembina</h2></center>  
+                <center><h2>Data Pengeluaran Mesmo</h2></center>  
             </div>
             <br>
             <table class="tg">
               <tr>
                 <th class="tg-3wr7">Id Pengeluaran</th>
-                <th class="tg-3wr7">Jumlah Uang<br></th>
-                <th class="tg-3wr7">Keperluan<br></th>
                 <th class="tg-3wr7">Tanggal Pengluaran<br></th>
+                <th class="tg-3wr7">Keperluan<br></th>
+                <th class="tg-3wr7">Jumlah Uang<br></th>
               </tr>
               @foreach ($data as $datas)
               <tr>
                 <td class="tg-rv4w" width="20%">{{$datas->id}}</td>
-                <td class="tg-rv4w" width="40%">Rp. {{ $datas->jumlah_uang }}</td>
-                <td class="tg-rv4w" width="30%">{{$datas->keperluan }}</td>
                 <td class="tg-rv4w" width="30%">{{$datas->tgl_pengeluaran }}</td>
+                <td class="tg-rv4w" width="30%">{{$datas->keperluan }}</td>
+                <td class="tg-rv4w" width="40%">Rp. {{ $datas->jumlah_uang }}</td>
               </tr>
               @endforeach
+               <tfoot>
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>Total</td>
+                    <td class="tg-rv4w" width="30%">Rp. {{ $total }}</td>
+                  </tr>
+              </tfoot>
             </table>
         </body>
     </head>

@@ -52,8 +52,10 @@
 							<th>Bidang</th>
 							<th>Tanggal Pelaksanaan</th>
 							<th>Status</th>
-							<th>Opsi</th>
-							<th>Hapus</th>
+							@if(Auth::user()->level == 'pembina')
+								<th>Opsi</th>
+								<th>Hapus</th>
+							@endif
 						</tr>
 					</thead>
 					<tbody>
@@ -70,11 +72,11 @@
 									<span class="new badge red">{{ $datas->status }}</span>
 								@endif	
 							</td>
-							<td>
 								@if(Auth::user()->level == 'pembina')
+							<td>
 									<a href="{{ route('kegiatan.edit', $datas->id) }}" class="waves-effect waves-light btn-floating amber"><i class="fa fa-pencil"></i></a>
-								@endif
 							</td>
+								@endif
 							@if(Auth::user()->level == 'pembina')
 								<td>
 									<form action="{{ route('kegiatan.hapus', $datas->id) }}" method="delete">

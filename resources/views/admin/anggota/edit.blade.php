@@ -38,9 +38,9 @@
 					<div class="input-field">
 						<select name="jenis_kelamin">
 							<option value="" disabled selected>- Pilih Jenis Kelamin -</option>
-							<option value="pria" @if($data->jenis_kelamin == 'pria') selected @endif>pria
+							<option value="pria" @if($data->jenis_kelamin == 'pria') selected @endif>Pria
 							</option>
-							<option value="wanita" @if($data->jenis_kelamin == 'wanita') selected @endif>wanita
+							<option value="wanita" @if($data->jenis_kelamin == 'wanita') selected @endif>Wanita
 							</option>
 						</select>
 					</div>
@@ -57,20 +57,9 @@
 					
 					<label for="">Pilih Kelas</label>
 					<div class="input-field">
-<<<<<<< HEAD
 						<select name="kelas_id">
 							@foreach($kelas as $datas)
-								<option value="{{ $datas->id }}" @if($datas->id == $data->kelas_id) selected @endif>{{ $datas->nama_kelas }}</option>	
-=======
-						<select name="kelas">
-							<option value="" disabled selected>Kelas</option>
-				
-							@foreach($data as $datas)
-								<option value="" >{{ $data->kelas->nama_kelas }}</option>	
-<<<<<<< HEAD
->>>>>>> 7226c2488a207dc8e43de1216572ab4740cc91ca
-=======
->>>>>>> 7226c2488a207dc8e43de1216572ab4740cc91ca
+								<option value="{{ $datas->id }}" @if($datas->id == $data->kelas_id) selected @endif>{{ $datas->nama_kelas }}</option>		
 							@endforeach
 						</select>
 					</div>
@@ -105,7 +94,7 @@
 					
 					
 					<div class="row">
-						<button type="submit" class="btn waves-effect waves-light right yellow darken-1">Edit <i class="fa fa-pencil"></i></button>
+						<button type="submit" class="btn waves-effect waves-light right amber">Edit <i class="fa fa-pencil"></i></button>
 					</div>
 					<input type="hidden" name="_method" value="put">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">

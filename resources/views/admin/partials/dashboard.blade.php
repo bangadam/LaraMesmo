@@ -8,15 +8,7 @@
 		
 		@if(Session::has('pesan'))
 		        <div class="card-panel red darken-1">
-<<<<<<< HEAD
-<<<<<<< HEAD
-		          <span class="white-text center-align">{{ Session::get('pesan') }}</span>
-=======
-		          <span class="white-text center-align">{{ Session::get('pesan') }}, {{ Auth::guard('anggota')->user()->nama }} </span>
->>>>>>> 7226c2488a207dc8e43de1216572ab4740cc91ca
-=======
-		          <span class="white-text center-align">{{ Session::get('pesan') }}, {{ Auth::guard('anggota')->user()->nama }} </span>
->>>>>>> 7226c2488a207dc8e43de1216572ab4740cc91ca
+		          <span class="white-text center-align">{{ Session::get('pesan') }}, <strong>{{ Auth::user()->level }}</strong></span>
 		        </div>
 		@endif
 
@@ -36,34 +28,36 @@
 					</div>
 				</div>
 			</div>
-			<div class="col m4">
-				<div class="card hoverable amber accent-4">
-					<div class="card-content">
-						<div class="row">
-							<div class="col m3 white-text">
-								<span class="fa fa-book fa-5x"></span>
-							</div>
-							<div class="col m8 ">
-								<a href="{{ route('kegiatan') }}" class="white-text"><h4>{{ count($kegiatan) }} Kegiatan</h4></a>
+			@if(Auth::user()->level == 'pembina' || Auth::user()->level == 'anggota')
+				<div class="col m4">
+					<div class="card hoverable amber accent-4">
+						<div class="card-content">
+							<div class="row">
+								<div class="col m3 white-text">
+									<span class="fa fa-book fa-5x"></span>
+								</div>
+								<div class="col m8 ">
+									<a href="{{ route('kegiatan') }}" class="white-text"><h4>{{ count($kegiatan) }} Kegiatan</h4></a>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col m4">
-				<div class="card hoverable green">
-					<div class="card-content">
-						<div class="row">
-							<div class="col m3 white-text">
-								<span class="fa fa-users fa-5x"></span>
+				<div class="col m4">
+					<div class="card hoverable green">
+						<div class="card-content">
+							<div class="row">
+								<div class="col m3 white-text">
+									<span class="fa fa-users fa-5x"></span>
+								</div>
+							<div class="col m7" style="margin-left: 20px;">
+								<a href="{{ route('anggota') }}" class="white-text"><h4>{{ count($anggota) }} Anggota</h4></a>
 							</div>
-						<div class="col m7" style="margin-left: 20px;">
-							<a href="{{ route('anggota') }}" class="white-text"><h4>{{ count($anggota) }} Anggota</h4></a>
-						</div>
+							</div>
 						</div>
 					</div>
-				</div>
-			</div> 
+				</div> 
+			@endif
 		</div> {{-- End Menu --}}
 		<div class="row">
 			<div class="col m6">
@@ -72,7 +66,7 @@
 			<div class="col m6">
 				<div class="card">
 				    <div class="card-image waves-effect waves-block waves-light">
-				      <img class="activator" src="{{ URL::to('images/nature2.jpg') }}">
+				      <img class="activator" src="{{ URL::to('images/ANGGOTA.jpg') }}">
 				    </div>
 				    <div class="card-content">
 				      <span class="card-title activator grey-text text-darken-4">Contact Us<i class="fa fa-arrow-up right"></i></span>

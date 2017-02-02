@@ -1,7 +1,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <title>Laporan Data Pembina</title>
+        <title>Laporan Data Absensi</title>
         <body>
             <style type="text/css">
                 .tg  {border-collapse:collapse;border-spacing:0;border-color:#ccc;width: 100%; }
@@ -13,24 +13,20 @@
             </style>
   
             <div style="font-family:Arial; font-size:12px;">
-                <center><h2>Data Pembina</h2></center>  
+                <center><h2>Data Absensi</h2></center>  
             </div>
             <br>
-            <table class="tg">
+            <table id="example" class="mdl-data-table tg">
               <tr>
-                <th class="tg-3wr7">Nama Kegiatan<br></th>
-                <th class="tg-3wr7">Pembina<br></th>
-                <th class="tg-3wr7">Bidang<br></th>
-                <th class="tg-3wr7">Tanggal Pelaksanaan<br></th>
-                <th class="tg-3wr7">Status<br></th>
+                <th class="tg-3wr7">Tanggal Absen<br></th>
+                <th class="tg-3wr7">Nama Anggota<br></th>
+                <th class="tg-3wr7">Keterangan<br></th>
               </tr>
               @foreach ($data as $datas)
               <tr>
-                <td class="tg-rv4w" width="20%">{{$datas->nama_kegiatan}}</td>
-                <td class="tg-rv4w" width="40%">{{ $datas->pembina->nama }}</td>
-                <td class="tg-rv4w" width="30%">{{$datas->bidang->nama_bidang }}</td>
-                <td class="tg-rv4w" width="30%">{{$datas->tgl_pel }}</td>
-                <td class="tg-rv4w" width="30%">{{$datas->status }}</td>
+                <td class="tg-rv4w" width="40%">{{ $datas->tgl_absen }}</td>
+                <td class="tg-rv4w" width="30%">{{$datas->anggota->nama }}</td>
+                <td class="tg-rv4w" width="30%">{{$datas->keterangan }}</td>
               </tr>
               @endforeach
             </table>

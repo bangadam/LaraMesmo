@@ -12,24 +12,24 @@
 	<div class="slider">
 		<ul class="slides">
 			<li>
-				<img src="{{ URL::to('images/nature1.jpg') }}"> <!-- random image -->
+				<img src="{{ URL::to('images/ANGGOTA.jpg') }}"> <!-- random image -->
 				<div class="caption center-align">
-					<h3>This is our big Tagline!</h3>
-					<h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+					<h3>Sistem Informasi Mesmo</h3>
+					<h5 class="light grey-text text-lighten-3">Mencetak Pemuda Pemudi untuk Umat</h5>
 				</div>
 			</li>
 			<li>
-				<img src="{{ URL::to('images/nature2.jpg') }}"> <!-- random image -->
+				<img src="{{ URL::to('images/ANGGOTAL.jpg') }}"> <!-- random image -->
 				<div class="caption left-align">
 					<h3>Left Aligned Caption</h3>
-					<h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+					<h5 class="light grey-text text-lighten-3">Mencetak Pemuda Pemudi untuk Umat</h5>
 				</div>
 			</li>
 			<li>
-				<img src="{{ URL::to('images/nature3.jpg') }}"> <!-- random image -->
+				<img src="{{ URL::to('images/ANGGOTAP.jpg') }}"> <!-- random image -->
 				<div class="caption right-align">
 					<h3>Left Aligned Caption</h3>
-					<h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+					<h5 class="light grey-text text-lighten-3">Mencetak Pemuda Pemudi untuk Umat</h5>
 				</div>
 			</li>
 		</ul>
@@ -237,7 +237,7 @@
 	</div>
 
 
-	<section>
+	<section id="Contact">
 		<div class="container">
 			<div class="row">
 				<div class="col m12">

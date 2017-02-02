@@ -36,7 +36,9 @@ class KeuanganController extends Controller
     // Pemasukan
     public function pemasukan() {
         $data = Pemasukan::all();
-        return view('admin.keuangan.pemasukan.index', ['data' => $data]);
+        $total = Pemasukan::select('jumlah_uang')->sum('jumlah_uang');
+
+        return view('admin.keuangan.pemasukan.index', ['data' => $data, 'total' => $total]);
     }
 
      public function getTambahPemasukan() {
@@ -127,8 +129,9 @@ class KeuanganController extends Controller
     public function printPdf(Request $request) {
        // ambil semua data
     $data = Pemasukan::all();
+    $total = Pemasukan::select('jumlah_uang')->sum('jumlah_uang');
     // mengarahkan view pada file pdf.blade.php di views/data/
-    $pdf = PDF::loadView('admin.keuangan.pemasukan.pdf',compact('data'));
+    $pdf = PDF::loadView('admin.keuangan.pemasukan.pdf',compact('data', 'total'));
 
         return $pdf->stream('dataKeuanganMasuk');
     }
@@ -136,7 +139,8 @@ class KeuanganController extends Controller
     // Pengeluaran
     public function Pengeluaran() {
         $data = Pengeluaran::all();
-        return view('admin.keuangan.pengeluaran.index', ['data' => $data]);
+         $total = Pengeluaran::select('jumlah_uang')->sum('jumlah_uang');
+        return view('admin.keuangan.pengeluaran.index', ['data' => $data, 'total' => $total]);
     }
 
      public function getTambahPengeluaran() {
@@ -227,8 +231,9 @@ class KeuanganController extends Controller
     public function PengeluaranPrintPdf(Request $request) {
        // ambil semua data
         $data = Pengeluaran::all();
+        $total = Pengeluaran::select('jumlah_uang')->sum('jumlah_uang');
         // mengarahkan view pada file pdf.blade.php di views/data/
-        $pdf = PDF::loadView('admin.keuangan.pengeluaran.pdf',compact('data'));
+        $pdf = PDF::loadView('admin.keuangan.pengeluaran.pdf',compact('data', 'total'));
 
         return $pdf->stream('dataKeuanganKeluar');
     }

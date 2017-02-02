@@ -18,7 +18,7 @@
 					</li>
 					<li><a  href="#modal1" class="waves-light waves-effect btn amber accent-4"><i class="fa fa-download"></i> Import</a></li>
 				@endif
-				<li><a href="{{ url('keuangan/pemasukan/downloadExcel/xlsx') }}" class="waves-light waves-effect btn green"><i class="fa fa-upload"></i> Export</a></li>
+				<li><a href="{{ url('keuangan/pemasukan/downloadExcel/csv') }}" class="waves-light waves-effect btn green"><i class="fa fa-upload"></i> Export</a></li>
 				<li><a href="{{ route('pemasukan.print') }}" class="waves-light waves-effect btn grey darken-2"><i class="fa fa-print"></i> Print</a></li>
 			</ul>
 		</div>
@@ -62,6 +62,13 @@
 							@endif
 						</tr>
 					</thead>
+					<tfoot>
+							<th>Total</th>
+							<th>Rp. {{ $total }}</th>
+							<th>&nbsp;</th>
+							<th>&nbsp;</th>
+							<th>&nbsp;</th>
+					</tfoot>
 					<tbody>
 					 @foreach($data as $datas)
 						<tr>

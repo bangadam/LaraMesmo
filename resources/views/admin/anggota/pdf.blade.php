@@ -13,24 +13,28 @@
             </style>
   
             <div style="font-family:Arial; font-size:12px;">
-                <center><h2>Data Pembina</h2></center>  
+                <center><h2>Data Anggota</h2></center>  
             </div>
             <br>
             <table class="tg">
               <tr>
-                <th class="tg-3wr7">Nama Kegiatan<br></th>
-                <th class="tg-3wr7">Pembina<br></th>
-                <th class="tg-3wr7">Bidang<br></th>
-                <th class="tg-3wr7">Tanggal Pelaksanaan<br></th>
-                <th class="tg-3wr7">Status<br></th>
+                <th class="tg-3wr7">Id<br></th>
+                <th class="tg-3wr7">Nama Anggota<br></th>
+                <th class="tg-3wr7">Kelas<br></th>
+                <th class="tg-3wr7">Jenis Kelamin<br></th>
+                <th class="tg-3wr7">Tanggal Lahir<br></th>
+                <th class="tg-3wr7">No. Hp<br></th>
+                <th class="tg-3wr7">Alamat<br></th>
               </tr>
               @foreach ($data as $datas)
               <tr>
-                <td class="tg-rv4w" width="20%">{{$datas->nama_kegiatan}}</td>
-                <td class="tg-rv4w" width="40%">{{ $datas->pembina->nama }}</td>
-                <td class="tg-rv4w" width="30%">{{$datas->bidang->nama_bidang }}</td>
-                <td class="tg-rv4w" width="30%">{{$datas->tgl_pel }}</td>
-                <td class="tg-rv4w" width="30%">{{$datas->status }}</td>
+                <td class="tg-rv4w" width="20%">{{$datas->id}}</td>
+                <td class="tg-rv4w" width="40%">{{$datas->nama }}</td>
+                <td class="tg-rv4w" width="30%">{{$datas->kelas->nama_kelas }}</td>
+                <td class="tg-rv4w" width="30%">{{$datas->jenis_kelamin }}</td>
+                <td class="tg-rv4w" width="30%">{{$datas->tgl_lahir }}</td>
+                <td class="tg-rv4w" width="30%">{{$datas->no_hp }}</td>
+                <td class="tg-rv4w" width="30%">{{$datas->alamat }}</td>
               </tr>
               @endforeach
             </table>

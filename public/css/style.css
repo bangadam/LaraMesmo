@@ -141,3 +141,8 @@
 .profile {
   text-align: right;
 }
+
+tr.group,
+tr.group:hover {
+    background-color: #ddd !important;
+}

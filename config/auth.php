@@ -41,17 +41,12 @@ return [
             'provider' => 'users',
         ],
 
-<<<<<<< HEAD
-<<<<<<< HEAD
         'admin' => [
             'driver' => 'session',
             'provider' => 'admins',
         ],
 
-=======
->>>>>>> 7226c2488a207dc8e43de1216572ab4740cc91ca
-=======
->>>>>>> 7226c2488a207dc8e43de1216572ab4740cc91ca
+
         'anggota' => [
             'driver' => 'session',
             'provider' => 'anggotas',

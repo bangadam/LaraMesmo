@@ -1,4 +1,4 @@
-<?php
+	<?php
 
 /*
 |--------------------------------------------------------------------------
@@ -359,16 +359,13 @@ Route::get('/dashboard', [
 
 
 //Absensi
-
-<<<<<<< HEAD
-<<<<<<< HEAD
 	Route::group(['prefix' => 'absensi'], function() {
 	    Route::get('/', [
 			'uses'	=>	'AbsensiController@index', 
 			'as'	=>	'absensi'
 		]);
 
-		Route::get('/tambah', [
+			Route::get('/tambah', [
 				'uses'	=>	'AbsensiController@getTambahAbsensi', 
 				'as'	=>	'absensi.tambah',
 				'middleware'	=>	['pembina']
@@ -396,7 +393,7 @@ Route::get('/dashboard', [
 				'middleware'	=>	['pembina']
 			]);
 
-			Route::get('/downloadExcel/{type}', 'AbsensiController@iDownloadExcel');
+			Route::get('/downloadExcel/{type}', 'AbsensiController@DownloadExcel');
 
 			Route::post('/importExcel', [
 				'uses'	=>	'AbsensiController@ImportExcel',
@@ -408,15 +405,3 @@ Route::get('/dashboard', [
 				'as'	=>	'absensi.print'
 			]);
 	});
-=======
-=======
->>>>>>> 7226c2488a207dc8e43de1216572ab4740cc91ca
-	Route::get('/absensi', [
-		'uses'	=>	'AbsensiController@index', 
-		'as'	=>	'absensi'
-	]);
-<<<<<<< HEAD
->>>>>>> 7226c2488a207dc8e43de1216572ab4740cc91ca
-=======
->>>>>>> 7226c2488a207dc8e43de1216572ab4740cc91ca
-

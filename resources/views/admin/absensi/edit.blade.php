@@ -10,91 +10,50 @@
 </div>
 
 <div class="row">
-	<div class="col m7">
+	<div class="col m7 offset-m2">
 		<div class="card">
 				<div class="card-content">
-						<form action="{{ route('anggota.update', $data->id) }}" method="POST" enctype="multipart/form-data">
-					<h3 class="blue-text blue-lighten-2 center-align">Edit Anggota</h3>
-					<div class="input-field{{ $errors->has('nama') ? ' has-error' : '' }}"> 
-						<input type="text" name="nama" id="nama" placeholder="Nama" class="validate" value="{{ $data->nama }}">
-						<label>Nama</label>
-						@if($errors->has('nama'))
+						<form action="{{ route('absensi.update', $data->id) }}" method="POST" enctype="multipart/form-data">
+					<h3 class="blue-text blue-lighten-2 center-align">Edit Absensi</h3>
+			
+					<div class="input-field{{ $errors->has('anggota_id') ? ' has-error' : '' }}">
+						<input type="text" disabled name="anggota_id" value="{{ $data->anggota->nama }}">
+						@if($errors->has('anggota_id'))
 							 <ul class="card-panel red darken-1">
-	        					<p>{{ $errors->first('nama') }}</p>
+	        					<p>{{ $errors->first('anggota_id') }}</p>
+	        				 </ul>
+						@endif
+						<label for="">Nama Anggota</label>
+					</div>
+
+					<label for="">Tanggal Absensi</label>
+					<div class="input-field{{ $errors->has('tgl_absen') ? ' has-error' : '' }}">
+						<input type="date" class="datepicker"  name="tgl_absen" value="{{ $data->tgl_absen }}">
+						@if($errors->has('tgl_absen'))
+							 <ul class="card-panel red darken-1">
+	        					<p>{{ $errors->first('tgl_absen') }}</p>
 	        				 </ul>
 						@endif
 					</div>
 					
-					<div class="input-field{{ $errors->has('email') ? ' has-error' : '' }}"> 
-						<input type="text" name="email" id="email" class="validate" value="{{ $data->email }}">
-						<label>Email</label>
-						@if($errors->has('email'))
+					<label for="">Keterangan</label>
+					<div class="input-field{{ $errors->has('keterangan') ? ' has-error' : '' }}">
+							<input class="with-gap" name="keterangan" value="Hadir" type="radio" id="hadir" />
+							<label for="hadir">Hadir</label>
+							<input class="with-gap" name="keterangan" value="Sakit" type="radio" id="absen" />
+							<label for="absen">Absen</label>
+							<input class="with-gap" name="keterangan" value="Absen" type="radio" id="sakit" />
+							<label for="sakit">Sakit</label>
+						@if($errors->has('keterangan'))
 							 <ul class="card-panel red darken-1">
-	        					<p>{{ $errors->first('email') }}</p>
+	        					<p>{{ $errors->first('keterangan') }}</p>
 	        				 </ul>
 						@endif
-					</div>
-
-					<div class="input-field">
-						<select name="jenis_kelamin">
-							<option value="" disabled selected>- Pilih Jenis Kelamin -</option>
-							<option value="pria" @if($data->jenis_kelamin == 'pria') selected @endif>pria
-							</option>
-							<option value="wanita" @if($data->jenis_kelamin == 'wanita') selected @endif>wanita
-							</option>
-						</select>
-					</div>
-
-					<label for="">Tanggal Lahir</label>
-					<div class="input-field{{ $errors->has('tgl_lahir') ? ' has-error' : '' }}">
-						<input type="date" class="datepicker"  name="tgl_lahir" value="{{ $data->tgl_lahir }}">
-						@if($errors->has('tgl_lahir'))
-							 <ul class="card-panel red darken-1">
-	        					<p>{{ $errors->first('tgl_lahir') }}</p>
-	        				 </ul>
-						@endif
-					</div>
-					
-					<label for="">Pilih Kelas</label>
-					<div class="input-field">
-						<select name="kelas_id">
-							@foreach($kelas as $datas)
-								<option value="{{ $datas->id }}" @if($datas->id == $data->kelas_id) selected @endif>{{ $datas->nama_kelas }}</option>	
-							@endforeach
-						</select>
-					</div>
-
-					<div class="input-field{{ $errors->has('alamat') ? ' has-error' : '' }}">
-						<textarea name="alamat" rows="3" class="materialize-textarea validate" placeholder="Alamat">{{ $data->alamat }}</textarea>
-						@if($errors->has('alamat'))
-							 <ul class="card-panel red darken-1">
-	        					<p>{{ $errors->first('alamat') }}</p>
-	        				 </ul>
-						@endif
-						<label for="">Alamat</label>
-					</div>
-					<div class="input-field{{ $errors->has('no_hp') ? ' has-error' : '' }}">
-						<input type="text" name="no_hp" id="no_hp" class="validate" placeholder="No Hp" value="{{ $data->no_hp }}">
-						@if($errors->has('no_hp'))
-							 <ul class="card-panel red darken-1">
-	        					<p>{{ $errors->first('no_hp') }}</p>
-	        				 </ul>
-						@endif
-						<label for="">No. Hp</label>
-					</div>
-					<div class="file-field input-field">
-						<div class="btn grey">
-							<span>File</span>
-							<input type="file" name="gambar">
-						</div>
-						<div class="file-path-wrapper">
-							<input type="text" class="file-path validate" placeholder="Limit Size 200kb">
-						</div>
-					</div>
-					
+						
+					</div>					
 					
 					<div class="row">
-						<button type="submit" class="btn waves-effect waves-light right yellow darken-1">Edit <i class="fa fa-pencil"></i></button>
+						<button type="submit" class="btn waves-effect waves-light right amber">Edit <i class="fa fa-pencil"></i></button>
 					</div>
 					<input type="hidden" name="_method" value="put">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -102,17 +61,6 @@
 			 	</div>
 			</div>
 	</div>
-
-	<div class="col md5">
-			<div class="card">
-				<div class="card-image">
-					<img src="{{ asset('uploads/' . $data->gambar) }}" class="activator materialboxed" width="200" height="150">
-				</div>
-				<div class="card-content">
-					<h3 class="blue-text lighten-2 center-align">{{ $data->nama }}</h3>
-				</div>
-			</div>
-		</div>
 </div> {{-- End Row --}}
 
 @endsection
