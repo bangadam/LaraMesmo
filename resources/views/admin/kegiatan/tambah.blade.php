@@ -62,6 +62,21 @@
         				 </ul>
 					@endif
 				</div>
+
+				<label for="">Upload Gambar</label>
+				<div class="file-field input-field">
+				  <div class="btn grey darken-1">
+				  	<span>File</span>
+				    <input type="file" name="gambar">
+				  </div>
+				  <div class="file-path-wrapper">
+				    <input class="file-path validate" type="text" placeholder="Limit Size 200kb">
+				  </div>
+				</div>
+			
+				<div class="input-field" style="margin-bottom: 20px">
+					<textarea name="keterangan" id="keterangan"></textarea>
+				</div>
 				
 				
 				<div class="row">
@@ -75,3 +90,4 @@
 		</div>
 </div>
 @endsection
+

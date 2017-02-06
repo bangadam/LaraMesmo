@@ -1,9 +1,8 @@
 <!-- Navbar -->
-<div class="navbar-fixed">
 	<nav class="grey darken-2">
 			<div class="container">
 			  <div class="nav-wrapper">
-				<a href="#!" class="brand-logo">Mesmo</a>
+				<a href="#!" class="brand-logo">Mesmo <span style="font-size: 15px;font-weight: bold;">SMKN 1 DLANGGU</span></a>
 				<!-- activate side-bav in mobile view -->
 				<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="fa fa-bars"></i></a>
 				<ul class="right hide-on-med-and-down">
@@ -23,4 +22,3 @@
 			  </div>
 			</div>
 		</nav>
-</div>

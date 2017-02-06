@@ -33,6 +33,7 @@
 					indicators: false,
 					height: 560
 				});
+				$('.parallax').parallax();
 				$("#testimoni").slider({
 					transition: 400,
 					indicators: false,

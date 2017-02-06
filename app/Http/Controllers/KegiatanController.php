@@ -7,6 +7,7 @@ use App\Kegiatan;
 use App\Pembina;
 use App\Bidang;
 use Excel;
+use Image;
 use PDF;
 use App\Http\Requests;
 
@@ -29,7 +30,9 @@ class KegiatanController extends Controller
             'nama_kegiatan' =>  'required',
             'bidang_id'     =>  'required',
             'tgl_pel'       =>  'required',
-            'pembina_id'    =>  'required'
+            'pembina_id'    =>  'required',
+            'gambar'        =>  'image',
+            'keterangan'    =>  'required',
         ]);
 
         $data = new Kegiatan;
@@ -38,6 +41,17 @@ class KegiatanController extends Controller
         $data->tgl_pel = $request['tgl_pel'];
         $data->pembina_id = $request['pembina_id'];
         $data->status = 'belum terlaksana';
+        $data->keterangan = $request['keterangan'];
+            // upload gambar
+        if ($request->hasFile('gambar')) {
+            $file       =   $request->file('gambar');
+            $fileName   =   date('Y-m-d') . "." . $file->getClientOriginalName();
+            $location   =   public_path('uploads/'. $fileName);
+            Image::make($file)->resize(800, 400)->save($location);
+
+            $data->gambar  =  $fileName;
+        }
+
 
        	$data->save();
 
@@ -67,6 +81,8 @@ class KegiatanController extends Controller
         $data->bidang_id = $request['bidang_id'];
         $data->tgl_pel = $request['tgl_pel'];
         $data->pembina_id = $request['pembina_id'];
+        $data->status = $request['status'];
+        $data->keterangan = $request['keterangan'];
 
         $data->save();
 

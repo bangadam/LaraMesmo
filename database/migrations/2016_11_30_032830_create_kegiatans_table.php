@@ -19,6 +19,8 @@ class CreateKegiatansTable extends Migration
             $table->integer('bidang_id')->unsigned();
             $table->string('status');
             $table->string('tgl_pel');
+            $table->string('keterangan');
+            $table->string('gambar');
             $table->timestamps();
         });
 
