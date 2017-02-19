@@ -41,22 +41,34 @@
 	<div class="row">
 		<div class="card">	
 			 <div class="card-content">	
-			 
-				<table class="mdl-data-table responsive-table" cellspacing="0" width="100%">	
+			 <nav class="white">
+						<div class="nav-wrapper">
+								<div class="row">
+									<div class="col m6">
+										<div class="input-field" style="color: black">
+											<input id="search" type="text" name="search" style="padding-left: 30px">
+											<label for="search"><i class="fa fa-search" style="color: black;padding-left: 20px"></i></label>
+										</div>
+									</div>
+								</div>
+						</div>
+					</nav>
+				<table class="striped" cellspacing="0" width="100%">	
 					<thead>	
-						<th>Id Anggota</th>
+						<th>No Absen</th>
 						<th>Nama Anggota</th>
 						<th>Kelas Anggota</th>
 						<th>Keterangan <small>(Pilih Salah Satu)</small></th>
 					</thead>
 					<tbody>	
+					<?php $no = 1; ?>
 						@foreach($data as $datas)
 						 <tr>
-						 	<td>{{ $datas->id }}</td>
+						 	<td>{{ $no++ }}</td>
 						 	<td>{{ $datas->nama }}</td>
 						 	<td>{{ $datas->kelas->nama_kelas }}</td>
 						 	<td>
-									<input class="with-gap" name="keterangan[{{ $datas->id }}]" type="radio" value="Hadir" id="hadir{{ $datas->id }}" />
+									<input class="with-gap" name="keterangan[{{ $datas->id }}]" type="radio" value="Hadir" id="hadir{{ $datas->id }}" checked="" />
 									<label for="hadir{{ $datas->id }}">Hadir</label>
 									<input class="with-gap" name="keterangan[{{ $datas->id }}]" type="radio" value="Absen" id="absen{{ $datas->id }}" />
 									<label for="absen{{ $datas->id }}">Absen</label>
@@ -70,7 +82,7 @@
 				</table>
 
 				<div class="row" style="margin-top: 10px;">
-					<button type="submit" class="btn waves-light waves-effect">Tambah <i class="fa fa-send"></i></button>
+					<button type="submit" class="btn waves-light waves-effect blue accent-2">Tambah <i class="fa fa-send"></i></button>
 				    <input type="hidden" name="_token" value="{{ csrf_token() }}">	
 				</div>
 				</form>
@@ -78,5 +90,8 @@
 		</div>
 	</div>
 
+@section('search')
+	<script type="text/javascript" src="{{ URL::to('js/search.js') }}"></script>
+@endsection
 
 @endsection

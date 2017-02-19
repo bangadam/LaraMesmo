@@ -16,6 +16,16 @@ Route::get('/', [
 	'as'	=>	'home'
 ]);
 
+Route::get('/single-kegiatan/{id}', [
+	'uses' 	=> 	'HomeController@kegiatan',
+	'as'	=>	'home.kegiatan'
+]);
+
+Route::get('/all-kegiatan', [
+	'uses' 	=> 	'HomeController@allkegiatan',
+	'as'	=>	'home.allkegiatan'
+]);
+
 //  Auth Area
 Route::get('/login', [
 	'uses'	=>	'AuthController@getLogin',
@@ -404,4 +414,9 @@ Route::get('/dashboard', [
 				'uses'	=>	'AbsensiController@PrintPdf',
 				'as'	=>	'absensi.print'
 			]);
+
+			// Route::get('/tambah/search', [
+			// 	'uses'	=>	'AbsensiController@Search',
+			// 	'as'	=>	'absensi.search'
+			// ]);
 	});

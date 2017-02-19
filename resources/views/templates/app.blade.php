@@ -25,13 +25,14 @@
 		<script type="text/javascript" src="{{ URL::to('js/jquery.js') }}"></script>
 		<script type="text/javascript" src="{{ URL::to('js/materialize.min.js') }}"></script>
 		@yield('dataTableJs')
+		@yield('custom')
 		<script type="text/javascript">
 			$(document).ready(function() {
 				$('select').material_select();
 				$(".button-collapse").sideNav();
 				$(".slider").slider({
 					indicators: false,
-					height: 560
+					height: 650
 				});
 				$('.parallax').parallax();
 				$("#testimoni").slider({
@@ -49,6 +50,10 @@
 			      starting_top: '20%', // Starting top style attribute
 			      ending_top: '10%', // Ending top style attribute
 				});
+				$('.datepicker').pickadate({
+			    selectMonths: true, // Creates a dropdown to control month
+			    selectYears: 100 // Creates a dropdown of 15 years to control year
+			  });
 			});
 		</script>
 	</body>

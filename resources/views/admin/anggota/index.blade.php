@@ -2,12 +2,12 @@
 
 @section('anggota')
 
-	<h5>Daftar Anggota</h5>
+	<h5>Data Anggota</h5>
 	<hr>
  	 {{-- Menu --}}
 		<div class="row">
 			<ul class="tombol">
-				@if(Auth::user()->level == 'pembina')
+				@if(Auth::user()->level == 'pembina' || Auth::user()->level == 'admin')
 					<li>
 						<a href="{{ route('anggota.tambah') }}" class="waves-effect waveslight btn blue accent-2"><i class="fa fa-plus"></i> Tambah</a>
 					</li>
@@ -56,7 +56,7 @@
 						<th>Kelas</th>
 						<th>Alamat</th>
 						<th>Opsi</th>
-						@if(Auth::user()->level == 'pembina')
+						@if(Auth::user()->level == 'pembina' || Auth::user()->level == 'admin')
 						 <th>Hapus</th>
 						@endif
 					</tr>
@@ -72,11 +72,11 @@
 							<td>{{ $datas->alamat }}</td>
 							<td>
 								<a href="{{ route('anggota.lihat', $datas->id) }}" class="waves-light waves-effect btn-floating green"><i class="fa fa-eye"></i></a>
-								@if(Auth::user()->level == 'pembina')
+								@if(Auth::user()->level == 'pembina' || Auth::user()->level == 'admin')
 									<a href="{{ route('anggota.edit', $datas->id) }}" class="waves-effect waves-light btn-floating amber"><i class="fa fa-pencil"></i></a>
 								@endif
 							</td>
-							@if(Auth::user()->level == 'pembina')
+							@if(Auth::user()->level == 'pembina' || Auth::user()->level == 'admin')
 								<td>
 									<form action="{{ route('anggota.hapus', $datas->id) }}" method="delete">
 										<input type="hidden" name="_token" value="{{ csrf_token() }}">

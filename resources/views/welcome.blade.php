@@ -7,64 +7,57 @@
 
 <!-- Slider -->
 {{-- <section id="home-slider"> --}}
-	<div class="parallax-container" style="height: 580px;">
-		<div class="parallax">
-			<img src="{{ URL::to('images/pexels-photo.jpg') }}">
-		</div>
-	</div>
+
 	<!-- Slider -->
-	{{-- <div class="slider">
+	<div class="slider">
 		<ul class="slides">
 			<li>
 				<img src="{{ URL::to('images/ANGGOTA.jpg') }}"> <!-- random image -->
 				<div class="caption center-align">
 					<h3>Sistem Informasi Mesmo</h3>
-					<h5 class="light grey-text text-lighten-3">Mencetak Pemuda Pemudi untuk Umat</h5>
+					<h5 class="light grey-text text-lighten-3">Mencetak Pemuda Pemudi berprestasi untuk Umat</h5>
 				</div>
 			</li>
 			<li>
 				<img src="{{ URL::to('images/ANGGOTAL.jpg') }}"> <!-- random image -->
 				<div class="caption left-align">
-					<h3>Left Aligned Caption</h3>
-					<h5 class="light grey-text text-lighten-3">Mencetak Pemuda Pemudi untuk Umat</h5>
+					<h3>Sistem Informasi Mesmo</h3>
+					<h5 class="light grey-text text-lighten-3">Mencetak Pemuda Pemudi berprestasi untuk Umat</h5>
 				</div>
 			</li>
 			<li>
 				<img src="{{ URL::to('images/ANGGOTAP.jpg') }}"> <!-- random image -->
 				<div class="caption right-align">
-					<h3>Left Aligned Caption</h3>
-					<h5 class="light grey-text text-lighten-3">Mencetak Pemuda Pemudi untuk Umat</h5>
+					<h3>Sistem Informasi Mesmo</h3>
+					<h5 class="light grey-text text-lighten-3">Mencetak Pemuda Pemudi berprestasi untuk Umat</h5>
 				</div>
 			</li>
 		</ul>
-	</div> --}}
+	</div>
 {{-- </section> --}}
 
-<section id="about">
+<section id="about" class="blue accent-2">
 		<div class="row">
 			<div class="col m12">
-				<h2 class="center-align header">About Us</h2>
+				<h2 class="center-align header">Tentang Mesmo</h2>
 				<div class="row">
 					<div class="col m6 offset-m3" style="border-bottom: 2px solid #f0f0f0;"></div>
 				</div>
 			</div>
 		</div>
-		<div class="row">
+		<div class="row" style="margin-top: 50px">
 			<div class="col m7" style="border: 2px solid #f0f0f0;padding:20px;margin-bottom: 40px;margin-right: 10px;">
 				<div class="row">
 					<h3>Ketua Pembina Mesmo</h3>
 				</div>
 				<div class="row">
-					<div class="col m4">
-						<img src="uploads/{{ $pembina->gambar }}" class="materialboxed " style="border: 5px solid #f3f3f3;border-radius: 10px;" width="200" height="150">
+					<div class="col m3">
+						<img src="uploads/{{ $pembina->gambar }}" class="materialboxed " style="border: 5px solid #f3f3f3;border-radius: 10px;" width="190" height="150">
 					</div>
-					<div class="col m8">
+					<div class="col m8" style="margin-left: 50px">
 						<h5>{{ $pembina->nama }}</h5>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores animi quia modi officia minima delectus nostrum optio repellat recusandae earum, odit, eum ratione autem, nobis beatae quae tempora voluptatem, qui.</p>
+						<p>Selamat Pengguna Sistem Informasi Mesmo aitu sebuah organisasi Managemen Emosional dan Spiritual Agama Islam yang adam Di SMKN 1 Dlanggu, Semoga menjadi Manusia yang bermanfaat bagi Umat Islam.</p>
 					</div>
-				</div>
-				<div class="row">
-					<a href="#!" class="btn blue lighten-2 right waves-effect waves-light"><i class="fa fa-user"></i> Join Us</a>
 				</div>
 			</div>
 			<div class="col m4" style="margin-bottom: 40px">
@@ -97,27 +90,73 @@
 				</div>
 			</div>
 		</div>
-		<div class="row">
+		<div class="row" style="margin-top: 80px; margin-bottom: 20px">
 		 <div class="carousel">
 		 @foreach($data as $datas)
-			    <a class="carousel-item" href=""><img src="uploads/{{ $datas->gambar }}" ></a>
+			    <a class="carousel-item" href="single-kegiatan/{{ $datas->id }}"><img src="uploads/{{ $datas->gambar }}" ></a>
 		 @endforeach
 			  </div>
 		</div>
+		{{-- <div class="row">
+			<div class="col m6 offset-m3">
+				<a href="{{ route('home.allkegiatan') }}" class="btn waves-light waves-effect blue lighten-2" style="width: 100%">Lihat Semua Kegiatan</a>
+			</div>
+		</div> --}}
 </section>
 
  <div class="parallax-container">
     <div class="parallax">
-    	<img src="{{ URL::to('images/pexels-photo.jpg') }}">
+    	<img src="{{ URL::to('images/quran.jpg') }}">
     </div>
   </div>
-	
+
+	<section id="bg-anggota">
+		<div id="anggota">
+		<div class="row">
+			<div class="col m12">
+				<h2 class="center-align header">Anggota Mesmo</h2>
+				<div class="row">
+					<div class="col m6 offset-m3" style="border-bottom: 2px solid #ffffff;"></div>
+				</div>
+			</div>
+		</div>
+		<div class="row" style="margin-top: 80px; margin-bottom: 20px">
+			@foreach($anggota as $data)
+			<div class="col m4">
+				<div class="card-panel grey lighten-5 z-depth-3">
+          <div class="row valign-wrapper">
+            <div class="col m4">
+              <img src="uploads/{{ $data->gambar }}" alt="" class="circle materialboxed responsive-img">
+            </div>
+            <div class="col m8">
+              <blockquote class="black-text" style="font-size: 12px">
+              	Bagikan ilmu walaupun sedikit, Yakinlah Ilmu anda akan bertambah dan tidak akan pernah berkurang.
+              </blockquote>
+              <span class="grey-text center-align" style="margin-left: 30px">
+              	"Ali Bin Abi Thalib"
+              </span>
+            </div>
+          </div>
+        </div>
+			</div>
+			@endforeach
+		</div>
+
+		<div class="row" style="margin-top: 90px">
+			<div class="container">
+				<a href="{{ route('auth.register') }}" class="btn blue accent-2 waves-effect waves-light" style="width:100%; height: 70px;border-radius: 5px;font-size: 30px;padding-top: 15px">Daftar Sekarang <i class="fa fa-send"></i></a>
+			</div>
+		</div>
+
+		
+		</div>
+	</section>	
 	
 	<section id="Contact">
 		<div class="container">
 			<div class="row">
 				<div class="col m12">
-					<h1 class="center-align">Contact Us</h1>
+					<h1 class="center-align">Buku Tamu</h1>
 				</div>
 			</div>
 
@@ -150,18 +189,31 @@
 					</div>
 				</div>
 				<div class="col m6">
-					<h5>About Us</h5>
-					<ul>
-						<li>lorem</li>
-						<li>lorem</li>
-						<li>ipsum</li>
-					</ul>
+					<img src="{{ URL::to('images/map.png') }}" class="materialboxed" width="500" height="280" alt="" style="border: 5px solid #f3f3f3; margin-top: 5px">
 				</div>
 			</div>
 		</div>
 	</section>
 
-<footer class="page-footer teal">
+<footer class="page-footer grey darken-2">
 		<p class="center-align" style="color: white;padding: 10px;">Copyright &copy; <?php echo date('Y'); ?> Bangadam. Made With <i class="fa fa-heart" style="color:#f73333"></i> SMKN 1 Dlanggu</p>
 </footer>																					
-@endsection																						
+@endsection	
+@section('sustom')											<script type="text/javascript">
+		$(document).ready(function() {
+			$("#about").on('click', function(event) {
+				if (this.hash !== "") {
+					event.prevenDefault();
+
+					var has = this.hash;
+
+					$('hmtl, body').animate({
+						scrollTop: $(hash).offset().top
+					}, 800, function() {
+						window.location.hash = hash;
+					});
+				} //end if
+			});
+		});		
+	</script>
+@endsection											

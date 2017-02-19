@@ -28,7 +28,6 @@
 					</div>
 				</div>
 			</div>
-			@if(Auth::user()->level == 'pembina' || Auth::user()->level == 'anggota')
 				<div class="col m4">
 					<div class="card hoverable amber accent-4">
 						<div class="card-content">
@@ -57,7 +56,6 @@
 						</div>
 					</div>
 				</div> 
-			@endif
 		</div> {{-- End Menu --}}
 		<div class="row">
 			<div class="col m6">
@@ -66,14 +64,14 @@
 			<div class="col m6">
 				<div class="card">
 				    <div class="card-image waves-effect waves-block waves-light">
-				      <img class="activator" src="{{ URL::to('images/ANGGOTA.jpg') }}">
+				      <img class="activator" src="{{ URL::to('images/ANGGOTA.jpg') }}" height="220px">
 				    </div>
 				    <div class="card-content">
-				      <span class="card-title activator grey-text text-darken-4">Contact Us<i class="fa fa-arrow-up right"></i></span>
+				      <span class="card-title activator grey-text text-darken-4">Baca Pesan<i class="fa fa-arrow-up right"></i></span>
 				    </div>
 				    <div class="card-reveal">
-				      <span class="card-title grey-text text-darken-4">Contact Us<i class="fa fa-close right"></i></span>
-				      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam, deserunt neque vero, obcaecati nihil sint voluptatem ipsam nemo veritatis repellat delectus. Asperiores, et modi itaque minima maiores aliquam voluptatibus dicta.</p>
+				      <span class="card-title grey-text text-darken-4">Baca Pesan<i class="fa fa-close right"></i></span>
+				      <p>Selamat Datang Di Halaman Dashboard MESMO</p>
 				    </div>
 			  </div>
 			</div>

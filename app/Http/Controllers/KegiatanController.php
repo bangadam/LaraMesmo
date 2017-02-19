@@ -9,6 +9,7 @@ use App\Bidang;
 use Excel;
 use Image;
 use PDF;
+use DB;
 use App\Http\Requests;
 
 class KegiatanController extends Controller
@@ -21,7 +22,7 @@ class KegiatanController extends Controller
 
     public function getTambahKegiatan() {
         $pembina = Pembina::all();
-        $bidang = BIdang::all();
+        $bidang = Bidang::all();
         return view('admin.kegiatan.tambah', ['pembina' => $pembina, 'bidang' => $bidang]);
     }
 
@@ -83,6 +84,15 @@ class KegiatanController extends Controller
         $data->pembina_id = $request['pembina_id'];
         $data->status = $request['status'];
         $data->keterangan = $request['keterangan'];
+            // upload gambar
+        if ($request->hasFile('gambar')) {
+            $file       =   $request->file('gambar');
+            $fileName   =   date('Y-m-d') . "." . $file->getClientOriginalName();
+            $location   =   public_path('uploads/'. $fileName);
+            Image::make($file)->resize(800, 400)->save($location);
+
+            $data->gambar  =  $fileName;
+        }
 
         $data->save();
 
@@ -100,19 +110,33 @@ class KegiatanController extends Controller
     }
 
     public function downloadExcel($type) {
-        $data = Kegiatan::get()->toArray();
+        ob_end_clean();
+        ob_start();
+        // $data = Kegiatan::select('nama_kegiatan', 'bidang_id', 'tgl_pel', 'pembina_id',)->get()->toArray();
+        $datas = DB::table('kegiatans')
+                ->join('pembina', function($join) {
+                    $join->on('kegiatans.pembina_id', '=', 'pembina.id');
+                })
+                ->join('bidangs', function($join) {
+                   $join->on('kegiatans.bidang_id', '=', 'bidangs.id'); 
+                })
+                ->select(['nama_kegiatan', 'nama', 'nama_bidang', 'tgl_pel'])
+                ->get();
+         $data = json_decode(json_encode($datas), true);
         return Excel::create('dataKegiatanExcel', function($excel) use ($data) {
             $excel->sheet('dataKegiatanExcel', function($sheet) use ($data) {
                 $sheet->fromArray($data);
             });
         })->download($type);
+        ob_flush();
     }
 
     public function importExcel(Request $request) {
         if ($request->hasFile('import_file')) {
             $path = $request->file('import_file')->getRealPath();
             $data = Excel::load($path, function($render) {
-                Kegiatan::insert($render->toArray());
+                Kegiatan::select('nama_kegiatan', 'bidang_id', 'tgl_pel', 'pembina_id', 'status')
+                    ->insert($render->toArray());
             });
 
             if (!$data) {

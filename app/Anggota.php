@@ -10,6 +10,7 @@ class Anggota extends User
     protected $table = 'anggotas';
 
     protected $fillable = [
+        'id',
     	'nama',
         'email',
     	'jenis_kelamin',

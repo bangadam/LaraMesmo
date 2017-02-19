@@ -12,7 +12,9 @@ class Kegiatan extends Model
     	'nama_kegiatan', 
     	'bidang_id',
     	'tgl_pel',
-    	'pembina_id'
+        'status',
+    	'pembina_id',
+        'keterangan'
     ];
 
     public function pembina() {

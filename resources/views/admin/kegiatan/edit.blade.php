@@ -9,7 +9,7 @@
 		<a  href="{{ route('kegiatan') }}" class="btn waves-effect waves-light red"><i class="fa fa-arrow-left"></i> Kembali</a>
 	</div>
 
-		<div class="cantainer">
+		<div class="row">
 			<div class="col m7">
 			<div class="card">
 				<div class="card-content">
@@ -66,14 +66,17 @@
 					</select>
 				</div>
 				
-				
-				
-				<div class="row">
-					<button type="submit" class="btn waves-effect waves-light right amber accent-4">Edit <i class="fa fa-pencil"></i></button>
+				<label for="">Upload Gambar</label>
+				<div class="file-field input-field">
+				  <div class="btn grey darken-1">
+				  	<span>File</span>
+				    <input type="file" name="gambar">
+				  </div>
+				  <div class="file-path-wrapper">
+				    <input class="file-path validate" type="text" placeholder="Limit Size 200kb">
+				  </div>
 				</div>
-				<input type="hidden" name="_method" value="put">
-				<input type="hidden" name="_token" value="{{ csrf_token() }}">
-			</form>
+				
 				</div>
 			</div>
 		</div>
@@ -82,7 +85,7 @@
 				<div class="card-content">
 					<h3 class="blue-text blue-lighten-2">Di Pimpin Oleh :</h3>
 					<div class="row">
-						<img src="{{ asset('uploads/' . $data->pembina->gambar) }}" class="circle materialboxed" width="200" height="150">
+						<img src="{{ asset('uploads/' . $data->pembina->gambar) }}" style="margin-left: 20px" class="circle materialboxed" width="200" height="150">
 					</div>
 					<div class="row">
 						<h3 class="center-align"><a href="{{ route('pembina.lihat', $data->pembina->id) }}" class="blue-text lighten-2">{{ $data->pembina->nama }}</a></h3>
@@ -91,6 +94,21 @@
 			</div>
 		</div>
 		</div>
+
+		<div class="row">
+			<div class="col m8">
+			<label for="">Keterangan</label>
+				<div class="input-field">
+					<textarea name="keterangan" id="keterangan">{!! $data->keterangan !!}</textarea>
+				</div>			
+			</div>
+			<div class="col m4" style="margin-top: 80px">
+					<button type="submit" class="btn waves-effect waves-light amber accent-4 z-depth-3" style="width: 100%;height: 50px;font-size: 20px">Edit <i class="fa fa-pencil"></i></button>
+			</div>
+		</div>
+		<input type="hidden" name="_method" value="put">
+		<input type="hidden" name="_token" value="{{ csrf_token() }}">
+	</form>
 
 </div>
 

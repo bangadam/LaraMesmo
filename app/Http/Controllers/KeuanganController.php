@@ -103,19 +103,22 @@ class KeuanganController extends Controller
     }
 
     public function downloadExcel($type) {
-        $data = Pemasukan::get()->toArray();
+        ob_end_clean();
+        ob_start();
+        $data = Pemasukan::select('jumlah_uang', 'pemasukan_dari', 'tgl_pemasukan')->get()->toArray();
         return Excel::create('dataKeuanganMasukExcel', function($excel) use ($data) {
             $excel->sheet('dataKeuanganMasukExcel', function($sheet) use ($data) {
                 $sheet->fromArray($data);
             });
         })->download($type);
+        ob_flush();
     }
 
     public function importExcel(Request $request) {
         if ($request->hasFile('import_file')) {
             $path = $request->file('import_file')->getRealPath();
             $data = Excel::load($path, function($render) {
-                Pemasukan::insert($render->toArray());
+                Pemasukan::select('jumlah_uang', 'pemasukan_dari', 'tgl_pemasukan')->insert($render->toArray());
             });
 
             if (!$data) {
@@ -205,19 +208,22 @@ class KeuanganController extends Controller
     }
 
     public function PengeluaranDownloadExcel($type) {
-        $data = Pengeluaran::get()->toArray();
+        ob_end_clean();
+        ob_start();
+        $data = Pengeluaran::select(['jumlah_uang', 'keperluan', 'tgl_pengeluaran'])->get()->toArray();
         return Excel::create('dataKeuanganKeluarExcel', function($excel) use ($data) {
             $excel->sheet('dataKeuanganKeluarExcel', function($sheet) use ($data) {
                 $sheet->fromArray($data);
             });
         })->download($type);
+        ob_flush();
     }
 
     public function PengeluaranImportExcel(Request $request) {
         if ($request->hasFile('import_file')) {
             $path = $request->file('import_file')->getRealPath();
             $data = Excel::load($path, function($render) {
-                Pengeluaran::insert($render->toArray());
+                Pengeluaran::select(['jumlah_uang', 'keperluan', 'tgl_pengeluaran'])->insert($render->toArray());
             });
 
             if (!$data) {

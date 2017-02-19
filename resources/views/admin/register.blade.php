@@ -47,7 +47,7 @@
 							
 							<label for="">Tgl Lahir</label>
 							<div class="input-field{{ $errors->has('tgl_lahir') ? ' has-error' : '' }}">
-								<input type="date" name="tgl_lahir" id="tgl_lahir">
+								<input type="date" name="tgl_lahir" class="datepicker" id="tgl_lahir">
 							@if($errors->has('tgl_lahir'))
 								 <ul class="card-panel red darken-1">
 		        					<p>{{ $errors->first('tgl_lahir') }}</p>

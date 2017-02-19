@@ -11,7 +11,7 @@ use App\Http\Requests;
 class HomeController extends Controller
 {
     public function index() {
-    	$anggota = Anggota::all();
+    	$anggota = Anggota::select('gambar')->take(3)->get();
         $pembina = Pembina::select('nama', 'gambar')->first();
     	$kegiatan = Kegiatan::all();
     	$data = $kegiatan->take(5);
@@ -22,5 +22,15 @@ class HomeController extends Controller
     		'kegiatan' => $kegiatan,
             'pembina'   => $pembina,
     	]);
+    }
+
+    public function kegiatan($id) {
+        $kegiatan = Kegiatan::findOrFail($id);
+        return view('single-kegiatan', ['kegiatan' => $kegiatan]);
+    }
+
+    public function allkegiatan() {
+        $allkegiatan = Kegiatan::all();
+        return view('all-kegiatan', ['allkegiatan' => $allkegiatan]);
     }
 }

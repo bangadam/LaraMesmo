@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Anggota;
 use App\Absensi; 
 use Excel;
+use DB;
 use PDF;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -20,7 +21,8 @@ class AbsensiController extends Controller
     }
 
     public function getTambahAbsensi(Request $request) {
-    	$data = Anggota::all();
+    	$data = Anggota::orderBy('nama', 'desc')->get();
+
     	return view('admin.absensi.tambah', ['data' => $data]);
     }
 
@@ -53,8 +55,11 @@ class AbsensiController extends Controller
             $absensi->tgl_absen = $tgl_absen;
             $absensi->keterangan = $value;
             $absensi->jam_absen = $jam_absen;
-            $absensi->save();
+            // $absensi->save();
+            echo $value . '<br>';
         }
+        die();
+
         
         return redirect()->route('absensi')->with('pesan', 'Data Berhasil Di Tambahkan');  
     }
@@ -75,19 +80,30 @@ class AbsensiController extends Controller
     }
 
     public function downloadExcel($type) {
-        $data = Absensi::select(['anggota_id', 'tgl_absen', 'keterangan'])->get()->toArray();
-        return Excel::create('dataAbsensiExcel', function($excel) use ($data) {
-            $excel->sheet('dataAbsensiExcel', function($sheet) use ($data) {
-                $sheet->fromArray($data);
+        ob_end_clean();
+        ob_start();
+        $data = DB::table('absensis')
+                ->join('anggotas', function($join) {
+                        $join->on('absensis.anggota_id', '=', 'anggotas.id');
+                })
+                ->select(['nama', 'tgl_absen', 'keterangan', 'jam_absen'])
+                ->get();
+        $datas = json_decode(json_encode($data), true);
+
+        // $data = Absensi::select(['anggota_id', 'tgl_absen', 'keterangan'])->get()->toArray();
+        return Excel::create('dataAbsensiExcel', function($excel) use ($datas) {
+            $excel->sheet('dataAbsensiExcel', function($sheet) use ($datas) {
+                $sheet->fromArray($datas);
             });
         })->download($type);
+        ob_flush();
     }
 
     public function importExcel(Request $request) {
         if ($request->hasFile('import_file')) {
             $path = $request->file('import_file')->getRealPath();
             $data = Excel::load($path, function($render) {
-                Absensi::insert($render->toArray());
+                Absensi::select(['anggota_id', 'tgl_absen', 'keterangan', 'jam_absen'])->insert($render->toArray());
             });
 
             if (!$data) {
@@ -106,4 +122,22 @@ class AbsensiController extends Controller
 
         return $pdf->stream('dataAbsensi');
     }
+
+    // public function Search(Request $request) {
+    //     if ($request->ajax()) {
+    //         $output = "";
+    //         $Absensi = Anggota::where('nama', 'LIKE', '%' . $request->search . '%');
+
+    //         if ($Absensi) {
+    //             foreach ($Absensi as $key => $value) {
+    //                 $output .= '<tr>'.
+    //                             '<td>' . $value->id . '</td>'.
+    //                             '<td>' .$value->nama. '</td>'.
+    //                             '<td>' .$value->kelas->nama_kelas. '</td>'.
+    //                             '</tr>';
+    //             }
+    //             return Response($output);
+    //         }
+    //     }
+    // }
 }

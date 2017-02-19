@@ -51,7 +51,7 @@
 				<div class="collection">
 					<a href="#!" class="collection-item center-align" style="font-size: 17px;">
 					 <i class="fa fa-refresh fa-spin fa-3x fa-pull-left" style="margin-bottom: 5px;margin-right: "></i>
-					 <br>Total Pemasukan Keseluruhan : Rp. @if(!count($total1) > 0) 
+					 <br>Total Pemasukan Keseluruhan : <br> Rp. @if(!count($total1) > 0) 
 						0
 					@else
 						{{ $total1 . ',00' }}
@@ -73,7 +73,7 @@
 			<div class="collection">
 				<a href="#!" class="collection-item center-align" style="font-size: 17px;">
 				 <i class="fa fa-refresh fa-spin fa-pull-left fa-3x" style="margin-bottom: 5px;"></i>
-				 <br>Total Pengeluaran Keseluruhan : Rp. @if(!count($total2) > 0) 
+				 <br>Total Pengeluaran Keseluruhan : <br> Rp. @if(!count($total2) > 0) 
 					0
 				@else
 					{{ $total2 . ',00' }}

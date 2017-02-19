@@ -13,7 +13,7 @@
             </style>
   
             <div style="font-family:Arial; font-size:12px;">
-                <center><h2>Data Pembina</h2></center>  
+                <center><h2>Data Pembina Mesmo</h2></center>  
             </div>
             <br>
             <table class="tg">
@@ -26,8 +26,8 @@
               @foreach ($data as $datas)
               <tr>
                 <td class="tg-rv4w" width="20%">{{$datas->nama}}</td>
-                <td class="tg-rv4w" width="40%">{{ $datas->email }}</td>
                 <td class="tg-rv4w" width="30%">{{$datas->alamat}}</td>
+                <td class="tg-rv4w" width="40%">{{ $datas->email }}</td>
                 <td class="tg-rv4w" width="30%">{{$datas->no_hp}}</td>
               </tr>
               @endforeach

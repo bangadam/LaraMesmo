@@ -16,7 +16,8 @@
 					<form action="{{ route('pembina.update', $data->id) }}" method="POST" enctype="multipart/form-data">
 				<h3 class="blue-text blue-lighten-2 center-align">Edit Pembina</h3>
 				<div class="input-field{{ $errors->has('nama') ? ' has-error' : '' }}"> 
-					<input type="text" name="nama" id="nama" placeholder="Nama" class="validate" value="{{ $data->nama }}">
+					<input type="text" name="nama" id="nama" class="validate" value="{{ $data->nama }}">
+					<label for="">Nama Pembina</label>
 					@if($errors->has('nama'))
 						 <ul class="card-panel red darken-1">
         					<p>{{ $errors->first('nama') }}</p>
@@ -26,13 +27,15 @@
 
 				<div class="input-field{{ $errors->has('email') ? ' has-error' : '' }}"> 
 					<input type="email" name="email" class="validate" value="{{ $data->email }}">
+					<label for="">Email</label>
 					@if($errors->has('email'))
 						 <ul class="card-panel red darken-1">
         					<p>{{ $errors->first('email') }}</p>
         				 </ul>
 					@endif
 				</div>
-					
+				
+				<label for="">Jenis Kelamin</label>	
 				<div class="input-field{{ $errors->has('jenis_kelamin') ? ' has-error' : '' }}">
 					<select name="jenis_kelamin">
 							<option value="" disabled selected>- Pilih Jenis Kelamin -</option>
@@ -47,8 +50,20 @@
         				 </ul>
 					@endif
 				</div>
+
+				<label for="">Tanggal Lahir</label>
+				<div class="input-field{{ $errors->has('tgl_lahir') ? ' has-error' : '' }}">
+					<input type="date" name="tgl_lahir" id="tgl_lahir" class="datepicker" value="{{ $data->tgl_lahir }}">
+					@if($errors->has('tgl_lahir'))
+						 <ul class="card-panel red darken-1">
+        					<p>{{ $errors->first('tgl_lahir') }}</p>
+        				 </ul>
+					@endif
+				</div>
+				
 				<div class="input-field{{ $errors->has('alamat') ? ' has-error' : '' }}">
-					<textarea name="alamat" rows="3" class="materialize-textarea validate" placeholder="Alamat">{{ $data->alamat }}</textarea>
+					<textarea name="alamat" rows="3" class="materialize-textarea validate">{{ $data->alamat }}</textarea>
+					<label for="">ALamat</label>
 					@if($errors->has('alamat'))
 						 <ul class="card-panel red darken-1">
         					<p>{{ $errors->first('alamat') }}</p>
@@ -56,7 +71,8 @@
 					@endif
 				</div>
 				<div class="input-field{{ $errors->has('no_hp') ? ' has-error' : '' }}">
-					<input type="text" name="no_hp" id="no_hp" class="validate" placeholder="No Hp" value="{{ $data->no_hp }}">
+					<input type="text" name="no_hp" id="no_hp" class="validate" value="{{ $data->no_hp }}">
+					<label for="">No. Hp</label>
 					@if($errors->has('no_hp'))
 						 <ul class="card-panel red darken-1">
         					<p>{{ $errors->first('no_hp') }}</p>

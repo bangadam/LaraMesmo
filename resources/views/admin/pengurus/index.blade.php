@@ -7,7 +7,7 @@
  	 {{-- Menu --}}	
  	 <div class="row">
 			<ul class="tombol">
-				@if(Auth::user()->level == 'pembina')
+				@if(Auth::user()->level == 'pembina' || Auth::user()->level == 'admin')
 					<li><a href="{{ url('pengurus/downloadExcel/xlsx') }}" class="waves-light waves-effect btn green"><i class="fa fa-upload"></i> Export</a></li>
 				@endif
 				<li><a href="{{ route('pengurus.print') }}" class="waves-light waves-effect btn grey darken-1"><i class="fa fa-print"></i> Print</a></li>
@@ -39,7 +39,7 @@
 							<td>{{ $datas->jabatan }}</td>
 							<td>
 								<a href="{{ route('anggota.lihat', $datas->anggota->id) }}" class="waves-light waves-effect btn-floating green"><i class="fa fa-eye"></i></a>
-								@if(Auth::user()->level == 'pembina')
+								@if(Auth::user()->level == 'pembina' || Auth::user()->level == 'admin')
 									<a href="{{ route('pengurus.edit', $datas->id) }}" class="waves-effect waves-light btn-floating amber"><i class="fa fa-pencil"></i></a>
 								@endif
 							</td>

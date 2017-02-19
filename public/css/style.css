@@ -45,10 +45,10 @@
 
 #about {
   width: 100%;
-  background-color: #009EE3;
+ /* background-color: #009EE3;*/
   padding: 0 60px;
   color: white;
-  height: 620px;
+  height: 690px;
 }
 
 #prestasi {
@@ -58,11 +58,38 @@
   height: 550px;
 }
 
+#bg-anggota {
+  background-image: url('../images/bg-anggota.jpeg');
+  background-size: cover;
+  border:none;
+}
+
+#anggota {
+  width: 100%;
+  background-color: rgba(68, 138, 255, 0.4);
+  padding: 0 60px;
+  height: 650px;
+  color: white;
+}
+
 #kegiatan {
   width: 100%;
   background-color: #f3f3f3;
   padding: 0 60px;
-  height: 600px;
+  height: 700px;
+}
+
+.kegiatan-content {
+  padding-top: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 80px;
+}
+
+#single-kegiatan {
+  background-color: #f3f3f3;
+  padding: 0 60px;
+  min-height: 100%;
 }
 /*hompage*/
 
@@ -72,7 +99,7 @@
 }
 
 /*dashboard*/
-=======
+
 #kotak {
   padding: 40px;
   color: white;

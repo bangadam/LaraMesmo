@@ -9,9 +9,6 @@
 				
 				@if(Session::has('anggota'))
 				        <div class="card-panel red darken-1">
-				          <h5 class="white-text center-align">{{ Session::get('pesan') }}</h5>
-				        </div>
-
 				          <h5 class="white-text center-align">{{ Session::get('anggota') }}</h5>
 				          <ul class="white-text center-align">
 				          	<li>Silahkan Masuk Dengan Akun Di Bawah Ini</li>

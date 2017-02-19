@@ -15,7 +15,7 @@ class Pembina
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->level == 'pembina') {
+        if (Auth::check() && Auth::user()->level == 'pembina' || Auth::user()->level == 'admin') {
             return $next($request);
         }
 

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -60,6 +59,7 @@ class PembinaController extends Controller
         $pembina->nama          =   $request['nama'];
         $pembina->email         =   $request['email'];
         $pembina->jenis_kelamin =   $request['jenis_kelamin'];
+        $pembina->tgl_lahir     =   $request['tgl_lahir'];
         $pembina->no_hp         =   $request['no_hp'];
         $pembina->alamat        =   $request['alamat'];
 
@@ -84,6 +84,7 @@ class PembinaController extends Controller
             'nama'              =>  'required|min:3',
             'email'             =>  'required|email',
             'jenis_kelamin'     =>  'required',
+            'tgl_lahir'         =>  'required',
             'no_hp'             =>  'required|max:13',
             'alamat'            =>  'required',
             'gambar'            =>  'image'
@@ -117,19 +118,22 @@ class PembinaController extends Controller
     }
 
     public function downloadExcel($type) {
-        $data = Pembina::get()->toArray();
+        ob_end_clean();
+        ob_start();
+        $data = Pembina::select('nama', 'email', 'jenis_kelamin', 'tgl_lahir', 'alamat', 'no_hp')->get()->toArray();
         return Excel::create('dataPembinaExcel', function($excel) use ($data) {
             $excel->sheet('dataPembinaExcel', function($sheet) use ($data) {
                 $sheet->fromArray($data);
             });
         })->download($type);
+         ob_flush();
     }
 
     public function importExcel(Request $request) {
         if ($request->hasFile('import_file')) {
             $path = $request->file('import_file')->getRealPath();
             $data = Excel::load($path, function($render) {
-                Pembina::insert($render->toArray());
+                Pembina::select('nama', 'email', 'jenis_kelamin', 'alamat', 'tgl_lahir', 'no_hp')->insert($render->toArray());
             });
 
             if (!$data) {

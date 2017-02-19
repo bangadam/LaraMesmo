@@ -17,7 +17,7 @@
 					<form action="{{ route('pengeluaran.tambah') }}" method="POST" enctype="multipart/form-data">
 				<h3 class="blue-text blue-lighten-2 center-align">Tambah Pengeluaran</h3>
 				<div class="input-field{{ $errors->has('jumlah_uang') ? ' has-error' : '' }}"> 
-					<input type="text" name="jumlah_uang" class="validate" value="{{ old('jumlah_uang') }}">
+					<input type="text" name="jumlah_uang" onkeypress="return isNumber(event)" class="validate" value="{{ old('jumlah_uang') }}">
 					<label for="">Jumlah Uang</label>
 					@if($errors->has('jumlah_uang'))
 						 <ul class="card-panel red darken-1">

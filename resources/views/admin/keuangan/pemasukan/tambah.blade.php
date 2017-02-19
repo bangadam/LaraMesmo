@@ -28,11 +28,12 @@
 
 				<label for="">Sumber Pemasukan</label>
 				<div class="input-field{{ $errors->has('pemasukan_dari') ? ' has-error' : '' }}"> 
-					<select name="pemasukan_dari" id="">
-						<option value="" disabled selected>- Pemasukan Dari -</option>
-						<option value="infaq">Infaq</option>
-						<option value="hamba Allah SWT">Hamba Allah SWT</option>
-					</select>
+					<input type="text" name="pemasukan_dari" class="validate">
+					@if($errors->has('pemasukan_dari'))
+						 <ul class="card-panel red darken-1">
+        					<p>{{ $errors->first('pemasukan_dari') }}</p>
+        				 </ul>
+					@endif
 				</div>
 					
 				<label for="">Tanggal Pemasukan</label>

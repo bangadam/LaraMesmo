@@ -2,7 +2,7 @@
 
 @section('pembina')
 <div class="row">
-	<h5>Edit Pemasukan</h5>
+	<h5>Edit Pengeluaran</h5>
 	<hr>	
 </div>
 

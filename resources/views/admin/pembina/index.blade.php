@@ -23,6 +23,10 @@
 	  <div id="modal1" class="modal">
 	    <div class="modal-content">
 	      <h4>Import File</h4>
+	      <div class="row">
+	      	<span class="red-text red-lighten-2">Aturan Baku Import Data Pembina !</span>
+	      	<img src="{{ URL::to('images/aturan_pembina.png') }}" width="" class="materialboxed responsive-img" height="150" alt="">
+	      </div>
 	      		<form action="{{ route('pembina.import') }}" method="post" enctype="multipart/form-data">
 			    <div class="file-field input-field">
 			      <div class="btn grey lighten-1">

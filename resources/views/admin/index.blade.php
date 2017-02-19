@@ -49,21 +49,23 @@
 		<ul id="nav-mobile" class="grey lighten-2 sidebar side-nav fixed">
 			<li><a href="{{ route('admin.index') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
 			<li><a href="{{ route('pembina') }}"><i class="fa fa-user"></i> Pembina</a></li>
-			@if(Auth::user()->level == 'pembina' || Auth::user()->level == 'anggota')
+			@if(Auth::user()->level == 'pembina' || Auth::user()->level == 'anggota' || Auth::user()->level == 'admin')
 				<li><a href="{{ route('kegiatan') }}"><i class="fa fa-book"></i> Kegiatan</a></li>
 				<ul class="collapsible" data-collapsible="accordion">
 					 <li>
 		      			<div class="collapsible-header"><i class="fa fa-users"></i> Anggota</div>
 		      			<div class="collapsible-body">
 		      				<ul class="daftar">
-		      					<li><a href="{{ route('anggota') }}"><i class="fa fa-eye"></i>Daftar Anggota</a></li>
+		      					<li><a href="{{ route('anggota') }}"><i class="fa fa-eye"></i>Data Anggota</a></li>
 		      					<li><a href="{{ route('absensi') }}"><i class="fa fa-book"></i> Absensi</a></li>
 		      					<li><a href="{{ route('pengurus') }}"><i class="fa fa-user"></i> Pengurus</a></li>
 		      				</ul>
 		      			</div>
 					   </li>
-				</ul>	
-				<li><a href="{{ route('keuangan') }}"><i class="fa fa-money"></i> Keuangan</a></li>
+				</ul>
+					@if(Auth::user()->level == 'admin' || Auth::user()->level == 'pembina' )	
+					<li><a href="{{ route('keuangan') }}"><i class="fa fa-money"></i> Keuangan</a></li>
+					@endif
 				@endif
 				</ul>
 	</div>
@@ -83,7 +85,7 @@
 @section('dataTableJs')
 	<script type="text/javascript" src="{{ URL::to('js/dataTables.min.js') }}"></script>
 	<script type="text/javascript" src="{{ URL::to('js/dataTables.material.js') }}"></script>
-	<script type="text/javascript" src="http://cloud.tinymce.com/stable/tinymce.min.js"></script>
+	<script type="text/javascript" src="{{ URL::to('tinymce/tinymce.min.js') }}"></script>
 	<script type="text/javascript">
 		tinymce.init({
 		  selector: '#keterangan',
@@ -125,7 +127,7 @@
 		  );
 		$('.datepicker').pickadate({
 			    selectMonths: true, // Creates a dropdown to control month
-			    selectYears: 40 // Creates a dropdown of 15 years to control year
+			    selectYears: 100 // Creates a dropdown of 15 years to control year
 			  });
 
 		$('.chips-initial').material_chip();
@@ -174,4 +176,5 @@
 		    return true;
 		}
 	</script>
+	@yield('search')
 @endsection
