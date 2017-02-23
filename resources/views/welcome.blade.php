@@ -56,7 +56,7 @@
 					</div>
 					<div class="col m8" style="margin-left: 50px">
 						<h5>{{ $pembina->nama }}</h5>
-						<p>Selamat Pengguna Sistem Informasi Mesmo aitu sebuah organisasi Managemen Emosional dan Spiritual Agama Islam yang adam Di SMKN 1 Dlanggu, Semoga menjadi Manusia yang bermanfaat bagi Umat Islam.</p>
+						<p>Selamat Datang Di Sistem Informasi Mesmo, Yaitu sebuah organisasi Managemen Emosional Spiritual dan Motivasi Agama Islam yang ada Di SMKN 1 Dlanggu, Semoga menjadi Manusia yang bermanfaat bagi Umat Islam.</p>
 					</div>
 				</div>
 			</div>
@@ -65,7 +65,7 @@
 					<div class="card white center-align">
 						<div class="card-content">
 							<i class="fa fa-users fa-5x" style="float:left"></i>
-							<h3>{{ count($anggota) }} Anggota</h3>
+							<h3>{{ count($count) }} Anggota</h3>
 						</div>
 					</div>
 				</div>
@@ -97,11 +97,11 @@
 		 @endforeach
 			  </div>
 		</div>
-		{{-- <div class="row">
+		<div class="row">
 			<div class="col m6 offset-m3">
 				<a href="{{ route('home.allkegiatan') }}" class="btn waves-light waves-effect blue lighten-2" style="width: 100%">Lihat Semua Kegiatan</a>
 			</div>
-		</div> --}}
+		</div>
 </section>
 
  <div class="parallax-container">
@@ -162,9 +162,10 @@
 
 			<div class="row">
 				<div class="col m6">
+				@include('templates.alert');
 					<div class="card">
 						<div class="card-content">
-					<form action="" method="post">
+					<form action="{{ route('buku.tamu') }}" method="post">
 						<div class="input-field">
 							<input type="text" name="nama" id="nama" class="validate">
 							<label for="Nama">Nama</label>
@@ -182,7 +183,8 @@
 							<label for="Nama">Pesan</label>
 						</div>
 						<div class="row">
-							<button type="submit" class="btn waves-effect waves-light right">Kirim <i class="fa fa-send"></i></button>
+							<button type="submit" class="btn blue lighten-2 waves-effect waves-light right">Kirim <i class="fa fa-send"></i></button>
+							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						</div>
 					</form>
 						</div>

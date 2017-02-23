@@ -41,7 +41,7 @@
 						<span class="card-title">{{ $data->nama_kegiatan }}</span>
 					</div>
 					<div class="card-content">
-						<p>{!! substr($data->keterangan, 50) !!}}</p>
+						<p>{{ substr(strip_tags($data->keterangan), 20) }}</p>
 					</div>
 					<div class="card-action">
 						<a href="single-kegiatan/{{ $data->id }}">lihat Selengkapnya</a>

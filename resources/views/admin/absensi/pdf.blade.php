@@ -13,7 +13,8 @@
             </style>
   
             <div style="font-family:Arial; font-size:12px;">
-                <center><h2>Data Absensi</h2></center>  
+                <center><h2>Data Absensi Mesmo</h2></center><br>
+                <p style="text-align: center;">{{ $data_tgl->tgl_absen }}</p>  
             </div>
             <br>
             <table id="example" class="mdl-data-table tg">

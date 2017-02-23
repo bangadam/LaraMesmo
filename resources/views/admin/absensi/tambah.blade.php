@@ -41,7 +41,7 @@
 	<div class="row">
 		<div class="card">	
 			 <div class="card-content">	
-			 <nav class="white">
+			{{--  <nav class="white">
 						<div class="nav-wrapper">
 								<div class="row">
 									<div class="col m6">
@@ -52,7 +52,7 @@
 									</div>
 								</div>
 						</div>
-					</nav>
+					</nav> --}}
 				<table class="striped" cellspacing="0" width="100%">	
 					<thead>	
 						<th>No Absen</th>

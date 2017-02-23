@@ -13,12 +13,12 @@
 					</li>
 					<li><a  href="#modal1" class="waves-light waves-effect btn amber accent-4"><i class="fa fa-download"></i> Import</a></li>
 				@endif
-					<li><a href="{{ url('absensi/downloadExcel/xlsx') }}" class="waves-light waves-effect btn green"><i class="fa fa-upload"></i> Export</a></li>
-				<li><a href="{{ route('absensi.print') }}" class="waves-light waves-effect btn grey darken-1"><i class="fa fa-print"></i> Print</a></li>
+					<li><a href="#modal2" class="waves-light waves-effect btn green"><i class="fa fa-upload"></i> Export</a></li>
+				<li><a href="#modal3" class="waves-light waves-effect btn grey darken-1"><i class="fa fa-print"></i> Print</a></li>
 			</ul>
 		</div>
 
-	  <!-- Modal Structure -->
+	  <!-- Modal Import -->
 	  <div id="modal1" class="modal">
 	    <div class="modal-content">
 	      <h4>Import File</h4>
@@ -40,7 +40,43 @@
 	     	<input type="hidden" name="_token" value="{{ csrf_token() }}">
 	    </div>
 	    </form>
-	  </div>	
+	  </div>
+
+	  <!-- Modal Export -->
+	  <div id="modal2" class="modal">
+	    <div class="modal-content">
+	      <h4>Export File</h4>
+	      	<span class="red-text red-lighten-2">Pilih Export Pada Tanggal !</span> 
+	      		<form action="{{ url('absensi/downloadExcel/xlsx') }}" method="post">
+			    <div class="input-field">
+			      <input type="date" name="tgl_absen" class="datepicker" id="">
+			    </div>
+	    </div>
+	    <div class="modal-footer">
+	     	<button type="submit" class="btn waves-light waves-effect amber accent-4">Export <i class="fa fa-download"></i></button>
+	     	<input type="hidden" name="_token" value="{{ csrf_token() }}">
+	    </div>
+	    </form>
+	  </div>
+
+	  <!-- Modal Print -->
+	  <div id="modal3" class="modal">
+	    <div class="modal-content">
+	      <h4>Print Absensi</h4>
+	      	<span class="red-text red-lighten-2">Pilih Data Pada Tanggal !</span> 
+	      		<form action="{{ url('absensi/PrintPdf') }}" method="post">
+			    <div class="input-field">
+			      <input type="date" name="tgl_absen" class="datepicker" id="">
+			    </div>
+	    </div>
+	    <div class="modal-footer">
+	     	<button type="submit" class="btn waves-light waves-effect grey darken-1">Print <i class="fa fa-print"></i></button>
+	     	<input type="hidden" name="_token" value="{{ csrf_token() }}">
+	    </div>
+	    </form>
+	  </div>
+
+
 
 		<div class="row">
 			<div class="col m12">

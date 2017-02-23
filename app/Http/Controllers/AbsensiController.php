@@ -21,7 +21,7 @@ class AbsensiController extends Controller
     }
 
     public function getTambahAbsensi(Request $request) {
-    	$data = Anggota::orderBy('nama', 'desc')->get();
+    	$data = Anggota::orderBy('nama')->get();
 
     	return view('admin.absensi.tambah', ['data' => $data]);
     }
@@ -55,10 +55,9 @@ class AbsensiController extends Controller
             $absensi->tgl_absen = $tgl_absen;
             $absensi->keterangan = $value;
             $absensi->jam_absen = $jam_absen;
-            // $absensi->save();
-            echo $value . '<br>';
+            $absensi->save();
+            // echo $value . '<br>';
         }
-        die();
 
         
         return redirect()->route('absensi')->with('pesan', 'Data Berhasil Di Tambahkan');  
@@ -79,23 +78,27 @@ class AbsensiController extends Controller
         return redirect()->route('absensi')->with('pesan', 'Data berhasil di Update !');
     }
 
-    public function downloadExcel($type) {
+    public function downloadExcel(Request $request, $type) {
         ob_end_clean();
         ob_start();
+        $tgl_absen = $request['tgl_absen'];
+        // dd($tgl_absen);
         $data = DB::table('absensis')
                 ->join('anggotas', function($join) {
                         $join->on('absensis.anggota_id', '=', 'anggotas.id');
                 })
                 ->select(['nama', 'tgl_absen', 'keterangan', 'jam_absen'])
+                ->where('absensis.tgl_absen', '=', $tgl_absen)
                 ->get();
+        // dd($data);
         $datas = json_decode(json_encode($data), true);
-
-        // $data = Absensi::select(['anggota_id', 'tgl_absen', 'keterangan'])->get()->toArray();
-        return Excel::create('dataAbsensiExcel', function($excel) use ($datas) {
+        Excel::create('dataAbsensiExcel', function($excel) use ($datas) {
             $excel->sheet('dataAbsensiExcel', function($sheet) use ($datas) {
                 $sheet->fromArray($datas);
             });
         })->download($type);
+        // $data = Absensi::select(['anggota_id', 'tgl_absen', 'keterangan'])->get()->toArray();
+        return redirect()->back(); 
         ob_flush();
     }
 
@@ -116,9 +119,13 @@ class AbsensiController extends Controller
 
     public function printPdf(Request $request) {
        // ambil semua data
-    $data = Absensi::all();
+    $tgl_absen = $request['tgl_absen'];
+
+    $data_tgl = Absensi::select('tgl_absen')->where('tgl_absen', '=', $tgl_absen)->first();
+    // dd($data_tgl);
+    $data = Absensi::where('tgl_absen', '=', $tgl_absen)->get();
     // mengarahkan view pada file pdf.blade.php di views/data/
-    $pdf = PDF::loadView('admin.absensi.pdf',compact('data'));
+    $pdf = PDF::loadView('admin.absensi.pdf',compact('data', 'data_tgl'));
 
         return $pdf->stream('dataAbsensi');
     }

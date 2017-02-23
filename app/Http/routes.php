@@ -61,62 +61,62 @@ Route::get('/dashboard', [
 
 //  Pembina Route
 
-	Route::group(['prefix' => 'pembina'], function() {
-		
-		Route::get('/', [
-			'uses'	=>	'PembinaController@getPembina',
-			'as'	=>	'pembina'
-		]);
+Route::group(['prefix' => 'pembina'], function() {
+	
+	Route::get('/', [
+		'uses'	=>	'PembinaController@getPembina',
+		'as'	=>	'pembina'
+	]);
 
-		Route::get('/tambah', [
-			'uses'	=>	'PembinaController@getTambah',
-			'as'	=>	'pembina.tambah',
-			'middleware'	=>	['admin']
-		]);
+	Route::get('/tambah', [
+		'uses'	=>	'PembinaController@getTambah',
+		'as'	=>	'pembina.tambah',
+		'middleware'	=>	['admin']
+	]);
 
-		Route::get('/{id}/edit', [
-			'uses'	=>	'PembinaController@getEdit', 
-			'as'	=>	'pembina.edit',
-			'middleware'	=>	['admin']
-		]);
+	Route::get('/{id}/edit', [
+		'uses'	=>	'PembinaController@getEdit', 
+		'as'	=>	'pembina.edit',
+		'middleware'	=>	['admin']
+	]);
 
-		Route::put('/{id}', [
-			'uses'	=>	'PembinaController@putEdit',
-			'as'	=>	'pembina.update',
-			'middleware'	=>	['admin']
-		]);
+	Route::put('/{id}', [
+		'uses'	=>	'PembinaController@putEdit',
+		'as'	=>	'pembina.update',
+		'middleware'	=>	['admin']
+	]);
 
-		Route::get('/{id}/hapus', [
-			'uses'	=>	'PembinaController@getHapus',
-			'as'	=>	'pembina.hapus',
-			'middleware'	=>	['admin']
-		]);
+	Route::get('/{id}/hapus', [
+		'uses'	=>	'PembinaController@getHapus',
+		'as'	=>	'pembina.hapus',
+		'middleware'	=>	['admin']
+	]);
 
-		Route::get('/lihat/{id}', [
-			'uses'	=>	'PembinaController@getLihat',
-			'as'	=>	'pembina.lihat'
-		]);
+	Route::get('/lihat/{id}', [
+		'uses'	=>	'PembinaController@getLihat',
+		'as'	=>	'pembina.lihat'
+	]);
 
-		Route::post('/tambah', [
-			'uses'	=>	'PembinaController@postTambah',
-			'middleware'	=>	['admin']
-		]);
-		
-		Route::get('/downloadExcel/{type}', 'PembinaController@downloadExcel');
+	Route::post('/tambah', [
+		'uses'	=>	'PembinaController@postTambah',
+		'middleware'	=>	['admin']
+	]);
+	
+	Route::get('/downloadExcel/{type}', 'PembinaController@downloadExcel');
 
-		Route::post('/importExcel', [
-			'uses'	=>	'PembinaController@importExcel',
-			'as'	=>	'pembina.import'
-		]);
+	Route::post('/importExcel', [
+		'uses'	=>	'PembinaController@importExcel',
+		'as'	=>	'pembina.import'
+	]);
 
-		Route::get('/PrintPdf', [
-			'uses'	=>	'PembinaController@printPdf',
-			'as'	=>	'pembina.print'
-		]);
-	});
+	Route::get('/PrintPdf', [
+		'uses'	=>	'PembinaController@printPdf',
+		'as'	=>	'pembina.print'
+	]);
+});
 
 
-//  Pembina Route
+//  anggota Route
 
 	Route::group(['prefix' => 'anggota'], function() {
 		Route::get('/', [
@@ -403,7 +403,9 @@ Route::get('/dashboard', [
 				'middleware'	=>	['pembina']
 			]);
 
-			Route::get('/downloadExcel/{type}', 'AbsensiController@DownloadExcel');
+			Route::post('/downloadExcel/{type}', [
+				'uses'	=>	'AbsensiController@DownloadExcel',
+			]);
 
 			Route::post('/importExcel', [
 				'uses'	=>	'AbsensiController@ImportExcel',
@@ -415,8 +417,28 @@ Route::get('/dashboard', [
 				'as'	=>	'absensi.print'
 			]);
 
+			Route::post('/PrintPdf', [
+				'uses'	=>	'AbsensiController@PrintPdf',
+			]);	
+
 			// Route::get('/tambah/search', [
 			// 	'uses'	=>	'AbsensiController@Search',
 			// 	'as'	=>	'absensi.search'
 			// ]);
 	});
+
+// Buku Tamu
+Route::post('/', [
+	'uses'	=> 	'HomeController@postBukuTamu',
+	'as'	=>	'buku.tamu'
+]);
+
+Route::get('/bukutamu', [
+	'uses'	=>	'BukuTamuController@index',
+	'as'	=>	'bukutamu.index'
+]);
+
+Route::get('/bukutamu/balas/{id}', [
+	'uses'	=>	'BukuTamuController@getBalas',
+	'as'	=>	'bukutamu.balas'
+]);
